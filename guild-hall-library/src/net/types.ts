@@ -30,7 +30,7 @@ export interface TransportEvents {
 }
 
 export interface Transport {
-  kind: 'viverse' | 'livekit' | 'sim';
+  kind: 'viverse' | 'photon' | 'sim';
   label: string;
   connect(self: { id: string; name: string }, ev: TransportEvents): Promise<void>;
   sendState(s: PeerState): void;

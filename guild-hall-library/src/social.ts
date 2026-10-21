@@ -9,7 +9,7 @@ const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt
 export interface SocialHooks {
   presence: Presence;
   seating: Seating;
-  /** true when some way to meet others is configured (VIVERSE App ID, LiveKit token URL, or ?sim) */
+  /** true when some way to meet others is configured (VIVERSE App ID, Photon App ID, or ?sim) */
   canConnect: boolean;
   joinLabel: string;
   connect: (name: string) => Promise<void>;
@@ -53,7 +53,7 @@ export function initSocial(h: SocialHooks) {
   mic.addEventListener('click', async () => {
     const v = h.voice(); if (!v) return;
     mic.disabled = true;
-    try { await v.setMic(!v.micOn); } catch (e: any) { sys('Microphone unavailable: ' + (e?.message ?? e)); }
+    try { await v.setMic(!v.micOn); sys(v.micOn ? 'Your mic is on. People near you can hear you.' : 'Your mic is off.'); } catch (e: any) { sys('Microphone unavailable: ' + (e?.message ?? e)); }
     mic.disabled = false; drawDock();
   });
   $('#chatForm').addEventListener('submit', e => { e.preventDefault(); const i = $<HTMLInputElement>('#chatIn'); P.say(i.value); i.value = ''; });
@@ -70,7 +70,7 @@ export function initSocial(h: SocialHooks) {
   for (const ev of ['keydown', 'keyup'] as const) coc.addEventListener(ev, e => e.stopPropagation());
   go.addEventListener('click', async () => {
     coc.hidden = true; go.disabled = true;
-    try { await h.connect(nm.value.trim() || h.defaultName()); sys('Connected. Your mic is off; press Mic to talk.'); }
+    try { await h.connect(nm.value.trim() || h.defaultName()); sys(h.voice() ? 'Connected. Your mic is off; press Mic to talk.' : h.joinLabel === 'Preview a crowd' ? 'Previewing a simulated crowd. Nothing is sent anywhere.' : 'Connected without voice.'); }
     catch (e: any) { sys('Could not connect: ' + (e?.message ?? e)); P.disconnect(); }
     go.disabled = !ok.checked; drawDock(); drawSeats();
   });

@@ -1,4 +1,5 @@
 import type { Transport, TransportEvents, PeerState, ChatMsg, Control } from './types';
+import { loadScript } from './loadScript';
 
 /**
  * VIVERSE Play SDK transport (docs.viverse.com → Matchmaking & Networking SDK, JS SDK 1.3.3).
@@ -14,20 +15,11 @@ const SDK = 'https://www.viverse.com/static-assets/viverse-sdk/1.3.3/index.umd.c
 const ROOM = 'guild-hall';
 const CAP = 120;
 
-function loadScript(src: string) {
-  return new Promise<void>((res, rej) => {
-    if ((globalThis as any).viverse) return res();
-    const s = document.createElement('script'); s.src = src; s.async = true;
-    s.onload = () => res(); s.onerror = () => rej(new Error('Could not load the VIVERSE SDK'));
-    document.head.appendChild(s);
-  });
-}
-
 export interface ViverseIdentity { accountId: string; name: string; vrmUrl: string | null; token: string; avatarClient: any; }
 
 /** Log in (or reuse the VIVERSE session) and read the visitor's profile. Returns null when not logged in. */
 export async function viverseIdentity(appId: string, promptLogin: boolean): Promise<ViverseIdentity | null> {
-  await loadScript(SDK);
+  await loadScript(SDK, () => !!(globalThis as any).viverse, 'Could not load the VIVERSE SDK');
   const V = (globalThis as any).viverse;
   const client = new V.client({ clientId: appId, domain: 'account.htcvive.com' });
   const auth = await client.checkAuth();
@@ -57,7 +49,8 @@ export class ViverseTransport implements Transport {
     // our presence id doubles as the VIVERSE session id so voice, chat and position all line up
     await mm.setActor({ session_id: self.id, name: self.name, properties: {} });
     const list = await mm.getAvailableRooms();
-    const rooms: any[] = (list?.rooms ?? []).filter((r: any) => typeof r.name === 'string' && r.name.startsWith(ROOM) && !r.is_closed);
+    // SDK 1.3.3 returns the array itself, although the docs show { success, rooms }
+    const rooms: any[] = (Array.isArray(list) ? list : list?.rooms ?? []).filter((r: any) => typeof r.name === 'string' && r.name.startsWith(ROOM) && !r.is_closed);
     rooms.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
     const open = rooms.find(r => (r.actors?.length ?? r.playerCount ?? 0) < (r.max_players ?? CAP));
     let room = open ? await mm.joinRoom(open.id) : null;

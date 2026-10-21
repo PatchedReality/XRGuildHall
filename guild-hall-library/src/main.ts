@@ -26,7 +26,7 @@ import { HALL, LIB, STAGE, DESK, SPAWN, POOL, BENCHES, PATH_CURVE, V, zoneOf, ty
 import { Presence } from './net/presence';
 import { SimTransport } from './net/sim';
 import { Avatars } from './avatars';
-import type { LiveKitSession } from './net/livekit';
+import type { PhotonSession } from './net/photon';
 
 const FONTS = {
   display: "'Marcellus SC', Georgia, serif",
@@ -35,11 +35,12 @@ const FONTS = {
 };
 const MODEL_BASE = (window as any).__XRGH_MODELS__ ?? 'models/';
 const MODEL_EXT = (window as any).__XRGH_MODEL_EXT__ ?? '.glb';
-const ENV = (import.meta as any).env ?? {};
 const PARAMS = new URLSearchParams(location.search);
 const SIM = Math.min(300, Math.max(0, parseInt(PARAMS.get('sim') ?? '0', 10) || 0));
-const VIVERSE_APP_ID: string = PARAMS.get('viverseApp') || ENV.VITE_VIVERSE_APP_ID || '';
-const LIVEKIT_TOKEN_URL: string = ENV.VITE_LIVEKIT_TOKEN_URL || '';
+const VIVERSE_APP_ID: string = PARAMS.get('viverseApp') || import.meta.env.VITE_VIVERSE_APP_ID || '';
+// the single-file artifact ships without public/photon/, so it always previews with the simulated crowd
+const PHOTON_APP_ID: string = import.meta.env.MODE === 'single' ? '' : import.meta.env.VITE_PHOTON_APP_ID || '';
+const PHOTON_REGION: string = PARAMS.get('region') || import.meta.env.VITE_PHOTON_REGION || 'us';
 
 const loadBar = document.getElementById('loadBar')!;
 const loadMsg = document.getElementById('loadMsg')!;
@@ -208,7 +209,7 @@ async function main() {
   // ---- people ----
   const presence = new Presence('Guest');
   const avatars = new Avatars(FONTS); scene.add(avatars.group);
-  let voice: LiveKitSession | null = null;
+  let voice: PhotonSession | null = null;
   let sim: SimTransport | null = null;
 
   // ---- interaction ----
@@ -305,25 +306,25 @@ async function main() {
     setReduceMotion: v => { reduced = v; },
     setAurora: v => { sky.animate = v; },
     setReflections: v => { reflectionsWanted = v; setReflections(v); },
-    askProxy: ENV.VITE_ASK_PROXY || undefined,
+    askProxy: import.meta.env.VITE_ASK_PROXY || undefined,
   });
 
   const social = initSocial({
     presence, seating,
     canConnect: true,
-    joinLabel: SIM > 0 || VIVERSE_APP_ID || LIVEKIT_TOKEN_URL ? 'Join others' : 'Preview a crowd',
+    joinLabel: SIM > 0 || VIVERSE_APP_ID || PHOTON_APP_ID ? 'Join others' : 'Preview a crowd',
     defaultName: () => presence.self.name !== 'Guest' ? presence.self.name : '',
     voice: () => voice,
     connect: async (name: string) => {
       presence.self.name = name.slice(0, 32) || 'Guest';
-      if (SIM > 0 || !(VIVERSE_APP_ID || LIVEKIT_TOKEN_URL)) {
+      if (SIM > 0 || !(VIVERSE_APP_ID || PHOTON_APP_ID)) {
         // no server configured (e.g. the artifact preview): an offline simulated crowd shows how the room behaves
         sim = new SimTransport(SIM || 60);
         sim.seatProvider = () => (['hall', 'library'] as const).flatMap(z => seating.seats(z).map((s, i) => ({ key: `${z}:${seating.preset[z]}:${i}`, pos: s.pos, rotY: s.rotY })));
         await presence.connect(sim);
         return;
       }
-      const { LiveKitSession, LiveKitTransport } = LIVEKIT_TOKEN_URL ? await import('./net/livekit') : ({} as any);
+      const { PhotonSession, PhotonTransport } = PHOTON_APP_ID ? await import('./net/photon') : ({} as any);
       if (VIVERSE_APP_ID) {
         const { viverseIdentity, ViverseTransport } = await import('./net/viverse');
         const id = await viverseIdentity(VIVERSE_APP_ID, true);
@@ -332,16 +333,27 @@ async function main() {
         presence.self.avatar = id.vrmUrl;
         avatars.fetchAvatar = url => id.avatarClient.getAvatarFileWithSDK(url);
         await presence.connect(new ViverseTransport(VIVERSE_APP_ID, id));
-        if (LiveKitSession) { voice = new LiveKitSession(LIVEKIT_TOKEN_URL, 'guild-hall'); voice!.onStatus = () => social.drawDock(); await voice!.connect(presence.self.id, presence.self.name); }
+        if (PhotonSession) {
+          // presence stays on VIVERSE; a voice problem (e.g. the CCU cap) must not drop people from the room
+          const v: PhotonSession = voice = new PhotonSession(PHOTON_APP_ID, 'guild-hall', PHOTON_REGION);
+          // presence owns the dock status on VIVERSE, so voice drops and recoveries are reported in chat
+          v.onStatus = () => social.drawDock();
+          v.onLink = up => social.sys(up ? 'Voice is back.' : 'Voice dropped. Reconnecting…');
+          try { await v.connect(presence.self.id, presence.self.name); } catch (e: any) { v.disconnect(); if (voice === v) { voice = null; social.sys('Voice is unavailable right now. ' + (e?.message ?? '')); } }
+          // Leave pressed while voice was still joining: the listener below already dropped it, so close this one too
+          if (voice !== v) v.disconnect();
+        }
         return;
       }
-      if (LiveKitSession) {
-        voice = new LiveKitSession(LIVEKIT_TOKEN_URL, PARAMS.get('room') ?? 'guild-hall');
-        voice!.hostKey = PARAMS.get('hostKey') ?? '';
-        await presence.connect(new LiveKitTransport(voice));
+      if (PhotonSession) {
+        voice?.disconnect();
+        voice = new PhotonSession(PHOTON_APP_ID, PARAMS.get('room') ?? 'guild-hall', PHOTON_REGION);
+        await presence.connect(new PhotonTransport(voice));
       }
     },
   });
+  // Leave only disconnects the presence transport; on VIVERSE the voice session is separate and must not keep the mic live
+  presence.listeners.add(() => { if (!presence.connected && voice) { voice.disconnect(); voice = null; } });
   presence.onControl = c => {
     if (c.type === 'seating') { seating.setPreset(c.zone, c.preset); if (seat && seat.key.startsWith(c.zone + ':')) stand(); social.sys(`The host changed the ${c.zone === 'hall' ? 'hall' : 'library'} seating.`); }
     if (c.type === 'muteHall' && voice?.micOn && presence.self.zone === 'hall' && !presence.self.onStage) { voice.setMic(false).then(() => social.drawDock()); social.sys('The host asked the hall to mute. Your mic is off.'); }
@@ -393,7 +405,7 @@ async function main() {
   setTimeout(() => world.setAuthoredPlayerPosition(SPAWN.pos), 600);
   await step(1, 'Welcome to the Guild Hall');
   document.getElementById('loading')!.classList.add('done');
-  (window as any).__xrgh = { THREE, world, goTo, setView: (y: number, p: number) => { yaw = y; pitch = p; }, TABLE_TOP, presence, seating, sitAt, zone: () => zone };
+  (window as any).__xrgh = { THREE, world, voice: () => voice, goTo, setView: (y: number, p: number) => { yaw = y; pitch = p; }, TABLE_TOP, presence, seating, sitAt, zone: () => zone };
 }
 
 main().catch(err => {

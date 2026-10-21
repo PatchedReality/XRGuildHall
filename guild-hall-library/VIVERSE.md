@@ -27,7 +27,7 @@ Comfortable: teleport and snap turn by default, no forced camera motion. When yo
 
 - [ ] App ID from VIVERSE Studio, set as `VITE_VIVERSE_APP_ID` at build time
 - [ ] Microphone permission requested for the world in VIVERSE Studio (needed for voice)
-- [ ] LiveKit token worker deployed, with the VIVERSE world origin in `ALLOWED_ORIGINS`
+- [ ] Photon Voice App ID set as `VITE_PHOTON_APP_ID`, and the Photon SDK files in `public/photon/` before building
 - [ ] New trailer and thumbnail: the current ones show the pilot layout
 
 ## Gallery order (v2)
