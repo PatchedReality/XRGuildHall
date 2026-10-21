@@ -15,8 +15,10 @@ import { loadScript } from './loadScript';
 const SDK = 'photon/photon-voice.min.js';
 const APP_VERSION = '1.0';
 const MAX_PLAYERS = 20; // free plan CCU
-const RATE = 48000;
+export const RATE = 48000;
 const FRAME_US = 40000; // 25 events/s per open mic; 20 ms frames would double the room's message rate
+/** Samples per outgoing voice frame (mono, at RATE). */
+export const VOICE_FRAME = RATE * FRAME_US / 1e6;
 const JOIN_TIMEOUT_MS = 15000;
 const EV = { state: 1, chat: 2, ctl: 3 } as const;
 const SPEAK_RMS = 0.02, SPEAK_HOLD_MS = 300;
@@ -42,6 +44,7 @@ class VoiceOut extends AudioWorkletProcessor {
     super();
     const p = o.processorOptions;
     this.step = p.step; this.ch = p.channels; this.min = p.prebuffer; this.max = p.maxBuffer;
+    this.under = 0; this.quanta = 0;
     this.reset();
     this.port.onmessage = e => {
       if (e.data === 'flush') { this.reset(); return; }
@@ -52,6 +55,8 @@ class VoiceOut extends AudioWorkletProcessor {
   reset() { this.q = []; this.cur = null; this.idx = 0; this.queued = 0; this.playing = false; }
   process(_in, outs) {
     const out = outs[0][0];
+    // underruns are reported about once a second for the ?debug=voice overlay
+    if (++this.quanta >= 375) { if (this.under) this.port.postMessage(this.under); this.under = 0; this.quanta = 0; }
     if (!this.playing && this.queued < this.min) { out.fill(0); return true; }
     this.playing = true;
     // play 5% fast while well above the prebuffer, so a burst after a stall doesn't leave lasting delay
@@ -62,7 +67,7 @@ class VoiceOut extends AudioWorkletProcessor {
         this.cur = this.q.shift() || null;
         if (!this.cur) break;
       }
-      if (!this.cur) { out.fill(0, i); this.playing = false; this.idx = 0; break; }
+      if (!this.cur) { out.fill(0, i); this.playing = false; this.idx = 0; this.under++; break; }
       out[i] = this.cur[Math.floor(this.idx) * this.ch];
       this.idx += step;
     }
@@ -102,6 +107,9 @@ export class PhotonSession {
   ctx: AudioContext | null = null;
   micOn = false;
   localMuted = new Set<string>();
+  /** Running totals for load testing: jitter-buffer underruns across audible voices, and frames decoded. */
+  underruns = 0;
+  framesDecoded = 0;
   onEvent: ((code: number, payload: any, from: string, fromHost: boolean) => void) | null = null;
   onLeave: ((id: string) => void) | null = null;
   onStatus: ((s: string) => void) | null = null;
@@ -248,10 +256,11 @@ export class PhotonSession {
   /** (Re)creates the outgoing voice on the current client; the capture graph survives reconnects. */
   private attachMic() {
     const m = this.mic; if (!m || m.voice || !this.client?.isJoinedToRoom()) return;
-    const V = this.P.Voice;
-    const voice = m.voice = this.client.voiceClient.createLocalVoiceAudio(V.createOpusVoiceInfo(RATE, 1, FRAME_US, 32000), this.ctx!.sampleRate, 1);
+    const voice = m.voice = this.createLocalVoice(this.ctx!.sampleRate);
     m.node.port.onmessage = e => voice.pushData(e.data);
   }
+  /** An outgoing voice on the current client; feed it mono frames of FRAME_US at `rate` (VOICE_FRAME samples at RATE) with pushData. */
+  createLocalVoice(rate = RATE) { return this.client.voiceClient.createLocalVoiceAudio(this.P.Voice.createOpusVoiceInfo(RATE, 1, FRAME_US, 32000), rate, 1); }
 
   private addVoice(actorNr: number, voiceId: number, info: any) {
     const V = this.P.Voice, ctx = this.ensureAudio();
@@ -266,8 +275,10 @@ export class PhotonSession {
     node.connect(pan).connect(gain);
     const v: RemoteVoice = { actorNr, node, pan, gain, falloff: 'normal', audible: false, loudAt: 0 };
     this.voices.set(key, v);
+    node.port.onmessage = e => { this.underruns += e.data; };
     // stays silent until updateSubscriptions matches it to an avatar, so a voice with no one in the room is never heard
     const decoder = V.createAudioDecoder((frame: Float32Array) => {
+      this.framesDecoded++;
       let sum = 0; for (let i = 0; i < frame.length; i++) sum += frame[i] * frame[i];
       if (Math.sqrt(sum / frame.length) > SPEAK_RMS) v.loudAt = performance.now();
       if (v.audible) { const copy = frame.slice(); node.port.postMessage(copy, [copy.buffer]); } // frame may view wasm memory
@@ -285,6 +296,8 @@ export class PhotonSession {
     if (on) { v.node.port.postMessage('flush'); v.gain.connect(this.ctx.destination); } else v.gain.disconnect();
   }
   private isMuted(actorNr: number) { const pid = this.pids.get(actorNr); return !!pid && this.localMuted.has(pid); }
+
+  get voiceCounts() { let audible = 0; for (const v of this.voices.values()) if (v.audible) audible++; return { incoming: this.voices.size, audible }; }
 
   get speaking() {
     const now = performance.now(), s = new Set<string>();

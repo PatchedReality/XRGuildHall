@@ -216,11 +216,59 @@ With no server configured, "Preview a crowd" runs the same simulation with 60 bo
 
 ### Tier 2: end to end on the free plan (19 bots plus one Quest)
 
-- Build a headless bot page containing only `PhotonTransport` and `PhotonSession`, with no 3D world. It sends moving positions from the `sim.ts` logic and speaks a clip, in one of two ways:
-  - Chrome's fake mic: `--use-fake-device-for-media-stream --use-file-for-fake-audio-capture=speech.wav`, with no code changes.
-  - Decode the WAV and push it with `createLocalVoiceAudio` + `pushData()`. This is lighter, and might allow several bots per page if the SDK supports multiple clients per page (unknown).
-- A Playwright script launches 19 bots. A Quest joins as the 20th client.
-- Measure frame rate, downstream bandwidth and audio dropouts with every bot talking. This includes Photon's decode cost.
+The harness is built: `bots.html` (`src/bots/`) is a page with no 3D world, and `scripts/load/run-bots.mjs` launches it in headless Chromium.
+
+- Each bot is a full `PhotonSession` + `PhotonTransport` + `Presence`, so the room sees ordinary clients: presence events at the real send rate, and a voice.
+- Bots walk with the same motion as `?sim` (`newWalker` / `stepWalker` in `src/net/sim.ts`). They never sit.
+- Each bot pushes a speech clip into its own outgoing voice with `createLocalVoiceAudio` + `pushData()`, at 25 frames/s, starting at a random point in the clip. The default clip is synthesised (vowel-like syllables with pauses); `--wav` plays a file instead.
+- Bots decode each other's voices like any client, so the bot machine also carries Photon's decode cost.
+
+#### Run it
+
+The free plan allows 20 CCU **per App ID, across all rooms**, including people in the live world. 19 bots plus one listener only fits when nothing else is connected; otherwise use `--total 18` or fewer. A join over the cap fails with Photon error 32757 ("Max CCU of 20 reached"). The client currently reports this as "Could not reach Photon".
+
+```bash
+npx playwright install chromium
+```
+
+```bash
+node scripts/load/run-bots.mjs --room loadtest-PICK-A-NAME --total 19 --per-page 5 --stage
+```
+
+- `--room` is required, and `guild-hall` is refused, so a test never lands in the live room.
+- `--total` is the number of bots. `--per-page` is clients per Chromium instance, so the launcher starts `ceil(total / per-page)` instances.
+- `--mic` is the fraction of bots that talk (default 1). Talkers are spread evenly over the bot numbers.
+- `--stage` puts bot 1 on the stage with the megaphone on.
+- `--duration` is in seconds (default 300). Ctrl-C stops early.
+- `--base` points at an existing server. Without it, the launcher starts its own Vite dev server on port 5199, which reads `VITE_PHOTON_APP_ID` from `.env.local`.
+- `--region`, `--wav`, `--headed` are optional.
+
+Every 10 s the launcher prints joined bots, frames sent per second (25 per talking bot) and frames decoded per second across all bots.
+
+The page can also be opened by hand: `bots.html?room=NAME&bots=3&mic=1&stage=1`.
+
+Then join as the listener with `?room=NAME&debug=voice`, from a browser or a Quest. On a Quest the page must be served over HTTPS, because AudioWorklet needs a secure context. `?room=` puts presence on Photon even when a VIVERSE App ID is configured, because the bots' positions travel as Photon events that VIVERSE presence can't see.
+
+`?debug=voice` shows a corner readout and logs the same line to the console every 10 s, for reading over `chrome://inspect`:
+
+- `voices in`: remote voices being decoded, and how many are audible (nearest 10).
+- `decoded`: frames decoded per second, across all voices.
+- `underruns`: per second, summed over audible voices. One underrun is a jitter buffer running dry while playing. A voice that goes silent can count one too.
+- `out latency`: the AudioContext's `outputLatency` + `baseLatency`.
+
+Measure Quest frame rate and CPU alongside it with OVR Metrics Tool.
+
+#### What we found
+
+- **Several clients per page work**, if they join one at a time. Overlapping handshakes in one page fail with `NameServer authentication failed: Non token authentication is not allowed`, which suggests the clients share state in the SDK's wasm core. `bots.html` joins its bots in sequence. 8 clients in one page and 6 per page × 3 pages both held steady.
+- **Chrome's fake mic did not work here.** With Playwright's Chromium on macOS, `getUserMedia` never resolved, even headed with `--use-fake-device-for-media-stream`. In headless mode the AudioContext clock does not advance either. Pushing PCM avoids both, and needs no microphone permission. Linux cloud VMs were not tried.
+- **19 bots ran on one laptop** (Apple Silicon, 4 instances × 5 bots): 475 frames/s sent, about 7,800 decoded by the bots.
+- **About 8–10% of frames never reach the decoder.** The shortfall is the same at 3, 8, 18 and 19 bots, with one bot per page or eight. It is not silence suppression: adding a noise floor to the clip changed nothing. The cause is unknown: Photon, the SDK's receive path, or frames arriving too late. The listener's underruns track it.
+- **Listener at 18 bots plus the listener** (desktop Chrome, every bot talking, megaphone bot on stage): 18 voices decoded (10 audible), 385–435 frames/s decoded (450 sent to it), 2–6 underruns/s, output latency 24–32 ms + 5 ms. Not yet measured on a Quest.
+
+#### Still to do
+
+- Run the same test with a Quest as the listener.
 - Use the per-voice figures to extrapolate to 100.
 
 ### Tier 3: 100 clients (needs Photon)
@@ -236,7 +284,8 @@ With no server configured, "Preview a crowd" runs the same simulation with 60 bo
 - Can a JS local voice target an interest group?
 - Does the JS SDK skip silence (voice detection), or stream continuously while the mic is on?
 - Can a remote voice be paused or dropped, so the client stops decoding it?
-- Can several `LoadBalancingClient` instances run in one page?
+- Can several `LoadBalancingClient` instances run in one page? (Yes, in practice, if they join one at a time; see Tier 2. Is that supported?)
+- Why do about 8–10% of voice frames never reach the decoder (Tier 2)?
 - Does the SDK use WASM, workers or WebCodecs for Opus?
 - What sample rate and channel count does `createAudioDecoder` output?
 - Can the SDK be redistributed in a public repository?

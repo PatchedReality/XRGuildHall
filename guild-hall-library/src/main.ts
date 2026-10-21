@@ -37,7 +37,8 @@ const MODEL_BASE = (window as any).__XRGH_MODELS__ ?? 'models/';
 const MODEL_EXT = (window as any).__XRGH_MODEL_EXT__ ?? '.glb';
 const PARAMS = new URLSearchParams(location.search);
 const SIM = Math.min(300, Math.max(0, parseInt(PARAMS.get('sim') ?? '0', 10) || 0));
-const VIVERSE_APP_ID: string = PARAMS.get('viverseApp') || import.meta.env.VITE_VIVERSE_APP_ID || '';
+// ?room= is a private Photon room (e.g. a voice load test): bots there send presence over Photon, which VIVERSE presence can't see
+const VIVERSE_APP_ID: string = PARAMS.has('room') ? '' : PARAMS.get('viverseApp') || import.meta.env.VITE_VIVERSE_APP_ID || '';
 // the single-file artifact ships without public/photon/, so it always previews with the simulated crowd
 const PHOTON_APP_ID: string = import.meta.env.MODE === 'single' ? '' : import.meta.env.VITE_PHOTON_APP_ID || '';
 const PHOTON_REGION: string = PARAMS.get('region') || import.meta.env.VITE_PHOTON_REGION || 'us';
@@ -400,6 +401,7 @@ async function main() {
     }
   }
   world.registerSystem(HallSystem);
+  if (PARAMS.get('debug') === 'voice') import('./net/voiceDebug').then(m => m.voiceDebugOverlay(() => voice));
 
   world.setAuthoredPlayerPosition(SPAWN.pos);
   setTimeout(() => world.setAuthoredPlayerPosition(SPAWN.pos), 600);
