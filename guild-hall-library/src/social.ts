@@ -44,7 +44,7 @@ export function initSocial(h: SocialHooks) {
   drawSeats();
 
   // ---------- dock ----------
-  const join = $<HTMLButtonElement>('#socJoin'), mic = $<HTMLButtonElement>('#socMic'), chatBtn = $<HTMLButtonElement>('#socChatBtn'), peopleBtn = $<HTMLButtonElement>('#socPeopleBtn');
+  const join = $<HTMLButtonElement>('#socJoin'), mic = $<HTMLButtonElement>('#socMic'), mega = $<HTMLButtonElement>('#socMega'), chatBtn = $<HTMLButtonElement>('#socChatBtn'), peopleBtn = $<HTMLButtonElement>('#socPeopleBtn');
   join.hidden = !h.canConnect;
   const toggle = (btn: HTMLButtonElement, pop: HTMLElement) => { const open = pop.hidden; pop.hidden = !open; btn.setAttribute('aria-expanded', String(open)); return open; };
   let unread = 0;
@@ -55,6 +55,11 @@ export function initSocial(h: SocialHooks) {
     mic.disabled = true;
     try { await v.setMic(!v.micOn); sys(v.micOn ? 'Your mic is on. People near you can hear you.' : 'Your mic is off.'); } catch (e: any) { sys('Microphone unavailable: ' + (e?.message ?? e)); }
     mic.disabled = false; drawDock();
+  });
+  mega.addEventListener('click', () => {
+    P.setMegaphone(!P.self.megaphone);
+    sys(P.self.megaphone ? 'Megaphone on. Everyone can hear you at full volume while you stay on the stage.' : 'Megaphone off.');
+    drawDock();
   });
   $('#chatForm').addEventListener('submit', e => { e.preventDefault(); const i = $<HTMLInputElement>('#chatIn'); P.say(i.value); i.value = ''; });
   for (const ev of ['keydown', 'keyup'] as const) $('#social').addEventListener(ev, e => { if ((e.target as HTMLElement).closest('input')) e.stopPropagation(); });
@@ -87,7 +92,7 @@ export function initSocial(h: SocialHooks) {
   const drawPeople = () => {
     const v = h.voice();
     const list = [...P.peers.values()].sort((a, b) => a.name.localeCompare(b.name)).slice(0, 150);
-    $('#peopleList').innerHTML = `<div class="person"><span class="nm">${esc(P.self.name)} (you)</span><span class="z">${P.self.zone}</span></div>` + list.map(p => `<div class="person" data-id="${esc(p.id)}"><span class="nm">${esc(p.name)}</span><span class="z">${p.zone}${p.onStage ? ' · stage' : ''}</span>${v ? `<button data-act="mute">${v.localMuted.has(p.id) ? 'Unmute' : 'Mute'}</button>` : ''}<button data-act="block">Block</button></div>`).join('')
+    $('#peopleList').innerHTML = `<div class="person"><span class="nm">${esc(P.self.name)} (you)</span><span class="z">${P.self.zone}</span></div>` + list.map(p => `<div class="person" data-id="${esc(p.id)}"><span class="nm">${esc(p.name)}</span><span class="z">${p.zone}${p.megaphone ? ' · megaphone' : p.onStage ? ' · stage' : ''}</span>${v ? `<button data-act="mute">${v.localMuted.has(p.id) ? 'Unmute' : 'Mute'}</button>` : ''}<button data-act="block">Block</button></div>`).join('')
       + (P.blocked.size ? `<p class="fine">${P.blocked.size} blocked. <button class="linkbtn" data-act="unblock">Unblock all</button></p>` : '');
     $('#hostBox').hidden = !(P.connected && P.isHost());
   };
@@ -103,6 +108,7 @@ export function initSocial(h: SocialHooks) {
     $('#socStatus').textContent = P.status;
     join.textContent = c ? 'Leave' : h.joinLabel;
     mic.hidden = !c || !v; mic.setAttribute('aria-pressed', String(!!v?.micOn)); mic.textContent = v?.micOn ? 'Mic on' : 'Mic off';
+    mega.hidden = mic.hidden || !P.self.onStage; mega.setAttribute('aria-pressed', String(P.self.megaphone));
     chatBtn.hidden = !c; peopleBtn.hidden = !c;
     $('#socCount').textContent = c ? String(P.peers.size + 1) : '';
     if (!c) { $('#socChat').hidden = true; $('#socPeople').hidden = true; }

@@ -11,6 +11,7 @@ export interface PeerState {
   avatar: string | null;   // VRM url (from the Viverse Avatar SDK), or null for the mannequin
   color: number;           // mannequin tint
   onStage: boolean;
+  megaphone: boolean;      // heard at full volume by everyone; only honoured while onStage
   t: number;               // sender clock, ms
 }
 

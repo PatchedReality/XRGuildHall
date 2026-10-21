@@ -15,7 +15,7 @@ Off VIVERSE today, one LiveKit room carries both voice and presence. Under the s
 | Token worker that issues JWTs, `ALLOWED_ORIGINS`, `HOST_KEYS` | Nothing server-side. The client connects with the Photon App ID. |
 | Host = token attribute `host=1` | Host = the room's master client (`myRoomMasterActorNr()`). Photon stamps the sender's `actorNr` on every event, so host messages can't be spoofed the way VIVERSE `general` messages can. |
 
-VIVERSE presence (`src/net/viverse.ts`) is untouched and untested in this spike. Testing runs on a plain HTTPS host or a local dev server.
+VIVERSE presence (`src/net/viverse.ts`) is unchanged in this spike, and has been tested with Photon voice on VIVERSE: it works. On VIVERSE, presence and chat stay on the Play SDK and only voice goes through Photon.
 
 ## Photon Voice JS API
 

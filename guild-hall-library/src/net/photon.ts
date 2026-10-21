@@ -20,6 +20,9 @@ const FRAME_US = 40000; // 25 events/s per open mic; 20 ms frames would double t
 const JOIN_TIMEOUT_MS = 15000;
 const EV = { state: 1, chat: 2, ctl: 3 } as const;
 const SPEAK_RMS = 0.02, SPEAK_HOLD_MS = 300;
+// rolloff 0 keeps the inverse model at full gain at any distance, while HRTF still places the voice
+const FALLOFF = { normal: { ref: 1.2, roll: 1.4 }, stage: { ref: 8, roll: 0.35 }, megaphone: { ref: 1, roll: 0 } } as const;
+type Falloff = keyof typeof FALLOFF;
 
 async function loadPhoton() {
   const G = globalThis as any;
@@ -85,7 +88,7 @@ registerProcessor('xrgh-mic-in', MicIn);
 
 interface RemoteVoice {
   actorNr: number; node: AudioWorkletNode; pan: PannerNode; gain: GainNode;
-  stage: boolean; audible: boolean; loudAt: number;
+  falloff: Falloff; audible: boolean; loudAt: number;
 }
 
 /** Replace an SDK callback without dropping the wrapper the Voice transport installed on the instance. */
@@ -258,10 +261,10 @@ export class PhotonSession {
       numberOfInputs: 0, outputChannelCount: [1],
       processorOptions: { step: (info.samplingRate || RATE) / ctx.sampleRate, channels, prebuffer: ctx.sampleRate * 0.06, maxBuffer: ctx.sampleRate * 0.3 },
     });
-    const pan = new PannerNode(ctx, { panningModel: 'HRTF', distanceModel: 'inverse', refDistance: 1.2, maxDistance: 30, rolloffFactor: 1.4 });
+    const pan = new PannerNode(ctx, { panningModel: 'HRTF', distanceModel: 'inverse', refDistance: FALLOFF.normal.ref, maxDistance: 30, rolloffFactor: FALLOFF.normal.roll });
     const gain = new GainNode(ctx, { gain: this.isMuted(actorNr) ? 0 : 1 });
     node.connect(pan).connect(gain);
-    const v: RemoteVoice = { actorNr, node, pan, gain, stage: false, audible: false, loudAt: 0 };
+    const v: RemoteVoice = { actorNr, node, pan, gain, falloff: 'normal', audible: false, loudAt: 0 };
     this.voices.set(key, v);
     // stays silent until updateSubscriptions matches it to an avatar, so a voice with no one in the room is never heard
     const decoder = V.createAudioDecoder((frame: Float32Array) => {
@@ -294,7 +297,7 @@ export class PhotonSession {
     for (const v of this.voices.values()) if (this.pids.get(v.actorNr) === id) v.gain.gain.value = muted ? 0 : 1;
   }
 
-  /** Pick who is audible (every ~0.5 s): the nearest ~10 in your zone, plus whoever is on the stage. */
+  /** Pick who is audible (every ~0.5 s): the nearest ~10 in your zone, plus whoever is on the stage or on the megaphone. */
   updateSubscriptions(me: { x: number; z: number; zone: string }, peers: Map<string, Peer>, blocked: Set<string>) {
     const speaking = this.speaking;
     const scored: { v: RemoteVoice; score: number }[] = [];
@@ -307,8 +310,9 @@ export class PhotonSession {
       let score = 100 - d;
       if (p.zone !== me.zone) score -= 60;
       if (p.onStage && me.zone === 'hall') score += 200;
+      if (p.megaphone) score += 400;
       if (speaking.has(id)) score += 20;
-      if (d > 25 && !p.onStage) score = -1;
+      if (d > 25 && !p.onStage && !p.megaphone) score = -1;
       scored.push({ v, score });
     }
     scored.sort((a, b) => b.score - a.score);
@@ -326,7 +330,8 @@ export class PhotonSession {
     for (const n of this.voices.values()) {
       const id = this.pids.get(n.actorNr); const peer = id ? peers.get(id) : undefined; if (!peer) continue;
       n.pan.positionX.setTargetAtTime(peer.rp.x, t, 0.05); n.pan.positionY.setTargetAtTime(peer.rp.y + 1.5, t, 0.05); n.pan.positionZ.setTargetAtTime(peer.rp.z, t, 0.05);
-      if (peer.onStage !== n.stage) { n.stage = peer.onStage; n.pan.refDistance = n.stage ? 8 : 1.2; n.pan.rolloffFactor = n.stage ? 0.35 : 1.4; }
+      const falloff: Falloff = peer.megaphone ? 'megaphone' : peer.onStage ? 'stage' : 'normal';
+      if (falloff !== n.falloff) { n.falloff = falloff; n.pan.refDistance = FALLOFF[falloff].ref; n.pan.rolloffFactor = FALLOFF[falloff].roll; }
     }
   }
   send(code: number, obj: any) { if (this.client?.isJoinedToRoom()) this.client.raiseEvent(code, JSON.stringify(obj)); }

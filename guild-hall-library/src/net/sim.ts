@@ -31,7 +31,7 @@ export class SimTransport implements Transport {
     for (let i = 0; i < this.n; i++) {
       const p = this.pick();
       this.bots.push({
-        s: { id: 'sim' + i, name: `${names[i % names.length]} (sim ${i + 1})`, x: p.x, y: p.y, z: p.z, ry: Math.random() * 6, zone: zoneOf(p), seat: null, avatar: null, color: PALETTE[i % PALETTE.length], onStage: false, t: 0 },
+        s: { id: 'sim' + i, name: `${names[i % names.length]} (sim ${i + 1})`, x: p.x, y: p.y, z: p.z, ry: Math.random() * 6, zone: zoneOf(p), seat: null, avatar: null, color: PALETTE[i % PALETTE.length], onStage: false, megaphone: false, t: 0 },
         target: this.pick(), wait: Math.random() * 4, speed: 0.8 + Math.random() * 0.6, seatKey: null,
       });
     }

@@ -211,6 +211,7 @@ a.primary { color: #1a1206; }
 .soc-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 5px 6px 5px 14px; backdrop-filter: blur(10px); }
 .soc-status { font: 12px var(--mono); color: var(--dim); margin-right: 4px; }
 #socMic[aria-pressed="true"] { border-color: #ff6b6b; color: #ffd4d4; background: rgba(255,80,80,.14); }
+#socMega[aria-pressed="true"] { border-color: #f1d58f; color: #fff2cf; background: rgba(241,213,143,.16); }
 .soc-pop { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; backdrop-filter: blur(12px); max-height: 42vh; overflow-y: auto; }
 .chat-log { display: grid; gap: 6px; max-height: 30vh; overflow-y: auto; font-size: 14px; margin-bottom: 8px; }
 .chat-log .me b { color: var(--gold-hi); }
