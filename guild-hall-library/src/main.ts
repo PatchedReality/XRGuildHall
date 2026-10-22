@@ -327,7 +327,7 @@ async function main() {
       }
       const { PhotonSession, PhotonTransport } = PHOTON_APP_ID ? await import('./net/photon') : ({} as any);
       if (VIVERSE_APP_ID) {
-        const { viverseIdentity, ViverseTransport } = await import('./net/viverse');
+        const { viverseIdentity, ViverseTransport, VIVERSE_ROOM } = await import('./net/viverse');
         const id = await viverseIdentity(VIVERSE_APP_ID, true);
         if (!id) throw new Error('Taking you to the VIVERSE login…');
         if (!name) presence.self.name = id.name;
@@ -336,7 +336,7 @@ async function main() {
         await presence.connect(new ViverseTransport(VIVERSE_APP_ID, id));
         if (PhotonSession) {
           // presence stays on VIVERSE; a voice problem (e.g. the CCU cap) must not drop people from the room
-          const v: PhotonSession = voice = new PhotonSession(PHOTON_APP_ID, 'guild-hall', PHOTON_REGION);
+          const v: PhotonSession = voice = new PhotonSession(PHOTON_APP_ID, VIVERSE_ROOM, PHOTON_REGION);
           // presence owns the dock status on VIVERSE, so voice drops and recoveries are reported in chat
           v.onStatus = () => social.drawDock();
           v.onLink = up => social.sys(up ? 'Voice is back.' : 'Voice dropped. Reconnecting…');

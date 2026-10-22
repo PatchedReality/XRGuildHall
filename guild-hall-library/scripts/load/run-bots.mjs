@@ -3,26 +3,56 @@
 // --per-page Photon clients (bots.html), each pushing a speech clip into its outgoing voice.
 //
 //   node scripts/load/run-bots.mjs --room loadtest-abc --total 19 [--per-page 5] [--duration 300] [--mic 1] [--stage]
-//                                  [--base http://localhost:5173] [--wav speech.wav] [--headed] [--region us]
+//   node scripts/load/run-bots.mjs --viverse --total 5 [...]
+//                                  [--base http://localhost:5173] [--wav speech.wav] [--synth] [--headed] [--region us]
 //
+// --viverse: bots join like visitors to the VIVERSE build, so a logged-in VIVERSE client sees and hears them. Presence goes over
+// the VIVERSE Play SDK without a login, voice over the VIVERSE voice room; that room is shared with everyone in the world.
 // Without --base it starts the Vite dev server itself (which reads VITE_PHOTON_APP_ID from .env.local); VITE_LOG=info shows its log.
-// Without --wav the bots synthesise a speech-like clip. Needs only Node and Playwright's Chromium (npx playwright install chromium).
+// Without --wav each bot says "I am bot number N", spoken by macOS `say`, so a listener can tell which avatar a voice comes from.
+// Where `say` is missing, or with --synth, the bots synthesise a speech-like clip instead.
+// Needs only Node and Playwright's Chromium (npx playwright install chromium).
 import { chromium } from 'playwright';
 import { createServer } from 'vite';
-import { resolve } from 'node:path';
+import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parseArgs } from 'node:util';
+import { parseArgs, promisify } from 'node:util';
+import { execFile } from 'node:child_process';
+import { mkdtemp, rm, stat } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 
 const { values: a } = parseArgs({
   options: {
     room: { type: 'string' }, total: { type: 'string', default: '19' }, 'per-page': { type: 'string', default: '1' },
-    duration: { type: 'string', default: '300' }, mic: { type: 'string', default: '1' }, stage: { type: 'boolean', default: false },
-    base: { type: 'string' }, wav: { type: 'string' }, headed: { type: 'boolean', default: false }, region: { type: 'string' },
+    duration: { type: 'string', default: '300' }, mic: { type: 'string', default: '1' }, stage: { type: 'boolean', default: false }, viverse: { type: 'boolean', default: false },
+    base: { type: 'string' }, wav: { type: 'string' }, synth: { type: 'boolean', default: false }, headed: { type: 'boolean', default: false }, region: { type: 'string' },
   },
 });
-if (!a.room || a.room === 'guild-hall') { console.error('Pass --room <private room name>; the live room "guild-hall" is refused.'); process.exit(2); }
+if (a.viverse && a.room) { console.error('--room does not apply with --viverse: VIVERSE bots join the world\'s own rooms.'); process.exit(2); }
+if (!a.viverse && (!a.room || a.room === 'guild-hall')) { console.error('Pass --room <private room name>; the live room "guild-hall" is refused.'); process.exit(2); }
 const total = Math.max(1, +a.total), perPage = Math.max(1, +a['per-page']), duration = Math.max(10, +a.duration);
 const instances = Math.ceil(total / perPage);
+
+// the system default can be a Siri voice, which writes an empty file, so name standard voices; rotating them tells bots apart
+const SAY_VOICES = ['Samantha', 'Daniel', 'Karen', 'Moira', 'Rishi', 'Tessa'];
+/** One clip per bot, with a pause after the phrase so the loop doesn't run the words together. */
+async function sayClips() {
+  const run = promisify(execFile);
+  const dir = await mkdtemp(join(tmpdir(), 'xrgh-bots-'));
+  try {
+    const installed = (await run('say', ['-v', '?'])).stdout.split('\n').map(l => l.split(/\s{2,}/)[0]);
+    const voices = SAY_VOICES.filter(v => installed.includes(v));
+    if (!voices.length) throw new Error('no standard voices');
+    for (let n = 1; n <= total; n++) {
+      const file = join(dir, `${n}.wav`);
+      await run('say', ['-v', voices[(n - 1) % voices.length], '-o', file, '--data-format=LEI16@48000', `I am bot number ${n}. [[slnc 1500]]`]);
+      if ((await stat(file)).size < 10000) throw new Error('say wrote no audio');
+    }
+    return dir;
+  } catch { await rm(dir, { recursive: true, force: true }); return null; }
+}
+const clipDir = a.wav || a.synth ? null : await sayClips();
+if (!a.wav && !a.synth && !clipDir) console.log('macOS `say` is unavailable: the bots will use the synthesised clip.');
 
 let server = null, base = a.base;
 if (!base) {
@@ -36,12 +66,14 @@ async function stop(code = 0) {
   if (stopping) return; stopping = true;
   await Promise.allSettled(browsers.map(b => b.close()));
   await server?.close();
+  if (clipDir) await rm(clipDir, { recursive: true, force: true });
   process.exit(code);
 }
 process.on('SIGINT', () => { console.log('\nStopping…'); stop(0); });
 process.on('unhandledRejection', e => { console.error(e?.message ?? e); stop(1); });
 
-console.log(`${total} bots in room "${a.room}": ${instances} Chromium instance(s) × up to ${perPage} per page, for ${duration} s. Base ${base}`);
+if (a.viverse) console.log('VIVERSE mode: the bots join the VIVERSE world\'s room and its voice room, alongside anyone else in the world.');
+console.log(`${total} bots in ${a.viverse ? 'the VIVERSE world' : `room "${a.room}"`}: ${instances} Chromium instance(s) × up to ${perPage} per page, for ${duration} s. Base ${base}`);
 const pages = [];
 for (let k = 0; k < instances; k++) {
   const n = Math.min(perPage, total - k * perPage);
@@ -52,16 +84,17 @@ for (let k = 0; k < instances; k++) {
   browsers.push(browser);
   const page = await browser.newPage();
   if (a.wav) await page.route('**/bot-clip', r => r.fulfill({ path: resolve(a.wav) }));
+  if (clipDir) await page.route('**/bot-clip/*', r => r.fulfill({ path: join(clipDir, `${new URL(r.request().url()).pathname.split('/').pop()}.wav`) }));
   page.on('console', m => { if (m.type() === 'error' || m.text().startsWith('[bots]')) console.log(`  [page ${k}] ${m.text()}`); });
   page.on('pageerror', e => console.log(`  [page ${k}] ${e.message}`));
-  const q = new URLSearchParams({ room: a.room, bots: String(n), first: String(k * perPage), mic: a.mic, ...(a.stage && k === 0 ? { stage: '1' } : {}), ...(a.region ? { region: a.region } : {}), ...(a.wav ? { clip: 'bot-clip' } : {}) });
+  const q = new URLSearchParams({ ...(a.viverse ? { viverse: '1' } : { room: a.room }), bots: String(n), first: String(k * perPage), mic: a.mic, ...(a.stage && k === 0 ? { stage: '1' } : {}), ...(a.region ? { region: a.region } : {}), ...(a.wav ? { clip: 'bot-clip' } : clipDir ? { clip: 'bot-clip/{n}' } : {}) });
   await page.goto(new URL(`bots.html?${q}`, base).href);
   pages.push(page);
 }
 
 const status = async () => {
   const s = await Promise.all(pages.map(p => p.evaluate(() => window.__bots ?? { joined: 0, errors: [] }).catch(() => ({ joined: 0, errors: ['page closed'] }))));
-  return { joined: s.reduce((n, x) => n + x.joined, 0), decoded: s.reduce((n, x) => n + (x.framesDecoded ?? 0), 0), sent: s.reduce((n, x) => n + (x.framesSent ?? 0), 0), errors: s.flatMap(x => x.errors) };
+  return { joined: s.reduce((n, x) => n + x.joined, 0), decoded: s.reduce((n, x) => n + (x.framesDecoded ?? 0), 0), sent: s.reduce((n, x) => n + (x.framesSent ?? 0), 0), fewestPeers: Math.min(...s.map(x => x.fewestPeers ?? 0)), errors: s.flatMap(x => x.errors) };
 };
 let lastDecoded = 0, lastSent = 0;
 const until = Date.now() + duration * 1000;
@@ -69,6 +102,6 @@ const timer = setInterval(async () => {
   const s = await status();
   // bots decode each other's voices like any client, so this confirms audio is flowing through Photon
   const rate = Math.round((s.decoded - lastDecoded) / 10), sent = Math.round((s.sent - lastSent) / 10); lastDecoded = s.decoded; lastSent = s.sent;
-  console.log(`${new Date().toISOString().slice(11, 19)}  joined ${s.joined}/${total}  voice frames sent ${sent}/s, decoded by bots ${rate}/s${s.errors.length ? `  errors: ${s.errors.join('; ')}` : ''}  (${Math.round((until - Date.now()) / 1000)} s left)`);
+  console.log(`${new Date().toISOString().slice(11, 19)}  joined ${s.joined}/${total}, each sees ≥${s.fewestPeers} others  voice frames sent ${sent}/s, decoded by bots ${rate}/s${s.errors.length ? `  errors: ${s.errors.join('; ')}` : ''}  (${Math.round((until - Date.now()) / 1000)} s left)`);
   if (Date.now() > until) { clearInterval(timer); stop(0); }
 }, 10000);

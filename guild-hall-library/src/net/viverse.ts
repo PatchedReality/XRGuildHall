@@ -12,14 +12,17 @@ import { loadScript } from './loadScript';
  * receivers check that before applying them.
  */
 const SDK = 'https://www.viverse.com/static-assets/viverse-sdk/1.3.3/index.umd.cjs';
-const ROOM = 'guild-hall';
+/** The VIVERSE room, and the Photon voice room every VIVERSE visitor joins. */
+export const VIVERSE_ROOM = 'guild-hall';
 const CAP = 120;
 
 export interface ViverseIdentity { accountId: string; name: string; vrmUrl: string | null; token: string; avatarClient: any; }
 
+export const loadViverseSdk = () => loadScript(SDK, () => !!(globalThis as any).viverse, 'Could not load the VIVERSE SDK');
+
 /** Log in (or reuse the VIVERSE session) and read the visitor's profile. Returns null when not logged in. */
 export async function viverseIdentity(appId: string, promptLogin: boolean): Promise<ViverseIdentity | null> {
-  await loadScript(SDK, () => !!(globalThis as any).viverse, 'Could not load the VIVERSE SDK');
+  await loadViverseSdk();
   const V = (globalThis as any).viverse;
   const client = new V.client({ clientId: appId, domain: 'account.htcvive.com' });
   const auth = await client.checkAuth();
@@ -50,11 +53,11 @@ export class ViverseTransport implements Transport {
     await mm.setActor({ session_id: self.id, name: self.name, properties: {} });
     const list = await mm.getAvailableRooms();
     // SDK 1.3.3 returns the array itself, although the docs show { success, rooms }
-    const rooms: any[] = (Array.isArray(list) ? list : list?.rooms ?? []).filter((r: any) => typeof r.name === 'string' && r.name.startsWith(ROOM) && !r.is_closed);
+    const rooms: any[] = (Array.isArray(list) ? list : list?.rooms ?? []).filter((r: any) => typeof r.name === 'string' && r.name.startsWith(VIVERSE_ROOM) && !r.is_closed);
     rooms.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
     const open = rooms.find(r => (r.actors?.length ?? r.playerCount ?? 0) < (r.max_players ?? CAP));
     let room = open ? await mm.joinRoom(open.id) : null;
-    if (!room || room.success === false) room = await mm.createRoom({ name: rooms.length ? `${ROOM}-${rooms.length + 1}` : ROOM, mode: 'Room', maxPlayers: CAP, minPlayers: 1, properties: {} });
+    if (!room || room.success === false) room = await mm.createRoom({ name: rooms.length ? `${VIVERSE_ROOM}-${rooms.length + 1}` : VIVERSE_ROOM, mode: 'Room', maxPlayers: CAP, minPlayers: 1, properties: {} });
     if (!room?.id) throw new Error(room?.message ?? 'Could not join a VIVERSE room');
     this.masterId = room.master_client_id ?? '';
     const MP = G.play?.MultiplayerClient ?? G.viverse?.play?.MultiplayerClient ?? play.MultiplayerClient;
