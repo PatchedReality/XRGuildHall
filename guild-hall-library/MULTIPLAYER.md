@@ -1,5 +1,7 @@
 # Multiplayer plan: VRM avatars, chat, and spatial voice for 100+ people
 
+> **V3 update (Oct 2026):** voice is Photon Voice (merged from `spike/photon-voice`). New in V3: audio modes (Conversation, Large group, Stage spotlight) and admin spotlight ([docs/AUDIO.md](docs/AUDIO.md)); verified admins and shared room settings ([docs/ADMIN.md](docs/ADMIN.md)); a LiveKit media room for stream screens and screenshare, video only ([docs/MEDIA.md](docs/MEDIA.md)). Room sizes are now configurable (`photonMaxPlayers`, `viverseRoomCap`) instead of fixed at 120. Hall seating presets are now Benches (backless), Small group tables and Open floor.
+
 Status: **built and tested with a simulated crowd of 100** (`?sim=100`). Live multiplayer needs three things from the Guild before it can run for real (see "What we need" at the end).
 
 ## Decision: one connected world, not two linked rooms

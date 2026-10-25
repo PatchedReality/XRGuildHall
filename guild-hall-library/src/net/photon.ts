@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import type { Transport, TransportEvents, PeerState, ChatMsg, Control } from './types';
+import type { Transport, TransportEvents, PeerState, ChatMsg, Control, AudioMode } from './types';
 import type { Peer } from './presence';
 import { loadScript } from './loadScript';
 
@@ -14,16 +14,35 @@ import { loadScript } from './loadScript';
  */
 const SDK = 'photon/photon-voice.min.js';
 const APP_VERSION = '1.0';
-const MAX_PLAYERS = 20; // free plan CCU
 export const RATE = 48000;
 const FRAME_US = 40000; // 25 events/s per open mic; 20 ms frames would double the room's message rate
 /** Samples per outgoing voice frame (mono, at RATE). */
 export const VOICE_FRAME = RATE * FRAME_US / 1e6;
 const JOIN_TIMEOUT_MS = 15000;
-const EV = { state: 1, chat: 2, ctl: 3 } as const;
+export const EV = { state: 1, chat: 2, ctl: 3 } as const;
 const SPEAK_RMS = 0.02, SPEAK_HOLD_MS = 300;
 // rolloff 0 keeps the inverse model at full gain at any distance, while HRTF still places the voice
 const FALLOFF = { normal: { ref: 1.2, roll: 1.4 }, stage: { ref: 8, roll: 0.35 }, megaphone: { ref: 1, roll: 0 } } as const;
+/**
+ * Room audio modes (set by an admin, see docs/AUDIO.md):
+ *  conversation  nearest 10 in your zone, HRTF distance falloff; stage voices carry across the hall
+ *  event         large groups: nearest 6, audience voices fade out past 10 m and sit a little lower; stage carries
+ *  spotlight     stage speakers, the megaphone and spotlit guests are heard by everyone at full volume;
+ *                everyone else is a whisper: only your 3 nearest neighbours within 3 m, at a third of the volume
+ */
+const MODES: Record<AudioMode, { keep: number; range: number; crowdGain: number }> = {
+  conversation: { keep: 10, range: 25, crowdGain: 1 },
+  event: { keep: 6, range: 10, crowdGain: 0.8 },
+  spotlight: { keep: 3, range: 3, crowdGain: 0.35 },
+};
+export interface PhotonOptions {
+  /** People per room. Must match the Photon plan's CCU; the free plan is 20. */
+  maxPlayers: number;
+  /** The Photon app uses Custom Authentication (proxy/photon-auth-worker.js); admins are actors whose UserId starts with "admin:". */
+  verified: boolean;
+  /** Admin passphrase, checked by the auth worker (never by the page). Empty for guests. */
+  adminKey?: string;
+}
 type Falloff = keyof typeof FALLOFF;
 
 async function loadPhoton() {
@@ -93,7 +112,7 @@ registerProcessor('xrgh-mic-in', MicIn);
 
 interface RemoteVoice {
   actorNr: number; node: AudioWorkletNode; pan: PannerNode; gain: GainNode;
-  falloff: Falloff; audible: boolean; loudAt: number;
+  falloff: Falloff; audible: boolean; loudAt: number; level: number;
 }
 
 /** Replace an SDK callback without dropping the wrapper the Voice transport installed on the instance. */
@@ -118,6 +137,11 @@ export class PhotonSession {
   private P: any = null;
   private linkDown = false;
   private pids = new Map<number, string>();
+  /** Actors the auth worker signed in as admins (UserId "admin:…"). Set by Photon, not by the actor, so it can't be faked. */
+  private admins = new Set<number>();
+  audioMode: AudioMode = 'conversation';
+  /** Presence ids an admin has spotlit: heard by everyone at full volume, wherever they stand. */
+  spotlight = new Set<string>();
   private voices = new Map<string, RemoteVoice>();
   private mic: { stream: MediaStream; src: MediaStreamAudioSourceNode; node: AudioWorkletNode; voice: any | null } | null = null;
   private closing = false;
@@ -127,7 +151,7 @@ export class PhotonSession {
   private retryTimer = 0;
   private onVisible = () => { if (document.visibilityState === 'visible' && this.retryTimer) { clearTimeout(this.retryTimer); this.retryTimer = 0; this.reopen(); } };
 
-  constructor(private appId: string, private roomName: string, private region: string) {}
+  constructor(private appId: string, public roomName: string, private region: string, private opts: PhotonOptions = { maxPlayers: 20, verified: false }) {}
 
   async connect(identity: string, name: string) {
     // Leave can land during any await here; without these checks a client would join after it
@@ -158,10 +182,17 @@ export class PhotonSession {
     c.onEvent = (code: number, content: any, actorNr: number) => {
       const pid = this.pids.get(actorNr); if (!pid) return;
       let payload: any; try { payload = typeof content === 'string' ? JSON.parse(content) : content; } catch { return; }
-      if (payload && typeof payload === 'object') this.onEvent?.(code, payload, pid, actorNr === c.myRoomMasterActorNr());
+      if (payload && typeof payload === 'object') this.onEvent?.(code, payload, pid, this.opts.verified ? this.admins.has(actorNr) : actorNr === c.myRoomMasterActorNr());
     };
     c.myActor().setName(this.name);
     c.myActor().setCustomProperty('pid', this.self);
+    if (this.opts.verified) {
+      // Custom Authentication: the Photon server forwards these to proxy/photon-auth-worker.js, which answers with the UserId.
+      // The passphrase is checked there; the page never knows which passphrases are valid.
+      const CA = P.LoadBalancing.Constants.CustomAuthenticationType;
+      const q = new URLSearchParams({ key: this.opts.adminKey ?? '', name: this.name.slice(0, 32) });
+      c.setCustomAuthentication(q.toString(), CA?.Custom ?? 0);
+    }
     return new Promise<void>((res, rej) => {
       let joined = false, settled = false;
       const fail = (msg: string) => { if (!settled) { settled = true; rej(new Error(msg)); } };
@@ -172,7 +203,8 @@ export class PhotonSession {
       chain(c, 'onStateChange', (st: number) => {
         // a client retired mid-join (Leave) settles now instead of waiting out the join timer
         if (c !== this.client) { clearTimeout(timer); fail('Voice was closed'); if (st === S.Disconnected) c.dispose(); return; }
-        if (st === S.JoinedLobby && !joined) c.joinRoom(this.roomName, { createIfNotExists: true }, { maxPlayers: MAX_PLAYERS });
+        // publishUserId lets every client read each actor's server-issued UserId (the admin check relies on it)
+        if (st === S.JoinedLobby && !joined) c.joinRoom(this.roomName, { createIfNotExists: true }, { maxPlayers: this.opts.maxPlayers, publishUserId: true });
         else if (st === S.Joined && !joined) {
           joined = settled = true; clearTimeout(timer); this.retries = 0;
           if (this.linkDown) { this.linkDown = false; this.onLink?.(true); }
@@ -213,13 +245,16 @@ export class PhotonSession {
 
   /** First claim wins: a pid can't be reassigned or shared, so one actor can't take over another's avatar. */
   private track(a: any) {
-    if (a.isLocal || this.pids.has(a.actorNr)) return;
+    if (a.isLocal) return;
+    const uid = String(a.userId ?? a.getUserId?.() ?? '');
+    if (uid.startsWith('admin:')) this.admins.add(a.actorNr); else this.admins.delete(a.actorNr);
+    if (this.pids.has(a.actorNr)) return;
     const pid = a.getCustomProperty('pid');
     if (typeof pid !== 'string' || !pid || pid === this.self || [...this.pids.values()].includes(pid)) return;
     this.pids.set(a.actorNr, pid);
   }
   private untrack(actorNr: number, remaining: any[] = []) {
-    const pid = this.pids.get(actorNr); this.pids.delete(actorNr);
+    const pid = this.pids.get(actorNr); this.pids.delete(actorNr); this.admins.delete(actorNr);
     // a peer that rejoined before its old actor timed out has been waiting behind that actor for its pid
     for (const a of remaining) this.track(a);
     if (pid && ![...this.pids.values()].includes(pid)) this.onLeave?.(pid);
@@ -273,7 +308,7 @@ export class PhotonSession {
     const pan = new PannerNode(ctx, { panningModel: 'HRTF', distanceModel: 'inverse', refDistance: FALLOFF.normal.ref, maxDistance: 30, rolloffFactor: FALLOFF.normal.roll });
     const gain = new GainNode(ctx, { gain: this.isMuted(actorNr) ? 0 : 1 });
     node.connect(pan).connect(gain);
-    const v: RemoteVoice = { actorNr, node, pan, gain, falloff: 'normal', audible: false, loudAt: 0 };
+    const v: RemoteVoice = { actorNr, node, pan, gain, falloff: 'normal', audible: false, loudAt: 0, level: 1 };
     this.voices.set(key, v);
     node.port.onmessage = e => { this.underruns += e.data; };
     // stays silent until updateSubscriptions matches it to an avatar, so a voice with no one in the room is never heard
@@ -307,30 +342,41 @@ export class PhotonSession {
 
   muteLocal(id: string, muted: boolean) {
     muted ? this.localMuted.add(id) : this.localMuted.delete(id);
-    for (const v of this.voices.values()) if (this.pids.get(v.actorNr) === id) v.gain.gain.value = muted ? 0 : 1;
+    for (const v of this.voices.values()) if (this.pids.get(v.actorNr) === id) v.gain.gain.value = muted ? 0 : v.level;
   }
+  /** Heard by everyone at full volume: on the stage with the megaphone, or spotlit by an admin. */
+  private isLoud(p: Peer) { return p.megaphone || this.spotlight.has(p.id) || (this.audioMode === 'spotlight' && p.onStage); }
+  setAudioMode(mode: AudioMode) { if (MODES[mode]) this.audioMode = mode; }
 
-  /** Pick who is audible (every ~0.5 s): the nearest ~10 in your zone, plus whoever is on the stage or on the megaphone. */
+  /**
+   * Pick who is audible (every ~0.5 s), following the room's audio mode: the loud voices (megaphone, spotlight,
+   * and in spotlight mode the stage) are always kept; the crowd fills the remaining slots nearest first.
+   */
   updateSubscriptions(me: { x: number; z: number; zone: string }, peers: Map<string, Peer>, blocked: Set<string>) {
-    const speaking = this.speaking;
-    const scored: { v: RemoteVoice; score: number }[] = [];
+    const speaking = this.speaking, M = MODES[this.audioMode];
+    const loud: RemoteVoice[] = [], crowd: { v: RemoteVoice; score: number }[] = [];
     for (const v of this.voices.values()) {
-      v.gain.gain.value = this.isMuted(v.actorNr) ? 0 : 1; // the pid may have arrived after the voice did
       const id = this.pids.get(v.actorNr);
       const p = id ? peers.get(id) : undefined;
-      if (!id || !p || blocked.has(id)) { scored.push({ v, score: -1 }); continue; }
+      if (!id || !p || blocked.has(id)) { this.setAudible(v, false); continue; }
+      const stageVoice = p.onStage && me.zone === 'hall' && this.audioMode !== 'spotlight';
+      if (this.isLoud(p)) { v.level = 1; loud.push(v); continue; }
       const d = Math.hypot(p.rp.x - me.x, p.rp.z - me.z);
       let score = 100 - d;
       if (p.zone !== me.zone) score -= 60;
-      if (p.onStage && me.zone === 'hall') score += 200;
-      if (p.megaphone) score += 400;
+      if (stageVoice) score += 200;
       if (speaking.has(id)) score += 20;
-      if (d > 25 && !p.onStage && !p.megaphone) score = -1;
-      scored.push({ v, score });
+      if (d > M.range && !stageVoice) score = -1;
+      v.level = stageVoice ? 1 : M.crowdGain;
+      crowd.push({ v, score });
     }
-    scored.sort((a, b) => b.score - a.score);
-    const keep = new Set(scored.filter(s => s.score > 0).slice(0, 10).map(s => s.v));
-    for (const { v } of scored) this.setAudible(v, keep.has(v));
+    crowd.sort((a, b) => b.score - a.score);
+    // loud voices first (capped so a mis-click can't flood a headset), then the nearest of the crowd
+    const keep = new Set([...loud.slice(0, 6), ...crowd.filter(s => s.score > 0).slice(0, M.keep).map(s => s.v)]);
+    for (const v of this.voices.values()) {
+      v.gain.gain.value = this.isMuted(v.actorNr) ? 0 : v.level; // the pid may have arrived after the voice did
+      this.setAudible(v, keep.has(v));
+    }
   }
   /** Position every audible voice at its avatar's mouth (every frame). */
   updatePanners(listener: THREE.Object3D, peers: Map<string, Peer>) {
@@ -343,12 +389,20 @@ export class PhotonSession {
     for (const n of this.voices.values()) {
       const id = this.pids.get(n.actorNr); const peer = id ? peers.get(id) : undefined; if (!peer) continue;
       n.pan.positionX.setTargetAtTime(peer.rp.x, t, 0.05); n.pan.positionY.setTargetAtTime(peer.rp.y + 1.5, t, 0.05); n.pan.positionZ.setTargetAtTime(peer.rp.z, t, 0.05);
-      const falloff: Falloff = peer.megaphone ? 'megaphone' : peer.onStage ? 'stage' : 'normal';
+      const falloff: Falloff = this.isLoud(peer) ? 'megaphone' : peer.onStage ? 'stage' : 'normal';
       if (falloff !== n.falloff) { n.falloff = falloff; n.pan.refDistance = FALLOFF[falloff].ref; n.pan.rolloffFactor = FALLOFF[falloff].roll; }
     }
   }
   send(code: number, obj: any) { if (this.client?.isJoinedToRoom()) this.client.raiseEvent(code, JSON.stringify(obj)); }
-  isHost() { return !!this.client?.isJoinedToRoom() && this.client.myActor().actorNr === this.client.myRoomMasterActorNr(); }
+  /** May this client change room settings? Verified mode: signed in as an admin. Otherwise: the room's master client. */
+  isHost() {
+    const c = this.client; if (!c?.isJoinedToRoom()) return false;
+    if (this.opts.verified) return String(c.getUserId?.() ?? c.myActor().userId ?? '').startsWith('admin:');
+    return c.myActor().actorNr === c.myRoomMasterActorNr();
+  }
+  /** Room controls over Photon events (sender-stamped). `hello` may come from anyone; everything else only from an admin. */
+  sendControl(c: Control) { if (c.type === 'hello' || this.isHost()) this.send(EV.ctl, c); }
+  get headcount() { return this.client?.isJoinedToRoom() ? this.client.myRoomActorsArray().length : 0; }
   /** Safe to call more than once. A retired client is disposed once its socket has actually closed. */
   disconnect() {
     this.closing = true;
@@ -375,13 +429,13 @@ export class PhotonTransport implements Transport {
     s.onEvent = (code, payload, from, fromHost) => {
       if (code === EV.state && payload.id === from) ev.onState(payload as PeerState);
       else if (code === EV.chat && payload.from === from) ev.onChat(payload as ChatMsg);
-      else if (code === EV.ctl && fromHost) ev.onControl(payload as Control, from); // Photon stamps the sender, so this can't be spoofed
+      else if (code === EV.ctl && (fromHost || payload?.type === 'hello')) ev.onControl(payload as Control, from); // Photon stamps the sender, so this can't be spoofed
     };
     if (!s.client) await s.connect(self.id, self.name);
   }
   sendState(st: PeerState) { this.session.send(EV.state, st); }
   sendChat(m: ChatMsg) { this.session.send(EV.chat, m); }
-  sendControl(c: Control) { if (this.isHost()) this.session.send(EV.ctl, c); }
+  sendControl(c: Control) { this.session.sendControl(c); }
   isHost() { return this.session.isHost(); }
   disconnect() { this.session.disconnect(); }
 }

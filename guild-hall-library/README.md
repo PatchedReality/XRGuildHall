@@ -1,4 +1,6 @@
-# XR Guild Hall · Guild Hall + Library (v3)
+# XR Guild Hall · Guild Hall + Library
+
+> **V3 for VIVERSE (Oct 2026):** admin room settings, three seating layouts, spatial audio modes, stream screens and screenshare, four skies, and the Arrival.space garden additions. Start with **[V3.md](V3.md)**. Blender files: [blender/](blender/README.md).
 
 An immersive WebXR home for the XR Guild. It has two chambers joined by an open labradorite colonnade, set in a garden under an aurora sky. It runs in any modern browser (desktop, phone, Quest, Pico, and other WebXR headsets) with no install, and it is ready to publish to VIVERSE.
 
