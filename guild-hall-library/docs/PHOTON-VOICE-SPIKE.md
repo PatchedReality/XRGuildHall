@@ -236,14 +236,14 @@ node scripts/load/run-bots.mjs --room loadtest-PICK-A-NAME --total 19 --per-page
 ```
 
 - `--room` is required, and `guild-hall` is refused, so a test never lands in the live room.
-- `--total` is the number of bots. `--per-page` is clients per Chromium instance, so the launcher starts `ceil(total / per-page)` instances.
+- `--total` is the number of bots. `--per-page` is clients per tab; the launcher opens one headless Chromium with `ceil(total / per-page)` tabs. All of a tab's bots share its one JavaScript thread, so keep it under about 10.
 - `--mic` is the fraction of bots that talk (default 1). Talkers are spread evenly over the bot numbers.
 - `--stage` puts bot 1 on the stage with the megaphone on.
 - `--duration` is in seconds (default 300). Ctrl-C stops early.
 - `--base` points at an existing server. Without it, the launcher starts its own Vite dev server on port 5199, which reads `VITE_PHOTON_APP_ID` from `.env.local`.
 - `--region`, `--wav`, `--synth`, `--headed` are optional.
 
-Every 10 s the launcher prints joined bots, frames sent per second (25 per talking bot) and frames decoded per second across all bots.
+Every 10 s the launcher prints joined bots and frames sent per second (25 per bot while its clip is speaking). Bots only send: they have no audio context and decode nothing, so listening is checked from a real client.
 
 The page can also be opened by hand: `bots.html?room=NAME&bots=3&mic=1&stage=1`.
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Photon voice load test (Tier 2 in docs/PHOTON-VOICE-SPIKE.md): K headless Chromium instances, each running bots.html with
+// Photon voice load test (Tier 2 in docs/PHOTON-VOICE-SPIKE.md): one headless Chromium with K tabs, each running bots.html with
 // --per-page Photon clients (bots.html), each pushing a speech clip into its outgoing voice.
 //
 //   node scripts/load/run-bots.mjs --room loadtest-abc --total 19 [--per-page 5] [--duration 300] [--mic 1] [--stage]
@@ -18,7 +18,8 @@ import { resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs, promisify } from 'node:util';
 import { execFile } from 'node:child_process';
-import { mkdtemp, rm, stat } from 'node:fs/promises';
+import { mkdir, rm, stat } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 
 const { values: a } = parseArgs({
@@ -35,21 +36,31 @@ const instances = Math.ceil(total / perPage);
 
 // the system default can be a Siri voice, which writes an empty file, so name standard voices; rotating them tells bots apart
 const SAY_VOICES = ['Samantha', 'Daniel', 'Karen', 'Moira', 'Rishi', 'Tessa'];
-/** One clip per bot, with a pause after the phrase so the loop doesn't run the words together. */
+const PHRASE = n => `I am bot number ${n}. [[slnc 3000]]`;
+/**
+ * One clip per bot, with a pause after the phrase so the loop doesn't run the words together. Clips are kept between
+ * runs in a folder named after the phrase and voices, so only missing ones are made (`say` takes about a second each).
+ */
 async function sayClips() {
   const run = promisify(execFile);
-  const dir = await mkdtemp(join(tmpdir(), 'xrgh-bots-'));
+  const dir = join(tmpdir(), `xrgh-bot-clips-${createHash('sha1').update(PHRASE('N') + SAY_VOICES).digest('hex').slice(0, 8)}`);
   try {
+    await mkdir(dir, { recursive: true });
     const installed = (await run('say', ['-v', '?'])).stdout.split('\n').map(l => l.split(/\s{2,}/)[0]);
     const voices = SAY_VOICES.filter(v => installed.includes(v));
     if (!voices.length) throw new Error('no standard voices');
-    for (let n = 1; n <= total; n++) {
-      const file = join(dir, `${n}.wav`);
-      await run('say', ['-v', voices[(n - 1) % voices.length], '-o', file, '--data-format=LEI16@48000', `I am bot number ${n}. [[slnc 1500]]`]);
-      if ((await stat(file)).size < 10000) throw new Error('say wrote no audio');
+    const missing = [];
+    for (let n = 1; n <= total; n++) if (!(await stat(join(dir, `${n}.wav`)).catch(() => null))) missing.push(n);
+    if (missing.length) console.log(`Making ${missing.length} voice clip(s) in ${dir}`);
+    for (let k = 0; k < missing.length; k += 8) {
+      await Promise.all(missing.slice(k, k + 8).map(async n => {
+        const file = join(dir, `${n}.wav`);
+        await run('say', ['-v', voices[(n - 1) % voices.length], '-o', file, '--data-format=LEI16@48000', PHRASE(n)]);
+        if ((await stat(file)).size < 10000) { await rm(file, { force: true }); throw new Error('say wrote no audio'); }
+      }));
     }
     return dir;
-  } catch { await rm(dir, { recursive: true, force: true }); return null; }
+  } catch { return null; }
 }
 const clipDir = a.wav || a.synth ? null : await sayClips();
 if (!a.wav && !a.synth && !clipDir) console.log('macOS `say` is unavailable: the bots will use the synthesised clip.');
@@ -66,23 +77,21 @@ async function stop(code = 0) {
   if (stopping) return; stopping = true;
   await Promise.allSettled(browsers.map(b => b.close()));
   await server?.close();
-  if (clipDir) await rm(clipDir, { recursive: true, force: true });
   process.exit(code);
 }
 process.on('SIGINT', () => { console.log('\nStopping…'); stop(0); });
 process.on('unhandledRejection', e => { console.error(e?.message ?? e); stop(1); });
 
 if (a.viverse) console.log('VIVERSE mode: the bots join the VIVERSE world\'s room and its voice room, alongside anyone else in the world.');
-console.log(`${total} bots in ${a.viverse ? 'the VIVERSE world' : `room "${a.room}"`}: ${instances} Chromium instance(s) × up to ${perPage} per page, for ${duration} s. Base ${base}`);
+console.log(`${total} bots in ${a.viverse ? 'the VIVERSE world' : `room "${a.room}"`}: ${instances} tab(s) × up to ${perPage} per tab, for ${duration} s. Base ${base}`);
 const pages = [];
+// one browser with a tab per page: tabs keep their own renderer (and JS thread) without a browser, GPU and network process each
+const browser = await chromium.launch({ headless: !a.headed, args: ['--disable-gpu', '--mute-audio'] });
+browsers.push(browser);
 for (let k = 0; k < instances; k++) {
   const n = Math.min(perPage, total - k * perPage);
-  const browser = await chromium.launch({
-    headless: !a.headed,
-    args: ['--autoplay-policy=no-user-gesture-required'],
-  });
-  browsers.push(browser);
-  const page = await browser.newPage();
+  // a context per tab, so the VIVERSE SDK's storage isn't shared between pages
+  const page = await (await browser.newContext()).newPage();
   if (a.wav) await page.route('**/bot-clip', r => r.fulfill({ path: resolve(a.wav) }));
   if (clipDir) await page.route('**/bot-clip/*', r => r.fulfill({ path: join(clipDir, `${new URL(r.request().url()).pathname.split('/').pop()}.wav`) }));
   page.on('console', m => { if (m.type() === 'error' || m.text().startsWith('[bots]')) console.log(`  [page ${k}] ${m.text()}`); });
@@ -94,14 +103,13 @@ for (let k = 0; k < instances; k++) {
 
 const status = async () => {
   const s = await Promise.all(pages.map(p => p.evaluate(() => window.__bots ?? { joined: 0, errors: [] }).catch(() => ({ joined: 0, errors: ['page closed'] }))));
-  return { joined: s.reduce((n, x) => n + x.joined, 0), decoded: s.reduce((n, x) => n + (x.framesDecoded ?? 0), 0), sent: s.reduce((n, x) => n + (x.framesSent ?? 0), 0), fewestPeers: Math.min(...s.map(x => x.fewestPeers ?? 0)), errors: s.flatMap(x => x.errors) };
+  return { joined: s.reduce((n, x) => n + x.joined, 0), sent: s.reduce((n, x) => n + (x.framesSent ?? 0), 0), fewestPeers: Math.min(...s.map(x => x.fewestPeers ?? 0)), peers: s.flatMap(x => x.peers ?? []), rooms: [...new Set(s.flatMap(x => x.rooms ?? []))], people: [...new Set(s.flatMap(x => x.people ?? []))], errors: s.flatMap(x => x.errors) };
 };
-let lastDecoded = 0, lastSent = 0;
+let lastSent = 0;
 const until = Date.now() + duration * 1000;
 const timer = setInterval(async () => {
   const s = await status();
-  // bots decode each other's voices like any client, so this confirms audio is flowing through Photon
-  const rate = Math.round((s.decoded - lastDecoded) / 10), sent = Math.round((s.sent - lastSent) / 10); lastDecoded = s.decoded; lastSent = s.sent;
-  console.log(`${new Date().toISOString().slice(11, 19)}  joined ${s.joined}/${total}, each sees ≥${s.fewestPeers} others  voice frames sent ${sent}/s, decoded by bots ${rate}/s${s.errors.length ? `  errors: ${s.errors.join('; ')}` : ''}  (${Math.round((until - Date.now()) / 1000)} s left)`);
+  const sent = Math.round((s.sent - lastSent) / 10); lastSent = s.sent;
+  console.log(`${new Date().toISOString().slice(11, 19)}  joined ${s.joined}/${total}, each sees ≥${s.fewestPeers} others  voice frames sent ${sent}/s  per bot sees [${s.peers.join(',')}]  room ${s.rooms.join('/')}  people: ${s.people.join(', ') || 'none'}${s.errors.length ? `  errors: ${s.errors.join('; ')}` : ''}  (${Math.round((until - Date.now()) / 1000)} s left)`);
   if (Date.now() > until) { clearInterval(timer); stop(0); }
 }, 10000);

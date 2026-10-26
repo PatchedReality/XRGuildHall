@@ -26,11 +26,26 @@ export function synthSpeech(seconds: number, rate: number): Float32Array {
       }
       t += len + Math.floor(Math.random() * 0.05 * rate);
     }
-    t += Math.floor((0.25 + Math.random() * 0.6) * rate);
+    t += 3 * rate;
   }
   let peak = 1e-6; for (const v of x) peak = Math.max(peak, Math.abs(v));
   for (let i = 0; i < n; i++) x[i] *= 0.5 / peak;
   return x;
+}
+
+/**
+ * Per sample: 1 where the clip is speaking, 0 inside a pause of at least `minGap` seconds. Bots send nothing during
+ * those pauses, like a visitor who turns their mic off between remarks; short gaps between words stay on.
+ */
+export function speakingMask(clip: Float32Array, rate: number, minGap = 0.5): Uint8Array {
+  const mask = new Uint8Array(clip.length).fill(1), min = minGap * rate;
+  for (let i = 0; i < clip.length;) {
+    if (Math.abs(clip[i]) >= 1e-3) { i++; continue; }
+    let j = i; while (j < clip.length && Math.abs(clip[j]) < 1e-3) j++;
+    if (j - i >= min) mask.fill(0, i, j);
+    i = j;
+  }
+  return mask;
 }
 
 /** Fetch an audio file and resample it to mono at `rate`; OfflineAudioContext decodes without a running audio device. */

@@ -42,6 +42,8 @@ export interface PhotonOptions {
   verified: boolean;
   /** Admin passphrase, checked by the auth worker (never by the page). Empty for guests. */
   adminKey?: string;
+  /** false: send only, with no audio context and no decoding of incoming voices. For load-test bots, whose cost would otherwise grow with the square of the crowd. */
+  receive?: boolean;
 }
 type Falloff = keyof typeof FALLOFF;
 
@@ -157,10 +159,16 @@ export class PhotonSession {
     // Leave can land during any await here; without these checks a client would join after it
     const left = () => { if (this.closing) throw new Error('Voice was closed'); };
     this.P = await loadPhoton(); left();
-    const ctx = this.ensureAudio();
-    const url = URL.createObjectURL(new Blob([WORKLETS], { type: 'text/javascript' }));
-    try { await ctx.audioWorklet.addModule(url); } finally { URL.revokeObjectURL(url); }
-    left();
+    if (this.opts.receive === false) {
+      // without a decoder the SDK logs every remote voice, and some of their frames; with 50 bots that is thousands of lines
+      const V = this.P.Voice, log = V._log;
+      V.setLogFunc((level: number, msg: string) => { if (!/decoder is null|options are not set for the remote voice|of not initialized player/.test(msg)) log(level, msg); });
+    } else {
+      const ctx = this.ensureAudio();
+      const url = URL.createObjectURL(new Blob([WORKLETS], { type: 'text/javascript' }));
+      try { await ctx.audioWorklet.addModule(url); } finally { URL.revokeObjectURL(url); }
+      left();
+    }
     // the presence id rides on the actor so voices (keyed by actor number) line up with avatars
     this.self = identity; this.name = name;
     document.addEventListener('visibilitychange', this.onVisible);
@@ -174,7 +182,7 @@ export class PhotonSession {
     this.client = c;
     const S = P.LoadBalancing.LoadBalancingClient.State;
     const OP = P.LoadBalancing.Constants.OperationCode;
-    c.voiceClient.setOnRemoteVoiceInfoAction((actorNr: number, voiceId: number, info: any) => this.addVoice(actorNr, voiceId, info));
+    if (this.opts.receive !== false) c.voiceClient.setOnRemoteVoiceInfoAction((actorNr: number, voiceId: number, info: any) => this.addVoice(actorNr, voiceId, info));
     chain(c, 'onActorJoin', (a: any) => this.track(a));
     chain(c, 'onActorPropertiesChange', (a: any) => this.track(a));
     // cleanup=true is our own client tearing down, when every actor is still listed

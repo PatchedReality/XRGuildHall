@@ -4,7 +4,8 @@ import { PhotonSession, PhotonTransport, RATE, VOICE_FRAME } from '../net/photon
 import { ViverseTransport, loadViverseSdk, VIVERSE_ROOM } from '../net/viverse';
 import { newWalker, stepWalker, pickSpot, pickStageSpot, type Walker } from '../net/sim';
 import { STAGE } from '../site';
-import { synthSpeech, loadClip } from './speech';
+import { synthSpeech, loadClip, speakingMask } from './speech';
+import { CONFIG, loadConfig } from '../config';
 
 /**
  * Headless voice load-test bots (Tier 2 in docs/PHOTON-VOICE-SPIKE.md): each bot is a full PhotonSession + PhotonTransport
@@ -35,7 +36,7 @@ const FRAME_MS = VOICE_FRAME / RATE * 1000;
 interface Bot {
   i: number; presence: Presence; session: PhotonSession; walker: Walker; stage: boolean; mic: boolean; state: string;
   /** outgoing voice, recreated when the session reconnects with a new client */
-  clip: Float32Array; voice: { pushData(f: Float32Array): void } | null; voiceClient: any; clipAt: number; sent: number; since: number; pushed: number;
+  clip: Float32Array; talking: Uint8Array; voice: { pushData(f: Float32Array): void } | null; voiceClient: any; clipAt: number; sent: number; since: number; pushed: number;
 }
 const bots: Bot[] = [];
 const errors: string[] = [];
@@ -46,17 +47,20 @@ const pos = new THREE.Vector3();
 
 async function start(i: number, clip: Float32Array) {
   const presence = new Presence(`Bot ${i + 1}`);
-  const session = new PhotonSession(APP_ID, ROOM, REGION);
+  // the first client into a room sets its capacity, so bots must use the same caps as the app or they lock visitors out
+  const session = new PhotonSession(APP_ID, ROOM, REGION, { maxPlayers: CONFIG.photonMaxPlayers, verified: false, receive: false });
   const stage = STAGE_BOT && i === 0;
   const bot: Bot = {
     i, presence, session, walker: newWalker({ x: 0, y: 0, z: 0, ry: 0, seat: null }, stage ? pickStageSpot : pickSpot), stage, mic: micOpen(i), state: 'joining',
-    clip, voice: null, voiceClient: null, clipAt: 0, sent: 0, since: 0, pushed: 0,
+    clip, talking: speakingMask(clip, RATE), voice: null, voiceClient: null, clipAt: 0, sent: 0, since: 0, pushed: 0,
   };
   bots.push(bot);
   presence.listeners.add(() => { bot.state = presence.status; });
   if (VIVERSE) {
     // the Play SDK accepts a client that never logged in; the identity is only read by the app's own login flow
-    await presence.connect(new ViverseTransport(VIVERSE_APP_ID, { accountId: '', name: presence.self.name, vrmUrl: null, token: '', avatarClient: null }));
+    const vt = new ViverseTransport(VIVERSE_APP_ID, { accountId: '', name: presence.self.name, vrmUrl: null, token: '', avatarClient: null }, CONFIG.viverseRoomCap);
+    await presence.connect(vt);
+    session.roomName = vt.roomName;
     await session.connect(presence.self.id, presence.self.name);
   } else await presence.connect(new PhotonTransport(session));
   console.info(`[bots] bot ${i + 1} joined ${VIVERSE ? `VIVERSE (${presence.status})` : ROOM}${bot.mic ? ' · speaking' : ''}${stage ? ' · stage' : ''}`);
@@ -75,8 +79,9 @@ function speak(b: Bot, now: number) {
   if (due - b.sent > 10) b.sent = due - 1;
   for (; b.sent < due; b.sent++) {
     const f = new Float32Array(VOICE_FRAME);
-    for (let k = 0; k < VOICE_FRAME; k++) { f[k] = clip[b.clipAt++]; if (b.clipAt >= clip.length) b.clipAt = 0; }
-    b.voice!.pushData(f); b.pushed++;
+    let talking = false;
+    for (let k = 0; k < VOICE_FRAME; k++) { talking ||= b.talking[b.clipAt] === 1; f[k] = clip[b.clipAt++]; if (b.clipAt >= clip.length) b.clipAt = 0; }
+    if (talking) { b.voice!.pushData(f); b.pushed++; }
   }
 }
 
@@ -100,11 +105,15 @@ function render() {
     return `Bot ${b.i + 1}${b.stage ? ' (stage, megaphone)' : ''}: ${b.state} · peers ${b.presence.peers.size} · voices in ${c.incoming}${b.mic ? ` · sent ${b.pushed} frames` : ' · mic closed'}`;
   });
   out.textContent = [`room ${ROOM} · ${joined}/${N} joined`, ...lines, ...errors].join('\n');
-  (window as any).__bots = { room: ROOM, total: N, joined, errors: [...errors], framesDecoded: bots.reduce((n, b) => n + b.session.framesDecoded, 0), framesSent: bots.reduce((n, b) => n + b.pushed, 0), fewestPeers: Math.min(...bots.map(b => b.presence.peers.size)) };
+  (window as any).__bots = { room: ROOM, total: N, joined, errors: [...errors], framesSent: bots.reduce((n, b) => n + b.pushed, 0), fewestPeers: Math.min(...bots.map(b => b.presence.peers.size)),
+    peers: bots.map(b => b.presence.peers.size), rooms: [...new Set(bots.map(b => (b.presence.transport as any)?.roomName ?? b.session.roomName))],
+    // anyone who isn't a bot, so a run shows whether the person testing is in the bots' room
+    people: [...new Set(bots.flatMap(b => [...b.presence.peers.values()].map(p => p.name)).filter(n => !/^Bot \d+$/.test(n)))] };
 }
 
 async function main() {
   if (!APP_ID) throw new Error('VITE_PHOTON_APP_ID is not set (.env.local)');
+  await loadConfig();
   if (VIVERSE) {
     if (!VIVERSE_APP_ID) throw new Error('VITE_VIVERSE_APP_ID is not set (.env.local)');
     await loadViverseSdk();
