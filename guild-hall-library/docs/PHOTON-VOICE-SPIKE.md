@@ -255,7 +255,7 @@ Then join as the listener with `?room=NAME&debug=voice`, from a browser or a Que
 node scripts/load/run-bots.mjs --viverse --total 5 --per-page 5
 ```
 
-- `--viverse` makes each bot join like a visitor to the VIVERSE build: presence over the VIVERSE Play SDK, voice in Photon room `guild-hall` (`VIVERSE_ROOM` in `src/net/viverse.ts`). A logged-in visitor to the uploaded world then sees and hears the bots, with their own avatar.
+- `--viverse` makes each bot join like a visitor to the VIVERSE build: presence over the VIVERSE Play SDK, voice in Photon room `<VIVERSE App ID>:guild-hall` (`voiceRoom` in `src/net/viverse.ts`). A logged-in visitor to the uploaded world then sees and hears the bots, with their own avatar.
 - The Play SDK accepted clients that never logged in, from `localhost` in headless Chromium (tested 2026-10-22). Several such clients work in one page.
 - `--room` is refused in this mode. The bots join the world's own rooms, which are shared with everyone in the world, so use it only on a private test world.
 - The Photon free plan's 20 CCU still caps bots plus visitors. VIVERSE's own room cap is 120 (`CAP` in `src/net/viverse.ts`).

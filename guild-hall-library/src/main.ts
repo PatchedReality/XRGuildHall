@@ -383,7 +383,7 @@ async function main() {
       }
       const { PhotonSession, PhotonTransport } = PHOTON_APP_ID ? await import('./net/photon') : ({} as any);
       if (VIVERSE_APP_ID) {
-        const { viverseIdentity, ViverseTransport, VIVERSE_ROOM } = await import('./net/viverse');
+        const { viverseIdentity, ViverseTransport } = await import('./net/viverse');
         const PEV = (await import('./net/photon')).EV;
         const id = await viverseIdentity(VIVERSE_APP_ID, true);
         if (!id) throw new Error('Taking you to the VIVERSE login…');
@@ -393,9 +393,9 @@ async function main() {
         await presence.connect(new ViverseTransport(VIVERSE_APP_ID, id, CONFIG.viverseRoomCap));
         if (PhotonSession) {
           // presence stays on VIVERSE; a voice problem (e.g. the CCU cap) must not drop people from the room.
-          // Voice joins the Photon room named after the VIVERSE room (overflow rooms get their own voice room).
+          // Voice joins the Photon room for this world's VIVERSE room (overflow rooms get their own voice room).
           const vt = presence.transport as InstanceType<typeof ViverseTransport>;
-          const v: PhotonSession = voice = new PhotonSession(PHOTON_APP_ID, vt.roomName ?? VIVERSE_ROOM, PHOTON_REGION, photonOpts());
+          const v: PhotonSession = voice = new PhotonSession(PHOTON_APP_ID, vt.voiceRoom, PHOTON_REGION, photonOpts());
           v.setAudioMode(room.state.audio); v.spotlight = new Set(room.state.spotlight);
           // room controls over Photon (verified sender); VIVERSE `general` controls are ignored while voice is up
           v.onEvent = (code, payload, from, fromHost) => { if (code === PEV.ctl && (fromHost || payload?.type === 'hello')) room.receive(payload as Control); void from; };

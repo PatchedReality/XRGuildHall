@@ -28,7 +28,6 @@ const FIRST = Math.max(0, parseInt(Q.get('first') ?? '0', 10) || 0);
 const MIC = Math.min(1, Math.max(0, parseFloat(Q.get('mic') ?? '1')));
 const STAGE_BOT = Q.get('stage') === '1' && FIRST === 0;
 const APP_ID: string = import.meta.env.VITE_PHOTON_APP_ID || '';
-const VIVERSE_APP_ID: string = import.meta.env.VITE_VIVERSE_APP_ID || '';
 const REGION: string = Q.get('region') || import.meta.env.VITE_PHOTON_REGION || 'us';
 const TICK_MS = 50;
 const FRAME_MS = VOICE_FRAME / RATE * 1000;
@@ -58,9 +57,9 @@ async function start(i: number, clip: Float32Array) {
   presence.listeners.add(() => { bot.state = presence.status; });
   if (VIVERSE) {
     // the Play SDK accepts a client that never logged in; the identity is only read by the app's own login flow
-    const vt = new ViverseTransport(VIVERSE_APP_ID, { accountId: '', name: presence.self.name, vrmUrl: null, token: '', avatarClient: null }, CONFIG.viverseRoomCap);
+    const vt = new ViverseTransport(CONFIG.viverseAppId, { accountId: '', name: presence.self.name, vrmUrl: null, token: '', avatarClient: null }, CONFIG.viverseRoomCap);
     await presence.connect(vt);
-    session.roomName = vt.roomName;
+    session.roomName = vt.voiceRoom;
     await session.connect(presence.self.id, presence.self.name);
   } else await presence.connect(new PhotonTransport(session));
   console.info(`[bots] bot ${i + 1} joined ${VIVERSE ? `VIVERSE (${presence.status})` : ROOM}${bot.mic ? ' · speaking' : ''}${stage ? ' · stage' : ''}`);
@@ -115,7 +114,7 @@ async function main() {
   if (!APP_ID) throw new Error('VITE_PHOTON_APP_ID is not set (.env.local)');
   await loadConfig();
   if (VIVERSE) {
-    if (!VIVERSE_APP_ID) throw new Error('VITE_VIVERSE_APP_ID is not set (.env.local)');
+    if (!CONFIG.viverseAppId) throw new Error('No VIVERSE App ID: set VITE_VIVERSE_APP_ID (.env.local) or viverseAppId (guildhall.config.json)');
     await loadViverseSdk();
   } else if (!ROOM || ROOM === VIVERSE_ROOM) throw new Error('Pass ?room=<private name>. Bots never join the live room.');
   const clipUrl = Q.get('clip');

@@ -37,8 +37,10 @@ export class ViverseTransport implements Transport {
   kind = 'viverse' as const;
   label = 'VIVERSE room';
   private mm: any = null; private mp: any = null; private masterId = ''; private selfId = '';
-  /** The VIVERSE room we landed in ("guild-hall", or an overflow room "guild-hall-2" …). Voice joins the Photon room of the same name. */
+  /** The VIVERSE room we landed in ("guild-hall", or an overflow room "guild-hall-2" …). */
   roomName = VIVERSE_ROOM;
+  /** Photon voice room for this VIVERSE room. Worlds share a Photon app and room names, so the App ID keeps their voice apart. */
+  get voiceRoom() { return `${this.appId}:${this.roomName}`; }
   /** `cap` people per room before overflow; keep it at or below the Photon voice room size so everyone in a room can talk. */
   constructor(private appId: string, private identity: ViverseIdentity, private cap = 20) {}
 
