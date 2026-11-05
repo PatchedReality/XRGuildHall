@@ -1,0 +1,245 @@
+{
+  "archive": "/home/exedev/xr-library-v3-release.tar.gz",
+  "backups": {
+    "index_html": "/home/exedev/xr-library-deployment-backups/index.html.pre-v3.20260924T025721Z.bak",
+    "nginx_site_config": "/home/exedev/xr-library-deployment-backups/xr-guild-library-v2.nginx.pre-v3.20260924T025721Z.bak"
+  },
+  "errors": [],
+  "existing_v2_glb_sha256_after": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+  "existing_v2_glb_sha256_before": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+  "files": {
+    "THIRD_PARTY_NOTICES.md": {
+      "expected_bytes": 2233,
+      "expected_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "http": {
+        "cache_control": null,
+        "http_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+        "status": 200,
+        "url_path": "/THIRD_PARTY_NOTICES.md"
+      },
+      "published_bytes": 2233,
+      "published_match": true,
+      "published_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "staged_bytes": 2233,
+      "staged_match": true,
+      "staged_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+    },
+    "assets/XR_Guild_Library_v3.glb": {
+      "expected_bytes": 14071500,
+      "expected_sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "http": {
+        "cache_control": null,
+        "http_sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+        "status": 200,
+        "url_path": "/assets/XR_Guild_Library_v3.glb"
+      },
+      "published_bytes": 14071500,
+      "published_match": true,
+      "published_sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "staged_bytes": 14071500,
+      "staged_match": true,
+      "staged_sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58"
+    },
+    "assets/index-BQgRnxe1.js": {
+      "expected_bytes": 1016457,
+      "expected_sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "http": {
+        "cache_control": "public, max-age=31536000, immutable",
+        "http_sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+        "status": 200,
+        "url_path": "/assets/index-BQgRnxe1.js"
+      },
+      "published_bytes": 1016457,
+      "published_match": true,
+      "published_sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "staged_bytes": 1016457,
+      "staged_match": true,
+      "staged_sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183"
+    },
+    "assets/index-BbzOvt1X.css": {
+      "expected_bytes": 10836,
+      "expected_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "http": {
+        "cache_control": "public, max-age=31536000, immutable",
+        "http_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+        "status": 200,
+        "url_path": "/assets/index-BbzOvt1X.css"
+      },
+      "published_bytes": 10836,
+      "published_match": true,
+      "published_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "staged_bytes": 10836,
+      "staged_match": true,
+      "staged_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8"
+    },
+    "index.html": {
+      "expected_bytes": 6224,
+      "expected_sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512",
+      "http": {
+        "cache_control": "no-cache, must-revalidate",
+        "http_sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512",
+        "status": 200,
+        "url_path": "/index.html"
+      },
+      "published_bytes": 6224,
+      "published_match": true,
+      "published_sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512",
+      "staged_bytes": 6224,
+      "staged_match": true,
+      "staged_sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512"
+    },
+    "v2/THIRD_PARTY_NOTICES.md": {
+      "expected_bytes": 2233,
+      "expected_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "http": {
+        "cache_control": null,
+        "http_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+        "status": 200,
+        "url_path": "/v2/THIRD_PARTY_NOTICES.md"
+      },
+      "published_bytes": 2233,
+      "published_match": true,
+      "published_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "staged_bytes": 2233,
+      "staged_match": true,
+      "staged_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+    },
+    "v2/assets/XR_Guild_Library_v2.glb": {
+      "expected_bytes": 8678904,
+      "expected_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "http": {
+        "cache_control": "no-cache, must-revalidate",
+        "http_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+        "status": 200,
+        "url_path": "/v2/assets/XR_Guild_Library_v2.glb"
+      },
+      "published_bytes": 8678904,
+      "published_match": true,
+      "published_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "staged_bytes": 8678904,
+      "staged_match": true,
+      "staged_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1"
+    },
+    "v2/assets/index-5RcTil-P.css": {
+      "expected_bytes": 10836,
+      "expected_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "http": {
+        "cache_control": "public, max-age=31536000, immutable",
+        "http_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+        "status": 200,
+        "url_path": "/v2/assets/index-5RcTil-P.css"
+      },
+      "published_bytes": 10836,
+      "published_match": true,
+      "published_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "staged_bytes": 10836,
+      "staged_match": true,
+      "staged_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793"
+    },
+    "v2/assets/index-DUqv7S2z.js": {
+      "expected_bytes": 1029346,
+      "expected_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "http": {
+        "cache_control": "public, max-age=31536000, immutable",
+        "http_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+        "status": 200,
+        "url_path": "/v2/assets/index-DUqv7S2z.js"
+      },
+      "published_bytes": 1029346,
+      "published_match": true,
+      "published_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "staged_bytes": 1029346,
+      "staged_match": true,
+      "staged_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863"
+    },
+    "v2/index.html": {
+      "expected_bytes": 5915,
+      "expected_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "http": {
+        "cache_control": "no-cache, must-revalidate",
+        "http_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+        "status": 200,
+        "url_path": "/v2/index.html"
+      },
+      "published_bytes": 5915,
+      "published_match": true,
+      "published_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "staged_bytes": 5915,
+      "staged_match": true,
+      "staged_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d"
+    }
+  },
+  "http_checks": {
+    "/": {
+      "cache_control": "no-cache, must-revalidate",
+      "sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512",
+      "status": 200
+    },
+    "/.hidden": {
+      "status": 404
+    },
+    "/assets/XR_Guild_Library_v2.glb": {
+      "cache_control": "no-cache, must-revalidate",
+      "status": 200
+    },
+    "/assets/XR_Guild_Library_v3.glb": {
+      "cache_control": "no-cache, must-revalidate",
+      "status": 200
+    },
+    "/assets/index-BQgRnxe1.js": {
+      "cache_control": "public, max-age=31536000, immutable",
+      "status": 200
+    },
+    "/assets/index-BbzOvt1X.css": {
+      "cache_control": "public, max-age=31536000, immutable",
+      "status": 200
+    },
+    "/assets/no-such-file.js": {
+      "status": 404
+    },
+    "/index.html": {
+      "cache_control": "no-cache, must-revalidate",
+      "status": 200
+    },
+    "/nonexistent": {
+      "status": 404
+    },
+    "/v2/": {
+      "cache_control": "no-cache, must-revalidate",
+      "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "status": 200
+    },
+    "/v2/.hidden": {
+      "status": 404
+    },
+    "/v2/assets/XR_Guild_Library_v2.glb": {
+      "cache_control": "no-cache, must-revalidate",
+      "status": 200
+    },
+    "/v2/assets/index-5RcTil-P.css": {
+      "cache_control": "public, max-age=31536000, immutable",
+      "status": 200
+    },
+    "/v2/assets/index-DUqv7S2z.js": {
+      "cache_control": "public, max-age=31536000, immutable",
+      "status": 200
+    },
+    "/v2/assets/no-such-file.js": {
+      "status": 404
+    },
+    "/v2/index.html": {
+      "cache_control": "no-cache, must-revalidate",
+      "status": 200
+    }
+  },
+  "live_root": "/home/exedev/xr-library-release",
+  "nginx": {
+    "active": "active",
+    "config_test": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful",
+    "enabled": "enabled",
+    "reload": ""
+  },
+  "staging": "/home/exedev/xr-library-v3-staging",
+  "status": "complete",
+  "timestamp_utc": "20260924T025721Z"
+}

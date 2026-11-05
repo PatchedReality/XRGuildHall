@@ -1,0 +1,77 @@
+{
+  "file": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v1/web_preview/public/assets/XR_Guild_Library_v1.glb",
+  "bytes": 57279940,
+  "triangles": 564828,
+  "mesh_count": 32,
+  "source_objects_converted": 1575,
+  "width_m": 8.0,
+  "apex_m": 6.199999809265137,
+  "baked_materials": [
+    {
+      "material": "Bottle green velvet",
+      "texture": "bottle_green_velvet.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Deep malachite green plaster",
+      "texture": "deep_malachite_green_plaster.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Handcrafted figured walnut",
+      "texture": "handcrafted_figured_walnut.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Labradorite | green stone with blue schiller",
+      "texture": "labradorite_green_stone_with_blue_schiller.png",
+      "size": [
+        1536,
+        3072
+      ]
+    },
+    {
+      "material": "Verde antique marble",
+      "texture": "verde_antique_marble.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Walnut endgrain and recess",
+      "texture": "walnut_endgrain_and_recess.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Warm ivory limestone",
+      "texture": "warm_ivory_limestone.png",
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "material": "Fresco | Past / Present / Future | packed original artwork",
+      "texture": "fresco_baked.png",
+      "size": [
+        3072,
+        3072
+      ]
+    }
+  ],
+  "glass_transmission": 1,
+  "geometry_note": "Curves and type tessellated, static parts joined by material; original V1 source untouched."
+}

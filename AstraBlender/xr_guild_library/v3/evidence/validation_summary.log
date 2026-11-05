@@ -1,0 +1,63 @@
+{
+  "numErrors": 0,
+  "numWarnings": 0,
+  "numInfos": 9,
+  "numHints": 0,
+  "messages": [
+    {
+      "code": "UNSUPPORTED_EXTENSION",
+      "message": "Cannot validate an extension as it is not supported by the validator: 'EXT_meshopt_compression'.",
+      "severity": 2,
+      "pointer": "/extensionsUsed/0"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x1024.",
+      "severity": 2,
+      "pointer": "/images/0"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 3072x3072.",
+      "severity": 2,
+      "pointer": "/images/1"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x1024.",
+      "severity": 2,
+      "pointer": "/images/2"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x3072.",
+      "severity": 2,
+      "pointer": "/images/3"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1254x1254.",
+      "severity": 2,
+      "pointer": "/images/4"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x1024.",
+      "severity": 2,
+      "pointer": "/images/5"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x1024.",
+      "severity": 2,
+      "pointer": "/images/6"
+    },
+    {
+      "code": "IMAGE_NPOT_DIMENSIONS",
+      "message": "Image has non-power-of-two dimensions: 1536x1024.",
+      "severity": 2,
+      "pointer": "/images/7"
+    }
+  ],
+  "truncated": false
+}

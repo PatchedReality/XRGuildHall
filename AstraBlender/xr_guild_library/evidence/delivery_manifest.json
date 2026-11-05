@@ -1,0 +1,8 @@
+{
+  "native_scene_sha256": "4533ed8624d8c3b308ba67cb1368e03c2e2f86dd98b69d69fe6ec14a8fd27daa",
+  "native_scene_bytes": 8631364,
+  "source_assets_unchanged": true,
+  "runtime_integration": "Not implemented; Blender URL control and scene metadata are included.",
+  "scene_verification": "PASS",
+  "text_faces_room": true
+}

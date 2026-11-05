@@ -1,0 +1,175 @@
+{
+  "ceilingView": {
+    "backend": "WebGPU",
+    "doorOpen": 0.006692547069322979,
+    "drawCalls": 66,
+    "exposure": 0.8,
+    "meetingLayout": false,
+    "pointerLocked": false,
+    "position": [
+      0,
+      1.7,
+      0.8
+    ],
+    "ready": true,
+    "rotation": [
+      0.6422486532809958,
+      0,
+      0,
+      0.7664963583466965
+    ],
+    "triangles": 2526834
+  },
+  "checks": [
+    {
+      "after": [
+        0,
+        1.7,
+        2.787549999999997
+      ],
+      "before": [
+        0,
+        1.7,
+        3.25
+      ],
+      "key": "KeyW",
+      "moved": true
+    },
+    {
+      "after": [
+        0,
+        1.7,
+        3.2375499999999975
+      ],
+      "before": [
+        0,
+        1.7,
+        2.787549999999997
+      ],
+      "key": "KeyS",
+      "moved": true
+    },
+    {
+      "after": [
+        -0.4501499999999977,
+        1.7,
+        3.2375499999999975
+      ],
+      "before": [
+        0,
+        1.7,
+        3.2375499999999975
+      ],
+      "key": "KeyA",
+      "moved": true
+    },
+    {
+      "after": [
+        -0.00014999999999779426,
+        1.7,
+        3.2375499999999975
+      ],
+      "before": [
+        -0.4501499999999977,
+        1.7,
+        3.2375499999999975
+      ],
+      "key": "KeyD",
+      "moved": true
+    }
+  ],
+  "collision": {
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "stoppedAtShelf": false
+  },
+  "detailView": {
+    "backend": "WebGPU",
+    "doorOpen": 0.006692547069322979,
+    "drawCalls": 66,
+    "exposure": 0.8,
+    "meetingLayout": false,
+    "pointerLocked": false,
+    "position": [
+      1.15,
+      2.65,
+      1.9
+    ],
+    "ready": true,
+    "rotation": [
+      0.07892742622946633,
+      -0.40482538835322623,
+      0.03510013968428448,
+      0.9103048096805793
+    ],
+    "triangles": 2526834
+  },
+  "doorClosed": true,
+  "doorOpened": true,
+  "final": {
+    "backend": "WebGPU",
+    "doorOpen": 0.006692547069322979,
+    "drawCalls": 66,
+    "exposure": 0.8,
+    "meetingLayout": false,
+    "pointerLocked": false,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "ready": true,
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972944
+    ],
+    "triangles": 2526834
+  },
+  "fps": "60 fps",
+  "furnitureHidden": true,
+  "furnitureShown": true,
+  "initial": {
+    "backend": "WebGPU",
+    "doorOpen": 0,
+    "drawCalls": 66,
+    "exposure": 0.8,
+    "meetingLayout": false,
+    "pointerLocked": true,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "ready": true,
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972944
+    ],
+    "triangles": 2526834
+  },
+  "libraryLink": "https://library.xrguild.org/",
+  "mouseLook": {
+    "after": [
+      0.11409081207885888,
+      -0.05808355680947557,
+      0.006681936665486352,
+      0.991748425131064
+    ],
+    "before": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972944
+    ],
+    "changed": true
+  },
+  "pass": false,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+}

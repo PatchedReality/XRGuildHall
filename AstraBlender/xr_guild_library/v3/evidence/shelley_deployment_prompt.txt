@@ -1,0 +1,11 @@
+Publish the completed V3 library walkthrough on the EXISTING xr-guild-library VM, at https://xr-guild-library.exe.xyz/. Do not create or rename a VM. This release returns to the original V2 library dimensions (8 m across, 6.2 m apex) and applies the revised warm palette, gold lettering and fresco. Desktop and mobile controls are included. Preserve V2 for comparison at /v2/.
+
+The archive /home/exedev/xr-library-v3-release.tar.gz contains site/ and release-manifest.json. Extract it to /home/exedev/xr-library-v3-staging. The live root remains /home/exedev/xr-library-release. Validate all staged hashes against release-manifest.json before publishing. Do not modify the supplied site build.
+
+Back up the live index.html and nginx site configuration outside the public root, with timestamped names. Copy all staged files except the root index.html into the live root, including the entire v2/ directory. Retain existing root assets and the existing V2 GLB for cached pages. Atomically replace the root index using a temporary file and rename only after assets are present.
+
+Update the existing nginx site to serve /v2/ and /v2/index.html correctly, keeping port 8000, the same root, public access, gzip, disabled directory listings and hidden-file protection. Root and v2 HTML and all fixed-name GLB files must revalidate with Cache-Control: no-cache, must-revalidate. Hashed JS/CSS assets in both /assets/ and /v2/assets/ should have public, max-age=31536000, immutable. Directory requests must resolve index.html; nonexistent assets must return 404. Test nginx configuration and reload it without stopping service.
+
+Verify every staged file matches the published SHA256 and returns HTTP 200; verify both / and /v2/ and their model URLs, HTML/GLB cache headers, a hashed JS cache header, a nonexistent path returning 404, and nginx active/enabled status. V3 GLB SHA256 must be 8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58. V2 GLB SHA256 must remain e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1.
+
+Write /home/exedev/v3-deployment-receipt.json with status complete or failed, backup paths, file/hash comparisons, HTTP/cache checks, nginx status and any errors. Report completion only after these checks pass.

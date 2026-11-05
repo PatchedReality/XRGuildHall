@@ -1,0 +1,28 @@
+00:00.896  blend            | Read blend: "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/XR_Guild_Library.blend"
+GALLERY_VIEW_START hero
+RENDER_USING_METAL
+00:45.691  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/hero.png'
+GALLERY_VIEW_COMPLETE hero
+GALLERY_VIEW_START detail
+RENDER_USING_METAL
+01:01.290  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/detail.png'
+GALLERY_VIEW_COMPLETE detail
+GALLERY_VIEW_START interface
+RENDER_USING_METAL
+01:12.701  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/interface.png'
+GALLERY_VIEW_COMPLETE interface
+GALLERY_VIEW_START door
+RENDER_USING_METAL
+01:22.567  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/door_draft_open.png'
+GALLERY_VIEW_COMPLETE door
+GALLERY_VIEW_START meeting
+RENDER_USING_METAL
+01:39.194  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/meeting.png'
+GALLERY_VIEW_COMPLETE meeting
+GALLERY_VIEW_START plan
+RENDER_USING_METAL
+01:54.318  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/renders/plan_draft.png'
+GALLERY_VIEW_COMPLETE plan
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

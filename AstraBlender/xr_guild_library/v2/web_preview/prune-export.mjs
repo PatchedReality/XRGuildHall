@@ -1,0 +1,14 @@
+import { NodeIO } from '@gltf-transform/core';
+import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
+import { prune } from '@gltf-transform/functions';
+const io = new NodeIO().registerExtensions(ALL_EXTENSIONS);
+const doc = await io.read('public/assets/XR_Guild_Library_v2.glb');
+const root = doc.getRoot();
+console.log(root.listScenes().map(s => s.getName()));
+const scene = root.listScenes().find(s => s.getName().includes('| GLB'));
+if (!scene) throw Error('Export scene missing');
+root.setDefaultScene(scene);
+for (const s of root.listScenes()) if (s !== scene) s.dispose();
+await doc.transform(prune());
+await io.write('../evidence/room_uncompressed.glb', doc);
+console.log('Clean room', root.listMeshes().length, 'meshes', root.listMaterials().length, 'materials');

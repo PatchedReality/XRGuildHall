@@ -1,0 +1,101 @@
+{
+  "url": "https://xr-guild-library.exe.xyz/",
+  "environment": "Chrome desktop, native CDP mouse and keyboard",
+  "initial": {
+    "ready": true,
+    "roomDimensions": {
+      "width": 8,
+      "apex": 6.2,
+      "eye": 1.7
+    },
+    "backend": "WebGPU",
+    "touchMode": false,
+    "touchActive": false,
+    "touchMove": {
+      "x": 0,
+      "z": 0
+    },
+    "exposure": 0.8,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972943
+    ],
+    "pointerLocked": false,
+    "meetingLayout": false,
+    "doorOpen": 0,
+    "triangles": 3048810,
+    "drawCalls": 68
+  },
+  "final": {
+    "ready": true,
+    "roomDimensions": {
+      "width": 8,
+      "apex": 6.2,
+      "eye": 1.7
+    },
+    "backend": "WebGPU",
+    "touchMode": false,
+    "touchActive": false,
+    "touchMove": {
+      "x": 0,
+      "z": 0
+    },
+    "exposure": 0.8,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972943
+    ],
+    "pointerLocked": false,
+    "meetingLayout": false,
+    "doorOpen": 8.943857397885698e-10,
+    "triangles": 3048810,
+    "drawCalls": 68
+  },
+  "modelBounds": {
+    "min": [
+      -4.240000009536743,
+      -0.199944133732596,
+      -4.240000247955322
+    ],
+    "max": [
+      4.240000009536743,
+      6.200003181934488,
+      4.239999771118164
+    ]
+  },
+  "checks": {
+    "webgpu": true,
+    "referenceDimensions": true,
+    "pointerLock": true,
+    "KeyW": true,
+    "KeyS": true,
+    "KeyA": true,
+    "KeyD": true,
+    "mouseLook": true,
+    "shelfCollision": true,
+    "libraryLink": true,
+    "furniture": true,
+    "furnitureCollision": true,
+    "furnitureHides": true,
+    "doorOpens": true,
+    "doorCloses": true,
+    "eyeHeightConsistent": true,
+    "labels": true
+  },
+  "errors": [],
+  "pass": true
+}

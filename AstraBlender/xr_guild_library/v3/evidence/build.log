@@ -1,0 +1,8 @@
+00:02.023  blend            | Read blend: "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v2/XR_Guild_Library_v2.blend"
+/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/scripts/build_v3.py:25: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  charcoal=bpy.data.materials.new('V3 | warm charcoal architectural panels');charcoal.use_nodes=True
+Info: Saved as "XR_Guild_Library_v3.blend"
+V3_BUILD_COMPLETE {"width_m": 8.0, "apex_m": 6.2, "dome_spring_m": 4.88, "reference": "Original library brief / V2", "reused_v2_objects": 4790, "new_objects": 10, "empty_shelf_meshes": 43, "objects": 4800, "shelf_pitch_m": 0.4, "bookcase_height_m": 4.247, "bookcase_width_m": 1.92, "shelf_rows": 8, "shelf_bays": 2, "door_leaf_height_m": 2.48, "table_diameter_m": 2.26, "eye_height_m": 1.7, "source_v2_unchanged": true}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

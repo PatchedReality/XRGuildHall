@@ -1,0 +1,18 @@
+{
+  "width_m": 32.86000061035156,
+  "apex_m": 23.32357120513916,
+  "dome_spring_m": 16.393528938293457,
+  "reference": "GuildHall-3DModels1.blend / Area1-Blockout2",
+  "reused_detail_objects": 4054,
+  "new_empty_shelves": 116,
+  "objects": 4601,
+  "shelf_pitch_m": 0.39,
+  "bookcase_height_m": 4.2,
+  "bookcase_width_m": 4.032,
+  "shelf_rows": 8,
+  "shelf_bays": 3,
+  "door_leaf_height_m": 2.48,
+  "table_diameter_m": 2.26,
+  "eye_height_m": 1.7,
+  "source_v2_unchanged": true
+}

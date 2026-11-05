@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "native_scene_bytes": 10229302,
+  "native_scene_sha256": "338f106fc9f79a071d25a8c987465f76f9da0b4fbfc1bc843c0132be8722898d",
+  "v1_unchanged": true,
+  "glb_bytes": 8678904,
+  "glb_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+  "triangles": 1278676,
+  "mesh_count": 36,
+  "materials": 19,
+  "embedded_textures": 9,
+  "glb_scenes": 1,
+  "required_extensions": [
+    "EXT_meshopt_compression",
+    "EXT_texture_webp",
+    "KHR_mesh_quantization"
+  ],
+  "scene_verification": "PASS",
+  "runtime": "WebGPU walkthrough deployed with Shelley to a dedicated exe.dev VM, with desktop WASD/mouse look and mobile thumbstick/swipe controls, doors, meeting furniture and resource URL interaction.",
+  "deployed_url": "https://xr-guild-library-v2.exe.xyz/",
+  "mobile_controls": {
+    "input": "Simultaneous thumbstick movement and swipe look, context interaction, speed toggle, pause/resume",
+    "verification": "Chrome mobile emulation using native multi-touch events; no physical phone test",
+    "asset_receipt": "mobile_hosted_asset_verification.json",
+    "browser_receipt": "mobile_hosted.json"
+  }
+}

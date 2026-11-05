@@ -1,0 +1,4 @@
+[
+ {"name":"fabric_status","arguments":{"profile":"production-demo"}},
+ {"name":"list_scenes","arguments":{"profile":"production-demo","limit":100}}
+]

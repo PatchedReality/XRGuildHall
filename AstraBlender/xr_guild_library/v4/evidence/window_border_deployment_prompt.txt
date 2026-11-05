@@ -1,0 +1,9 @@
+Update V4 IN PLACE on the existing xr-guild-library VM at https://xr-guild-library.exe.xyz/. This is a narrow model correction, not V5. The bulky grey window casings and jamb blocks have been removed, restoring the original slender gilt borders. Do not change any supplied files.
+
+The archive /home/exedev/xr-library-v4-window-border-release.tar.gz contains site/ and release-manifest.json. It includes the current V1/V2/V3 archives. Extract to /home/exedev/xr-library-v4-window-border-staging, validate all hashes, and publish to the existing /home/exedev/xr-library-release. Preserve /V1 and lowercase /v1 redirects, all existing routes and protections, and the version-free VM name. Keep V4 at root, V1 at /V1/, V2 at /v2/, V3 at /v3/.
+
+Back up the current V4 GLB outside the public root before changing it. Atomically replace the V4 GLB from the validated staging copy. Copy other files only if bytes differ; the root index and preview JS/CSS should be unchanged. Retain older root assets. Validate nginx config, retain existing no-cache/must-revalidate for HTML and fixed-name GLBs and immutable caching for hashed JS/CSS across all four editions. No service restart is needed if configuration is unchanged.
+
+Verify staged and published hashes, HTTP 200 for all files and all four version routes, /V1 redirect behavior, cache headers, missing asset 404, and service health. Verify the V4 GLB has no material named V4 | smoked limestone arch mouldings. Record model SHA256, backups, checks and any errors in /home/exedev/v4-window-border-deployment-receipt.json. Report complete only after passing all checks.
+
+Expected V4 GLB SHA256: 8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09

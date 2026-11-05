@@ -1,0 +1,9 @@
+Publish the original V1 archive walkthrough under /V1/ on the EXISTING xr-guild-library VM at https://xr-guild-library.exe.xyz/V1/. Do not create or rename a VM. Preserve the current V4 root page and every V2/V3 file byte for byte. Only add the V1 directory and the nginx routing/cache changes it needs.
+
+The archive /home/exedev/xr-library-v1-release.tar.gz contains site/V1/ and release-manifest.json. Extract under /home/exedev/xr-library-v1-staging. Validate every staged hash before publication. Do not modify the supplied build. Live root is /home/exedev/xr-library-release.
+
+Publish /V1 assets first and atomically replace /V1/index.html last. Back up nginx configuration and any preexisting /V1 page outside the public root. Add an explicit redirect from /V1 to /V1/ using a relative Location header so the HTTPS proxy hostname and scheme are preserved. Also redirect lowercase /v1 and /v1/ to /V1/ for convenience. Serve /V1/ as its index, with actual 404 for missing paths. Retain port 8000, gzip, hidden-file protections and existing routes.
+
+HTML and fixed-name GLBs must use Cache-Control: no-cache, must-revalidate. Add V1 hashed JS/CSS to the existing immutable cache rule. Validate nginx configuration before reloading without stopping service. Record before/after SHA256 for the existing root, V2 and V3 indexes and confirm unchanged.
+
+Verify all staged and published hashes, local HTTP 200 for every file, cache headers, the /V1 and lowercase redirects, /V1/ HTTP 200, /V1/missing.js HTTP 404, existing version routes, and nginx active/enabled status. Confirm the V1 page says V1 and its Current V4 link goes to /. Use localhost:8000 if the VM cannot reach the public proxy. Write /home/exedev/v1-deployment-receipt.json with complete/failed status, backup paths, files/hashes, HTTP/cache checks and errors. Only report complete after passing checks.

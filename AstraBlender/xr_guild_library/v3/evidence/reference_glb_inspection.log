@@ -1,0 +1,14 @@
+21:07:24 | INFO: Data are loaded, start creating Blender stuff
+21:07:24 | INFO: Blender create Mesh node tripo_mesh_81de27d0-4482-4888-866d-4f2e1bb2fa60
+21:07:24 | INFO: glTF import finished in 0.17s
+/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/scripts/inspect_glb_shelves.py:15: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  s.world=bpy.data.worlds.new('Reference inspection');s.world.use_nodes=True;s.world.node_tree.nodes['Background'].inputs[0].default_value=(.55,.55,.55,1);s.world.node_tree.nodes['Background'].inputs[1].default_value=.8
+00:20.977  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_fantasy_0.png'
+00:48.978  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_fantasy_1.png'
+01:21.098  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_fantasy_2.png'
+02:12.820  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_fantasy_3.png'
+21:09:34 | INFO: Data are loaded, start creating Blender stuff
+21:09:34 | INFO: Blender create Mesh node d53d7d5d_157c_493c_a28a_bcaf0417c4e2
+21:09:34 | INFO: glTF import finished in 0.11s
+02:26.023  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_rotunda_0.png'
+02:36.557  render           | Saved: '/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/evidence/reference_rotunda_1.png'

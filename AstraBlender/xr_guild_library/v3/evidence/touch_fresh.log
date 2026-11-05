@@ -1,0 +1,251 @@
+DOM {
+  focus: true,
+  width: 390,
+  scale: 1,
+  rect: {
+    x: 24,
+    y: 597,
+    width: 112,
+    height: 112,
+    top: 597,
+    right: 136,
+    bottom: 709,
+    left: 24
+  },
+  target: '<span class="joystick-cross" aria-hidden="true">✧</span>',
+  events: [
+    {
+      type: 'pointerdown',
+      id: 2,
+      target: 'enter',
+      x: 195,
+      y: 326.1953125,
+      active: false
+    },
+    { type: 'touchstart', target: 'enter', active: false },
+    {
+      type: 'pointerup',
+      id: 2,
+      target: 'enter',
+      x: 195,
+      y: 326.1953125,
+      active: false
+    },
+    { type: 'touchend', target: 'enter', active: false },
+    {
+      type: 'mousemove',
+      target: 'enter',
+      x: 195,
+      y: 326,
+      active: false
+    },
+    {
+      type: 'mousedown',
+      target: 'enter',
+      x: 195,
+      y: 326,
+      active: false
+    },
+    { type: 'mouseup', target: 'enter', x: 195, y: 326, active: false },
+    {
+      type: 'click',
+      id: 2,
+      target: 'enter',
+      x: 195,
+      y: 326,
+      active: false
+    },
+    { type: 'blur', target: 'enter', active: true },
+    {
+      type: 'pointerdown',
+      id: 3,
+      target: 'library-view',
+      x: 314.921875,
+      y: 763,
+      active: true
+    },
+    { type: 'touchstart', target: 'library-view', active: true },
+    {
+      type: 'pointerup',
+      id: 3,
+      target: 'library-view',
+      x: 314.921875,
+      y: 763,
+      active: true
+    },
+    { type: 'touchend', target: 'library-view', active: true },
+    {
+      type: 'mousemove',
+      target: 'library-view',
+      x: 315,
+      y: 763,
+      active: true
+    },
+    {
+      type: 'mousedown',
+      target: 'library-view',
+      x: 315,
+      y: 763,
+      active: true
+    },
+    {
+      type: 'mouseup',
+      target: 'library-view',
+      x: 315,
+      y: 763,
+      active: true
+    },
+    {
+      type: 'click',
+      id: 3,
+      target: 'library-view',
+      x: 315,
+      y: 763,
+      active: true
+    }
+  ],
+  state: {
+    ready: true,
+    roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+    backend: 'WebGPU',
+    touchMode: true,
+    touchActive: true,
+    touchMove: { x: 0, z: 0 },
+    exposure: 0.8,
+    position: [ 0, 1.7, -2.05 ],
+    rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+    pointerLocked: false,
+    meetingLayout: false,
+    doorOpen: 0,
+    triangles: 3037410,
+    drawCalls: 62
+  }
+}
+HELD {
+  ready: true,
+  roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+  backend: 'WebGPU',
+  touchMode: true,
+  touchActive: true,
+  touchMove: { x: 0, z: 1 },
+  exposure: 0.8,
+  position: [ 0, 1.7, -2.8250500000000005 ],
+  rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+  pointerLocked: false,
+  meetingLayout: false,
+  doorOpen: 0,
+  triangles: 3037410,
+  drawCalls: 62
+} [
+  {
+    type: 'pointerdown',
+    id: 2,
+    target: 'enter',
+    x: 195,
+    y: 326.1953125,
+    active: false
+  },
+  { type: 'touchstart', target: 'enter', active: false },
+  {
+    type: 'pointerup',
+    id: 2,
+    target: 'enter',
+    x: 195,
+    y: 326.1953125,
+    active: false
+  },
+  { type: 'touchend', target: 'enter', active: false },
+  { type: 'mousemove', target: 'enter', x: 195, y: 326, active: false },
+  { type: 'mousedown', target: 'enter', x: 195, y: 326, active: false },
+  { type: 'mouseup', target: 'enter', x: 195, y: 326, active: false },
+  {
+    type: 'click',
+    id: 2,
+    target: 'enter',
+    x: 195,
+    y: 326,
+    active: false
+  },
+  { type: 'blur', target: 'enter', active: true },
+  {
+    type: 'pointerdown',
+    id: 3,
+    target: 'library-view',
+    x: 314.921875,
+    y: 763,
+    active: true
+  },
+  { type: 'touchstart', target: 'library-view', active: true },
+  {
+    type: 'pointerup',
+    id: 3,
+    target: 'library-view',
+    x: 314.921875,
+    y: 763,
+    active: true
+  },
+  { type: 'touchend', target: 'library-view', active: true },
+  {
+    type: 'mousemove',
+    target: 'library-view',
+    x: 315,
+    y: 763,
+    active: true
+  },
+  {
+    type: 'mousedown',
+    target: 'library-view',
+    x: 315,
+    y: 763,
+    active: true
+  },
+  {
+    type: 'mouseup',
+    target: 'library-view',
+    x: 315,
+    y: 763,
+    active: true
+  },
+  {
+    type: 'click',
+    id: 3,
+    target: 'library-view',
+    x: 315,
+    y: 763,
+    active: true
+  },
+  {
+    type: 'pointerdown',
+    id: 4,
+    target: '',
+    x: 80,
+    y: 653,
+    active: true
+  },
+  { type: 'touchstart', target: '', active: true },
+  {
+    type: 'pointermove',
+    id: 4,
+    target: 'joystick',
+    x: 80,
+    y: 617,
+    active: true
+  },
+  { type: 'touchmove', target: '', active: true }
+]
+END {
+  ready: true,
+  roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+  backend: 'WebGPU',
+  touchMode: true,
+  touchActive: true,
+  touchMove: { x: 0, z: 0 },
+  exposure: 0.8,
+  position: [ 0, 1.7, -2.8751500000000014 ],
+  rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+  pointerLocked: false,
+  meetingLayout: false,
+  doorOpen: 0,
+  triangles: 3037410,
+  drawCalls: 62
+}

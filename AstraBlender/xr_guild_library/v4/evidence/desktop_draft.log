@@ -1,0 +1,101 @@
+{
+  "url": "http://127.0.0.1:4177/",
+  "environment": "Chrome desktop, native CDP mouse and keyboard",
+  "initial": {
+    "ready": true,
+    "roomDimensions": {
+      "width": 8,
+      "apex": 6.2,
+      "eye": 1.7
+    },
+    "backend": "WebGPU",
+    "touchMode": false,
+    "touchActive": false,
+    "touchMove": {
+      "x": 0,
+      "z": 0
+    },
+    "exposure": 0.8,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972943
+    ],
+    "pointerLocked": false,
+    "meetingLayout": false,
+    "doorOpen": 0,
+    "triangles": 2146758,
+    "drawCalls": 74
+  },
+  "final": {
+    "ready": true,
+    "roomDimensions": {
+      "width": 8,
+      "apex": 6.2,
+      "eye": 1.7
+    },
+    "backend": "WebGPU",
+    "touchMode": false,
+    "touchActive": false,
+    "touchMove": {
+      "x": 0,
+      "z": 0
+    },
+    "exposure": 0.8,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972943
+    ],
+    "pointerLocked": false,
+    "meetingLayout": false,
+    "doorOpen": 7.741814067658623e-25,
+    "triangles": 2146758,
+    "drawCalls": 74
+  },
+  "modelBounds": {
+    "min": [
+      -4.239999771118164,
+      -0.20000000298023224,
+      -4.240000247955322
+    ],
+    "max": [
+      4.239999771118164,
+      6.199999809265137,
+      4.239999771118164
+    ]
+  },
+  "checks": {
+    "webgpu": true,
+    "referenceDimensions": true,
+    "pointerLock": true,
+    "KeyW": true,
+    "KeyS": true,
+    "KeyA": true,
+    "KeyD": true,
+    "mouseLook": true,
+    "shelfCollision": true,
+    "libraryLink": true,
+    "furniture": true,
+    "furnitureCollision": true,
+    "furnitureHides": true,
+    "doorOpens": true,
+    "doorCloses": true,
+    "eyeHeightConsistent": true,
+    "labels": true
+  },
+  "errors": [],
+  "pass": true
+}

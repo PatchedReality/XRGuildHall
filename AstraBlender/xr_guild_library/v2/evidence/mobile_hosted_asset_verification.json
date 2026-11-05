@@ -1,0 +1,47 @@
+{
+  "url": "https://xr-guild-library-v2.exe.xyz/",
+  "checked_at": "2026-09-24T01:09:15.465940+00:00",
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "status": 200,
+      "bytes": 2233,
+      "content_type": "application/octet-stream",
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches_local": true
+    },
+    {
+      "path": "assets/XR_Guild_Library_v2.glb",
+      "status": 200,
+      "bytes": 8678904,
+      "content_type": "model/gltf-binary",
+      "sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-D7rfk6nV.js",
+      "status": 200,
+      "bytes": 1029218,
+      "content_type": "application/javascript",
+      "sha256": "a38d4b27a06db9d0347efaeec5caacbd1f430a00618ac7a74cb6adc7aebdd7e7",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-QLhZ4_xy.css",
+      "status": 200,
+      "bytes": 7966,
+      "content_type": "text/css",
+      "sha256": "52ce9e664cc82302c4384a431649fff688f58e301a0681571daaf14bf26a4d6e",
+      "matches_local": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 3638,
+      "content_type": "text/html",
+      "sha256": "c40eecc7a0478d838defd055f9b74f2f3cb590d153d08dafc07d8dc70aef7c99",
+      "matches_local": true
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "index.html",
+    "sha256": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7"
+  },
+  {
+    "path": "v2/index.html",
+    "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d"
+  },
+  {
+    "path": "v3/index.html",
+    "sha256": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c"
+  }
+]

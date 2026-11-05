@@ -1,0 +1,64 @@
+{
+  "url": "https://xr-guild-library.exe.xyz/",
+  "environment": "Chrome mobile emulation with native CDP multi-touch input; no physical phone test",
+  "initial": {
+    "ready": true,
+    "roomDimensions": {
+      "width": 8,
+      "apex": 6.2,
+      "eye": 1.7
+    },
+    "backend": "WebGPU",
+    "touchMode": true,
+    "touchActive": true,
+    "touchMove": {
+      "x": 0,
+      "z": 0
+    },
+    "exposure": 0.8,
+    "position": [
+      0,
+      1.7,
+      3.25
+    ],
+    "rotation": [
+      0.08842095372751037,
+      0,
+      0,
+      0.9960831967972943
+    ],
+    "pointerLocked": false,
+    "meetingLayout": false,
+    "doorOpen": 0,
+    "triangles": 4092390,
+    "drawCalls": 72
+  },
+  "checks": {
+    "touchEntry": true,
+    "forward": true,
+    "backward": true,
+    "left": true,
+    "right": true,
+    "simultaneousMoveLook": true,
+    "liftingLookKeepsWalking": true,
+    "releaseStopsWalking": true,
+    "cancelStopsWalking": true,
+    "fasterWalking": true,
+    "collision": true,
+    "libraryButton": true,
+    "libraryLink": true,
+    "linkPauses": true,
+    "doorButton": true,
+    "touchOpensDoor": true,
+    "touchClosesDoor": true,
+    "labelsReadable": true,
+    "pause": true,
+    "resume": true,
+    "rotationClearsMovement": true,
+    "rotationStopsWalking": true,
+    "controlsFit": true,
+    "blurPauses": true
+  },
+  "errors": [],
+  "pass": true
+}

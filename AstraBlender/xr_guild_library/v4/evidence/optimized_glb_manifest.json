@@ -1,0 +1,140 @@
+{
+  "file": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/web_preview/public/assets/XR_Guild_Library_v4.glb",
+  "bytes": 17706732,
+  "sha256": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+  "scene": [
+    {
+      "name": "XR Guild Library v4 | GLB",
+      "extras": {
+        "width_m": 8,
+        "apex_m": 6.2
+      },
+      "nodes": [
+        20,
+        26,
+        32,
+        39,
+        44
+      ]
+    }
+  ],
+  "meshes": 40,
+  "nodes": 45,
+  "textures": 9,
+  "glass": [
+    {
+      "name": "Clear architectural glass | transparent, not frosted | glTF PBR",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.9599999785423279,
+          0.9900000095367432,
+          1,
+          1
+        ],
+        "roughnessFactor": 0.017999999225139618,
+        "metallicFactor": 0
+      },
+      "extensions": {
+        "KHR_materials_ior": {
+          "ior": 1.4500000476837158
+        },
+        "KHR_materials_transmission": {
+          "transmissionFactor": 1
+        }
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "Door_Left",
+      "extras": {
+        "door_hinge": "left",
+        "open_angle_degrees": -100
+      },
+      "translation": [
+        -0.8130000233650208,
+        0,
+        4.054999828338623
+      ],
+      "children": [
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "name": "Door_Right",
+      "extras": {
+        "door_hinge": "right",
+        "open_angle_degrees": 100
+      },
+      "translation": [
+        0.8130000233650208,
+        0,
+        4.054999828338623
+      ],
+      "children": [
+        27,
+        28,
+        29,
+        30,
+        31
+      ]
+    },
+    {
+      "name": "Interface",
+      "extras": {
+        "url": "https://library.xrguild.org/"
+      },
+      "children": [
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ]
+    },
+    {
+      "name": "Optional_Meeting_Furniture",
+      "extras": {
+        "optional_furniture": true
+      },
+      "children": [
+        40,
+        41,
+        42,
+        43
+      ]
+    }
+  ],
+  "material_names": [
+    "Blue petrol stone | glTF PBR",
+    "Bottle green velvet | glTF PBR",
+    "Clear architectural glass | transparent, not frosted | glTF PBR",
+    "Forest green damask backing | glTF PBR",
+    "Fresco | Past / Present / Future | packed original artwork | glTF PBR",
+    "Gilt brass | gently aged | glTF PBR",
+    "Handcrafted figured walnut | glTF PBR",
+    "Labradorite | green stone with blue schiller | glTF PBR",
+    "Mandala | veined marble intarsia | glTF PBR",
+    "Opal lamp glow | glTF PBR",
+    "Patinated bronze recesses | glTF PBR",
+    "Polished gold leaf edges | glTF PBR",
+    "Silk fern damask | glTF PBR",
+    "V3 | warm charcoal architectural panels | glTF PBR",
+    "V4 | burr walnut recessed panels | glTF PBR",
+    "V4 | charcoal enamel inscription fields | glTF PBR",
+    "V4 | high contrast architectural gold | glTF PBR",
+    "Verde antique marble | glTF PBR",
+    "Walnut endgrain and recess | glTF PBR",
+    "Warm ivory limestone | glTF PBR",
+    "Interface | deep teal glass | glTF PBR",
+    "Interface | ivory luminous type | glTF PBR"
+  ],
+  "dimensions": "V2 library: 8 m across inside walls, 6.2 m apex",
+  "optimization": "No geometric simplification; Meshopt medium, 16-bit positions, 12-bit normals; WebP textures"
+}

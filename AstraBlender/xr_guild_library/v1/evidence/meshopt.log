@@ -1,0 +1,4 @@
+info: prune: Removed types... Accessor (112)
+warn: quantize: Skipping TEXCOORD_0; out of [0,1] range.
+info: prune: Removed types... Accessor (79)
+info: room_textures_optimized.glb (24.8 MB) → XR_Guild_Library_v1.glb (7.12 MB)

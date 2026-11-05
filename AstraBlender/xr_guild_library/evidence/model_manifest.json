@@ -1,0 +1,58 @@
+{
+  "interior_across_flats_m": 8.0,
+  "interior_corner_diameter_m": 8.282209443280664,
+  "apex_m": 6.2,
+  "wall_sides": 12,
+  "arched_windows": 6,
+  "bookcases": 5,
+  "books": 0,
+  "meeting_chairs_optional": 8,
+  "floor_center_clear_radius_m": 2.9,
+  "door_clear_width_m": 1.626,
+  "door_height_m": 2.48,
+  "screen_center_m": 1.405,
+  "object_count": 2008,
+  "materials": 25,
+  "mesh_triangles_base": 89556,
+  "fresco_texture": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/textures/immersive_eras_fresco_v2.png",
+  "topics": [
+    {
+      "name": "AI Ethics",
+      "url": "https://library.xrguild.org/ai-ethics"
+    },
+    {
+      "name": "Current Peer-Reviewed Immersive Technologies",
+      "url": "https://library.xrguild.org/current-peer-reviewed-immersive-technologies"
+    },
+    {
+      "name": "Ethical Responsibility",
+      "url": "https://library.xrguild.org/ethical-responsibility"
+    },
+    {
+      "name": "XR Industry news/events/Sources",
+      "url": "https://library.xrguild.org/xr-industry-news-events-sources"
+    },
+    {
+      "name": "Neurotechnology, Brain Tech, and Ethical Challenges",
+      "url": "https://library.xrguild.org/neurotechnology-brain-tech-and-ethical-challenges"
+    },
+    {
+      "name": "Mind Control and Privacy at Work",
+      "url": "https://library.xrguild.org/mind-control-and-privacy-at-work"
+    },
+    {
+      "name": "Physiological and Psychological effects of XR",
+      "url": "https://library.xrguild.org/physiological-and-psychological-effects-of-xr"
+    },
+    {
+      "name": "Privacy & Policy",
+      "url": "https://library.xrguild.org/privacy-and-policy"
+    },
+    {
+      "name": "Security & Safety",
+      "url": "https://library.xrguild.org/security-and-safety"
+    }
+  ],
+  "fresco_caption_count": 6,
+  "glazing": "clear glass, transmission 1.0, roughness 0.018, no emission"
+}

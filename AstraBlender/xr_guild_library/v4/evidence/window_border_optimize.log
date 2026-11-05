@@ -1,0 +1,15 @@
+objc[26677]: Class GNotificationCenterDelegate is implemented in both /Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/web_preview/node_modules/ndarray-pixels/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.18.6.dylib (0x12b8f5a58) and /Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/web_preview/node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.3.dylib (0x12dddd978). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+❯ dedup
+✔ dedup               [2m 66ms[0m
+❯ weld
+✔ weld                [2m 1,296ms[0m
+❯ resample
+✔ resample            [2m 0ms[0m
+❯ prune
+✔ prune               [2m 444ms[0m
+❯ sparse
+✔ sparse              [2m 215ms[0m
+❯ textureCompress
+✔ textureCompress     [2m 1,966ms[0m
+
+info: room_uncompressed.glb (103.64 MB) → room_textures_optimized.glb (64.45 MB)

@@ -1,0 +1,52 @@
+{
+  "url": "https://xr-guild-library-v2.exe.xyz/",
+  "checked_at": "2026-09-24T00:57:55.380468+00:00",
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "status": 200,
+      "bytes": 2233,
+      "content_type": "application/octet-stream",
+      "cache_control": null,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches_local": true
+    },
+    {
+      "path": "assets/XR_Guild_Library_v2.glb",
+      "status": 200,
+      "bytes": 8678904,
+      "content_type": "model/gltf-binary",
+      "cache_control": "no-cache, must-revalidate",
+      "sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-BLqzmGhp.js",
+      "status": 200,
+      "bytes": 1026919,
+      "content_type": "application/javascript",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256": "6045ba79a7d9837092e9682faca6d05da5608a28902ddd15264e84c6b3ab666b",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-xy-Diq8L.css",
+      "status": 200,
+      "bytes": 3946,
+      "content_type": "text/css",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256": "42509f5b0d715a6545d0d695bbbfdbb8eabb4f1098446e2fea95ee5943e0f6e6",
+      "matches_local": true
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "bytes": 2733,
+      "content_type": "text/html",
+      "cache_control": "no-cache, must-revalidate",
+      "sha256": "906c07ac54e95a5ba57a13aa9e2462913fdd2b9ffa4144c428b00db67af769d9",
+      "matches_local": true
+    }
+  ],
+  "pass": true
+}

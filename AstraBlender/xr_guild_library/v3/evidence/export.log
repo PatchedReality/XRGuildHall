@@ -1,0 +1,144 @@
+00:01.145  blend            | Read blend: "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/XR_Guild_Library_v3.blend"
+/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/scripts/export_glb.py:102: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  old=ma.node_tree.nodes.get('Principled BSDF') if ma.use_nodes else None
+/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/scripts/export_glb.py:60: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  new=bpy.data.materials.new(ma.name+' | glTF PBR');new.use_nodes=True
+BAKING Bottle green velvet
+BAKING Handcrafted figured walnut
+BAKING Labradorite | green stone with blue schiller
+BAKING Verde antique marble
+BAKING Walnut endgrain and recess
+BAKING Warm ivory limestone
+BAKING Fresco planar atlas
+Info: Baking map saved to internal image, save it externally or pack it
+CONVERTED 500
+CONVERTED 1000
+CONVERTED 1500
+CONVERTED 2000
+CONVERTED 2500
+CONVERTED 3000
+CONVERTED 3500
+CONVERTED 4000
+MERGING Architecture Warm ivory limestone 13
+MERGING Architecture V3 | warm charcoal architectural panels 473
+MERGING Architecture Handcrafted figured walnut 125
+MERGING Architecture Gilt brass | gently aged 2088
+MERGING Architecture Walnut endgrain and recess 182
+MERGING Architecture Verde antique marble 31
+MERGING Architecture Labradorite | green stone with blue schiller 24
+MERGING Architecture Clear architectural glass | transparent, not frosted 7
+MERGING Architecture Polished gold leaf edges 650
+MERGING Architecture Forest green damask backing 5
+MERGING Architecture Silk fern damask 5
+MERGING Architecture Patinated bronze recesses 480
+MERGING Architecture Mandala | veined marble intarsia 1
+MERGING Architecture Fresco | Past / Present / Future | packed original artwork 1
+MERGING Architecture V3 | high contrast architectural gold 25
+MERGING Interface Handcrafted figured walnut 1
+MERGING Interface Gilt brass | gently aged 10
+MERGING Interface Interface | deep teal glass 3
+MERGING Interface Interface | ivory luminous type 7
+MERGING Interface Polished gold leaf edges 1
+MERGING Interface V3 | high contrast architectural gold 1
+MERGING Door_Left Handcrafted figured walnut 1
+MERGING Door_Left Verde antique marble 2
+MERGING Door_Left Gilt brass | gently aged 20
+MERGING Door_Left Polished gold leaf edges 2
+MERGING Door_Right Handcrafted figured walnut 1
+MERGING Door_Right Verde antique marble 2
+MERGING Door_Right Gilt brass | gently aged 20
+MERGING Door_Right Polished gold leaf edges 2
+MERGING Optional_Meeting_Furniture Handcrafted figured walnut 49
+MERGING Optional_Meeting_Furniture Gilt brass | gently aged 34
+MERGING Optional_Meeting_Furniture Verde antique marble 1
+MERGING Optional_Meeting_Furniture Bottle green velvet 16
+MERGING Architecture Blue petrol stone 73
+MERGING Door_Left Blue petrol stone 1
+MERGING Door_Right Blue petrol stone 1
+MERGING Architecture Opal lamp glow 6
+MERGING Architecture Bottle green velvet 2
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+21:46:50 | INFO: Starting glTF 2.0 export
+21:46:50 | INFO: Extracting primitive: Architecture | Blue petrol stone
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Bottle green velvet
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Clear architectural glass | transparent, not frosted
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Forest green damask backing
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Fresco | Past / Present / Future | packed original artwork
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Gilt brass | gently aged
+21:46:50 | INFO: Primitives created: 1
+21:46:50 | INFO: Extracting primitive: Architecture | Handcrafted figured walnut
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Labradorite | green stone with blue schiller
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Mandala | veined marble intarsia
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Opal lamp glow
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Patinated bronze recesses
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Polished gold leaf edges
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Silk fern damask
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | V3 | high contrast architectural gold
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | V3 | warm charcoal architectural panels
+21:46:51 | INFO: Primitives created: 1
+21:46:51 | INFO: Extracting primitive: Architecture | Verde antique marble
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Architecture | Walnut endgrain and recess
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Architecture | Warm ivory limestone
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Left | Blue petrol stone
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Left | Gilt brass | gently aged
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Left | Handcrafted figured walnut
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Left | Polished gold leaf edges
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Left | Verde antique marble
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Right | Blue petrol stone
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Right | Gilt brass | gently aged
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Right | Handcrafted figured walnut
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Right | Polished gold leaf edges
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Door_Right | Verde antique marble
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | Gilt brass | gently aged
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | Handcrafted figured walnut
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | Interface | deep teal glass
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | Interface | ivory luminous type
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | Polished gold leaf edges
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Interface | V3 | high contrast architectural gold
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Optional_Meeting_Furniture | Bottle green velvet
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Optional_Meeting_Furniture | Gilt brass | gently aged
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Optional_Meeting_Furniture | Handcrafted figured walnut
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Extracting primitive: Optional_Meeting_Furniture | Verde antique marble
+21:46:52 | INFO: Primitives created: 1
+21:46:52 | INFO: Finished glTF 2.0 export in 2.7000057697296143 s
+
+GLB_EXPORT_COMPLETE {"file": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v3/web_preview/public/assets/XR_Guild_Library_v3.glb", "bytes": 89745668, "triangles": 1601384, "mesh_count": 38, "source_objects_converted": 4366, "width_m": 8.0, "apex_m": 6.2, "baked_materials": [{"material": "Bottle green velvet", "texture": "bottle_green_velvet.png", "size": [1536, 1024]}, {"material": "Handcrafted figured walnut", "texture": "handcrafted_figured_walnut.png", "size": [1536, 1024]}, {"material": "Labradorite | green stone with blue schiller", "texture": "labradorite_green_stone_with_blue_schiller.png", "size": [1536, 3072]}, {"material": "Verde antique marble", "texture": "verde_antique_marble.png", "size": [1536, 1024]}, {"material": "Walnut endgrain and recess", "texture": "walnut_endgrain_and_recess.png", "size": [1536, 1024]}, {"material": "Warm ivory limestone", "texture": "warm_ivory_limestone.png", "size": [1536, 1024]}, {"material": "Fresco | Past / Present / Future | packed original artwork", "texture": "fresco_baked.png", "size": [3072, 3072]}], "glass_transmission": 1, "geometry_note": "Curves and type tessellated, static parts joined by material; editable v3 source untouched."}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

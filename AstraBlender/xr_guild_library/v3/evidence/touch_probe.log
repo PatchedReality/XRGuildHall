@@ -1,0 +1,65 @@
+DOM {
+  focus: true,
+  width: 390,
+  scale: 1,
+  rect: {
+    x: 24,
+    y: 597,
+    width: 112,
+    height: 112,
+    top: 597,
+    right: 136,
+    bottom: 709,
+    left: 24
+  },
+  target: '<span class="joystick-cross" aria-hidden="true">✧</span>',
+  events: [ { type: 'blur', target: 'enter', active: true } ],
+  state: {
+    ready: true,
+    roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+    backend: 'WebGPU',
+    touchMode: true,
+    touchActive: true,
+    touchMove: { x: 0, z: 0 },
+    exposure: 0.8,
+    position: [ 0, 1.7, -2.05 ],
+    rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+    pointerLocked: false,
+    meetingLayout: false,
+    doorOpen: 0,
+    triangles: 3037410,
+    drawCalls: 62
+  }
+}
+HELD {
+  ready: true,
+  roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+  backend: 'WebGPU',
+  touchMode: true,
+  touchActive: true,
+  touchMove: { x: 0, z: 0 },
+  exposure: 0.8,
+  position: [ 0, 1.7, -2.05 ],
+  rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+  pointerLocked: false,
+  meetingLayout: false,
+  doorOpen: 0,
+  triangles: 3037410,
+  drawCalls: 62
+} [ { type: 'blur', target: 'enter', active: true } ]
+END {
+  ready: true,
+  roomDimensions: { width: 8, apex: 6.2, eye: 1.7 },
+  backend: 'WebGPU',
+  touchMode: true,
+  touchActive: true,
+  touchMove: { x: 0, z: 0 },
+  exposure: 0.8,
+  position: [ 0, 1.7, -2.05 ],
+  rotation: [ -0.057406724906011015, 0, 0, 0.9983508741597643 ],
+  pointerLocked: false,
+  meetingLayout: false,
+  doorOpen: 0,
+  triangles: 3037410,
+  drawCalls: 62
+}

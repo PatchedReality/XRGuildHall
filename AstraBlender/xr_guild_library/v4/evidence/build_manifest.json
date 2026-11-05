@@ -1,0 +1,102 @@
+{
+  "version": 4,
+  "width_m": 8,
+  "apex_m": 6.2,
+  "books": 0,
+  "empty_shelf_meshes": 43,
+  "replaced_objects": 38,
+  "objects": 5694,
+  "new_detail_objects": {
+    "19": 336,
+    "20": 440,
+    "21": 72,
+    "22": 84
+  },
+  "inscriptions": [
+    {
+      "text": "AI ETHICS",
+      "width_m": 0.8152704834938049,
+      "height_m": 0.10903096944093704,
+      "horizontal_padding_m": 0.5823647582530975,
+      "vertical_padding_m": 0.04848451527953147
+    },
+    {
+      "text": "IMMERSIVE RESEARCH",
+      "width_m": 1.6000000416866733,
+      "height_m": 0.0937801142936987,
+      "horizontal_padding_m": 0.18999997915666333,
+      "vertical_padding_m": 0.05610994285315064
+    },
+    {
+      "text": "RESPONSIBILITY",
+      "width_m": 1.342863142490387,
+      "height_m": 0.10949075594544411,
+      "horizontal_padding_m": 0.3185684287548065,
+      "vertical_padding_m": 0.04825462202727794
+    },
+    {
+      "text": "XR INDUSTRY",
+      "width_m": 1.1447364687919617,
+      "height_m": 0.10949056223034859,
+      "horizontal_padding_m": 0.41763176560401916,
+      "vertical_padding_m": 0.0482547188848257
+    },
+    {
+      "text": "NEUROTECHNOLOGY",
+      "width_m": 1.5999999684401942,
+      "height_m": 0.09831029691243254,
+      "horizontal_padding_m": 0.1900000157799029,
+      "vertical_padding_m": 0.053844851543783726
+    },
+    {
+      "text": "MIND & PRIVACY",
+      "width_m": 1.3766079545021057,
+      "height_m": 0.10964460670948029,
+      "horizontal_padding_m": 0.30169602274894713,
+      "vertical_padding_m": 0.04817769664525985
+    },
+    {
+      "text": "XR & WELLBEING",
+      "width_m": 1.398695707321167,
+      "height_m": 0.10964500159025192,
+      "horizontal_padding_m": 0.2906521463394165,
+      "vertical_padding_m": 0.04817749920487403
+    },
+    {
+      "text": "PRIVACY & POLICY",
+      "width_m": 1.5315980911254883,
+      "height_m": 0.109644815325737,
+      "horizontal_padding_m": 0.22420095443725585,
+      "vertical_padding_m": 0.048177592337131495
+    },
+    {
+      "text": "SECURITY & SAFETY",
+      "width_m": 1.6000000396114444,
+      "height_m": 0.10687536755902727,
+      "horizontal_padding_m": 0.18999998019427777,
+      "vertical_padding_m": 0.04956231622048636
+    },
+    {
+      "text": "XR GUILD LIBRARY",
+      "width_m": 1.5759266018867493,
+      "height_m": 0.10903112962841988,
+      "horizontal_padding_m": 0.20203669905662536,
+      "vertical_padding_m": 0.048484435185790056
+    },
+    {
+      "text": "THINK TOGETHER",
+      "width_m": 1.5275527238845825,
+      "height_m": 0.10949094220995903,
+      "horizontal_padding_m": 0.22622363805770873,
+      "vertical_padding_m": 0.04825452889502048
+    },
+    {
+      "text": "IMAGINATION & CARE",
+      "width_m": 1.5999999485416474,
+      "height_m": 0.09730972847303443,
+      "horizontal_padding_m": 0.1900000257291763,
+      "vertical_padding_m": 0.05434513576348278
+    }
+  ],
+  "source_v3_unchanged": true
+}

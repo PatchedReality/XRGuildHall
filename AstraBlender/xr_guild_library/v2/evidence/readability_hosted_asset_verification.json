@@ -1,0 +1,36 @@
+{
+  "url": "https://xr-guild-library.exe.xyz/",
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "http": 200,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches_local": true
+    },
+    {
+      "path": "assets/XR_Guild_Library_v2.glb",
+      "http": 200,
+      "sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-5RcTil-P.css",
+      "http": 200,
+      "sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "matches_local": true
+    },
+    {
+      "path": "assets/index-DUqv7S2z.js",
+      "http": 200,
+      "sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "matches_local": true
+    },
+    {
+      "path": "index.html",
+      "http": 200,
+      "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "matches_local": true
+    }
+  ],
+  "pass": true
+}

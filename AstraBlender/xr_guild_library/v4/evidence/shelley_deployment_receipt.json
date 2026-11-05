@@ -1,0 +1,540 @@
+{
+  "archive": "/home/exedev/xr-library-v4-window-border-release.tar.gz",
+  "backups": [
+    {
+      "bytes": 17775648,
+      "path": "/home/exedev/xr-library-v4-backups/XR_Guild_Library_v4-before-window-border-20260924T044141Z.glb",
+      "sha256": "0c61f534738f20c03a95206a0d931926142c470359c7ef50974174289f4a5f09"
+    }
+  ],
+  "changed_files": [
+    "assets/XR_Guild_Library_v4.glb"
+  ],
+  "checks": {
+    "archive_entries_safe": {
+      "detail": [
+        "site",
+        "site/THIRD_PARTY_NOTICES.md",
+        "site/V1",
+        "site/V1/THIRD_PARTY_NOTICES.md",
+        "site/V1/assets",
+        "site/V1/assets/XR_Guild_Library_v1.glb",
+        "site/V1/assets/index-BbzOvt1X.css",
+        "site/V1/assets/index-DuK-HMiY.js",
+        "site/V1/index.html",
+        "site/assets",
+        "site/assets/XR_Guild_Library_v4.glb",
+        "site/assets/index-BC2NJWeq.js",
+        "site/assets/index-BbzOvt1X.css",
+        "site/index.html",
+        "site/v2",
+        "site/v2/THIRD_PARTY_NOTICES.md",
+        "site/v2/assets",
+        "site/v2/assets/XR_Guild_Library_v2.glb",
+        "site/v2/assets/index-5RcTil-P.css",
+        "site/v2/assets/index-DUqv7S2z.js",
+        "site/v2/index.html",
+        "site/v3",
+        "site/v3/THIRD_PARTY_NOTICES.md",
+        "site/v3/assets",
+        "site/v3/assets/XR_Guild_Library_v3.glb",
+        "site/v3/assets/index-BQgRnxe1.js",
+        "site/v3/assets/index-BbzOvt1X.css",
+        "site/v3/index.html",
+        "release-manifest.json"
+      ],
+      "passed": true
+    },
+    "archive_exists": {
+      "detail": "/home/exedev/xr-library-v4-window-border-release.tar.gz",
+      "passed": true
+    },
+    "backup_name_available": {
+      "detail": "/home/exedev/xr-library-v4-backups/XR_Guild_Library_v4-before-window-border-20260924T044141Z.glb",
+      "passed": true
+    },
+    "backup_verified": {
+      "detail": "0c61f534738f20c03a95206a0d931926142c470359c7ef50974174289f4a5f09",
+      "passed": true
+    },
+    "existing_public_root": {
+      "detail": "/home/exedev/xr-library-release",
+      "passed": true
+    },
+    "existing_v4_model": {
+      "detail": "/home/exedev/xr-library-release/assets/XR_Guild_Library_v4.glb",
+      "passed": true
+    },
+    "expected_model_sha256": {
+      "detail": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+      "passed": true
+    },
+    "http_file:THIRD_PARTY_NOTICES.md": {
+      "detail": "HTTP 200; 2233 bytes",
+      "passed": true
+    },
+    "http_file:V1/THIRD_PARTY_NOTICES.md": {
+      "detail": "HTTP 200; 2233 bytes",
+      "passed": true
+    },
+    "http_file:V1/assets/XR_Guild_Library_v1.glb": {
+      "detail": "HTTP 200; 7115792 bytes",
+      "passed": true
+    },
+    "http_file:V1/assets/index-BbzOvt1X.css": {
+      "detail": "HTTP 200; 10836 bytes",
+      "passed": true
+    },
+    "http_file:V1/assets/index-DuK-HMiY.js": {
+      "detail": "HTTP 200; 1016457 bytes",
+      "passed": true
+    },
+    "http_file:V1/index.html": {
+      "detail": "HTTP 200; 6220 bytes",
+      "passed": true
+    },
+    "http_file:assets/XR_Guild_Library_v4.glb": {
+      "detail": "HTTP 200; 17706732 bytes",
+      "passed": true
+    },
+    "http_file:assets/index-BC2NJWeq.js": {
+      "detail": "HTTP 200; 1016457 bytes",
+      "passed": true
+    },
+    "http_file:assets/index-BbzOvt1X.css": {
+      "detail": "HTTP 200; 10836 bytes",
+      "passed": true
+    },
+    "http_file:index.html": {
+      "detail": "HTTP 200; 6223 bytes",
+      "passed": true
+    },
+    "http_file:v2/THIRD_PARTY_NOTICES.md": {
+      "detail": "HTTP 200; 2233 bytes",
+      "passed": true
+    },
+    "http_file:v2/assets/XR_Guild_Library_v2.glb": {
+      "detail": "HTTP 200; 8678904 bytes",
+      "passed": true
+    },
+    "http_file:v2/assets/index-5RcTil-P.css": {
+      "detail": "HTTP 200; 10836 bytes",
+      "passed": true
+    },
+    "http_file:v2/assets/index-DUqv7S2z.js": {
+      "detail": "HTTP 200; 1029346 bytes",
+      "passed": true
+    },
+    "http_file:v2/index.html": {
+      "detail": "HTTP 200; 5915 bytes",
+      "passed": true
+    },
+    "http_file:v3/THIRD_PARTY_NOTICES.md": {
+      "detail": "HTTP 200; 2233 bytes",
+      "passed": true
+    },
+    "http_file:v3/assets/XR_Guild_Library_v3.glb": {
+      "detail": "HTTP 200; 14071500 bytes",
+      "passed": true
+    },
+    "http_file:v3/assets/index-BQgRnxe1.js": {
+      "detail": "HTTP 200; 1016457 bytes",
+      "passed": true
+    },
+    "http_file:v3/assets/index-BbzOvt1X.css": {
+      "detail": "HTTP 200; 10836 bytes",
+      "passed": true
+    },
+    "http_file:v3/index.html": {
+      "detail": "HTTP 200; 6223 bytes",
+      "passed": true
+    },
+    "http_immutable:V1/assets/index-BbzOvt1X.css": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:V1/assets/index-DuK-HMiY.js": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:assets/index-BC2NJWeq.js": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:assets/index-BbzOvt1X.css": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:v2/assets/index-5RcTil-P.css": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:v2/assets/index-DUqv7S2z.js": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:v3/assets/index-BQgRnxe1.js": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_immutable:v3/assets/index-BbzOvt1X.css": {
+      "detail": "public, max-age=31536000, immutable",
+      "passed": true
+    },
+    "http_revalidate:V1/assets/XR_Guild_Library_v1.glb": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:V1/index.html": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:assets/XR_Guild_Library_v4.glb": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:index.html": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:v2/assets/XR_Guild_Library_v2.glb": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:v2/index.html": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:v3/assets/XR_Guild_Library_v3.glb": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "http_revalidate:v3/index.html": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "manifest_structure": {
+      "detail": "20 files",
+      "passed": true
+    },
+    "missing_asset:/V1/assets/does-not-exist.glb": {
+      "detail": "HTTP 404",
+      "passed": true
+    },
+    "missing_asset:/assets/does-not-exist.glb": {
+      "detail": "HTTP 404",
+      "passed": true
+    },
+    "missing_asset:/v2/assets/does-not-exist.js": {
+      "detail": "HTTP 404",
+      "passed": true
+    },
+    "missing_asset:/v3/assets/does-not-exist.css": {
+      "detail": "HTTP 404",
+      "passed": true
+    },
+    "nginx_config_unchanged": {
+      "detail": "No reload or restart performed",
+      "passed": true
+    },
+    "nginx_service_healthy": {
+      "detail": "active",
+      "passed": true
+    },
+    "nginx_valid_after": {
+      "detail": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n",
+      "passed": true
+    },
+    "nginx_valid_before": {
+      "detail": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful\n",
+      "passed": true
+    },
+    "published_forbidden_material_absent": {
+      "detail": "Forbidden material name absent",
+      "passed": true
+    },
+    "published_sha256:THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "published_sha256:V1/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "published_sha256:V1/assets/XR_Guild_Library_v1.glb": {
+      "detail": "070df46262f8b4b9847dd341ce07202882c88459d3fbcc238d5b647d2f5b817e",
+      "passed": true
+    },
+    "published_sha256:V1/assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "published_sha256:V1/assets/index-DuK-HMiY.js": {
+      "detail": "4e8cfa00126c41501e6ccfb303fc69e2db7ecc2c05aa518f261bb637033fff46",
+      "passed": true
+    },
+    "published_sha256:V1/index.html": {
+      "detail": "98db4fbd4f4dec3ececccfa0d69f854a4ee6a415a7dc17b7f0e7480b99d27dd7",
+      "passed": true
+    },
+    "published_sha256:assets/XR_Guild_Library_v4.glb": {
+      "detail": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+      "passed": true
+    },
+    "published_sha256:assets/index-BC2NJWeq.js": {
+      "detail": "f30feed2bf10d13a5b3ed028bb9d7847b79dc7ecac33b6e3974d0b75a3fd1ea2",
+      "passed": true
+    },
+    "published_sha256:assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "published_sha256:index.html": {
+      "detail": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7",
+      "passed": true
+    },
+    "published_sha256:v2/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "published_sha256:v2/assets/XR_Guild_Library_v2.glb": {
+      "detail": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "passed": true
+    },
+    "published_sha256:v2/assets/index-5RcTil-P.css": {
+      "detail": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "passed": true
+    },
+    "published_sha256:v2/assets/index-DUqv7S2z.js": {
+      "detail": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "passed": true
+    },
+    "published_sha256:v2/index.html": {
+      "detail": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "passed": true
+    },
+    "published_sha256:v3/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "published_sha256:v3/assets/XR_Guild_Library_v3.glb": {
+      "detail": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "passed": true
+    },
+    "published_sha256:v3/assets/index-BQgRnxe1.js": {
+      "detail": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "passed": true
+    },
+    "published_sha256:v3/assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "published_sha256:v3/index.html": {
+      "detail": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c",
+      "passed": true
+    },
+    "redirect:/V1": {
+      "detail": "HTTP 301; Location=/V1/",
+      "passed": true
+    },
+    "redirect:/v1": {
+      "detail": "HTTP 301; Location=/V1/",
+      "passed": true
+    },
+    "redirect:/v1/": {
+      "detail": "HTTP 301; Location=/V1/",
+      "passed": true
+    },
+    "retained_root_assets_unchanged": {
+      "detail": "11 retained assets",
+      "passed": true
+    },
+    "root_index_and_preview_not_replaced": {
+      "detail": [
+        "index.html",
+        "assets/index-BC2NJWeq.js",
+        "assets/index-BbzOvt1X.css"
+      ],
+      "passed": true
+    },
+    "root_index_and_preview_unchanged": {
+      "detail": [
+        "index.html",
+        "assets/index-BC2NJWeq.js",
+        "assets/index-BbzOvt1X.css"
+      ],
+      "passed": true
+    },
+    "route:/": {
+      "detail": "HTTP 200; index=index.html",
+      "passed": true
+    },
+    "route:/V1/": {
+      "detail": "HTTP 200; index=V1/index.html",
+      "passed": true
+    },
+    "route:/v2/": {
+      "detail": "HTTP 200; index=v2/index.html",
+      "passed": true
+    },
+    "route:/v3/": {
+      "detail": "HTTP 200; index=v3/index.html",
+      "passed": true
+    },
+    "route_cache:/": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "route_cache:/V1/": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "route_cache:/v2/": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "route_cache:/v3/": {
+      "detail": "no-cache, must-revalidate",
+      "passed": true
+    },
+    "staged_file_set": {
+      "detail": "20 files",
+      "passed": true
+    },
+    "staged_forbidden_material_absent": {
+      "detail": "22 material names; forbidden name absent=True",
+      "passed": true
+    },
+    "staged_sha256:THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "staged_sha256:V1/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "staged_sha256:V1/assets/XR_Guild_Library_v1.glb": {
+      "detail": "070df46262f8b4b9847dd341ce07202882c88459d3fbcc238d5b647d2f5b817e",
+      "passed": true
+    },
+    "staged_sha256:V1/assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "staged_sha256:V1/assets/index-DuK-HMiY.js": {
+      "detail": "4e8cfa00126c41501e6ccfb303fc69e2db7ecc2c05aa518f261bb637033fff46",
+      "passed": true
+    },
+    "staged_sha256:V1/index.html": {
+      "detail": "98db4fbd4f4dec3ececccfa0d69f854a4ee6a415a7dc17b7f0e7480b99d27dd7",
+      "passed": true
+    },
+    "staged_sha256:assets/XR_Guild_Library_v4.glb": {
+      "detail": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+      "passed": true
+    },
+    "staged_sha256:assets/index-BC2NJWeq.js": {
+      "detail": "f30feed2bf10d13a5b3ed028bb9d7847b79dc7ecac33b6e3974d0b75a3fd1ea2",
+      "passed": true
+    },
+    "staged_sha256:assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "staged_sha256:index.html": {
+      "detail": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7",
+      "passed": true
+    },
+    "staged_sha256:v2/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "staged_sha256:v2/assets/XR_Guild_Library_v2.glb": {
+      "detail": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "passed": true
+    },
+    "staged_sha256:v2/assets/index-5RcTil-P.css": {
+      "detail": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "passed": true
+    },
+    "staged_sha256:v2/assets/index-DUqv7S2z.js": {
+      "detail": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "passed": true
+    },
+    "staged_sha256:v2/index.html": {
+      "detail": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "passed": true
+    },
+    "staged_sha256:v3/THIRD_PARTY_NOTICES.md": {
+      "detail": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "passed": true
+    },
+    "staged_sha256:v3/assets/XR_Guild_Library_v3.glb": {
+      "detail": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "passed": true
+    },
+    "staged_sha256:v3/assets/index-BQgRnxe1.js": {
+      "detail": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "passed": true
+    },
+    "staged_sha256:v3/assets/index-BbzOvt1X.css": {
+      "detail": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "passed": true
+    },
+    "staged_sha256:v3/index.html": {
+      "detail": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c",
+      "passed": true
+    },
+    "staging_not_preexisting": {
+      "detail": "/home/exedev/xr-library-v4-window-border-staging",
+      "passed": true
+    },
+    "temp_sha256:assets/XR_Guild_Library_v4.glb": {
+      "detail": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+      "passed": true
+    }
+  },
+  "errors": [],
+  "expected_model_sha256": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+  "finished_utc": "2026-09-24T04:41:41.856773+00:00",
+  "model_sha256": "8a533ed5163ca1bffa5850e5cbcbcb3d6d136a80531eb1df99a34de5527ded09",
+  "nginx_config_sha256": "46021d41cb2bb904beb5c0fbe59e611581a2dcf2a8724f1b80a0df57da9ee264",
+  "public_root": "/home/exedev/xr-library-release",
+  "retained_root_assets": {
+    "XR_Guild_Library_v2.glb": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+    "XR_Guild_Library_v3.glb": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+    "index-5RcTil-P.css": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+    "index-BC2NJWeq.js": "f30feed2bf10d13a5b3ed028bb9d7847b79dc7ecac33b6e3974d0b75a3fd1ea2",
+    "index-BLqzmGhp.js": "6045ba79a7d9837092e9682faca6d05da5608a28902ddd15264e84c6b3ab666b",
+    "index-BQgRnxe1.js": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+    "index-BbzOvt1X.css": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+    "index-D7rfk6nV.js": "a38d4b27a06db9d0347efaeec5caacbd1f430a00618ac7a74cb6adc7aebdd7e7",
+    "index-DUqv7S2z.js": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+    "index-QLhZ4_xy.css": "52ce9e664cc82302c4384a431649fff688f58e301a0681571daaf14bf26a4d6e",
+    "index-xy-Diq8L.css": "42509f5b0d715a6545d0d695bbbfdbb8eabb4f1098446e2fea95ee5943e0f6e6"
+  },
+  "staging": "/home/exedev/xr-library-v4-window-border-staging",
+  "started_utc": "2026-09-24T04:41:40.244984+00:00",
+  "status": "passed",
+  "unchanged_files": [
+    "THIRD_PARTY_NOTICES.md",
+    "V1/THIRD_PARTY_NOTICES.md",
+    "V1/assets/XR_Guild_Library_v1.glb",
+    "V1/assets/index-BbzOvt1X.css",
+    "V1/assets/index-DuK-HMiY.js",
+    "V1/index.html",
+    "assets/index-BC2NJWeq.js",
+    "assets/index-BbzOvt1X.css",
+    "index.html",
+    "v2/THIRD_PARTY_NOTICES.md",
+    "v2/assets/XR_Guild_Library_v2.glb",
+    "v2/assets/index-5RcTil-P.css",
+    "v2/assets/index-DUqv7S2z.js",
+    "v2/index.html",
+    "v3/THIRD_PARTY_NOTICES.md",
+    "v3/assets/XR_Guild_Library_v3.glb",
+    "v3/assets/index-BQgRnxe1.js",
+    "v3/assets/index-BbzOvt1X.css",
+    "v3/index.html"
+  ]
+}

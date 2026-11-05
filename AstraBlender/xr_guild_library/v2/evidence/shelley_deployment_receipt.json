@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "service_name": "nginx.service",
+  "content_root": "/home/exedev/xr-library-release",
+  "listening_port": 8000,
+  "local_http_statuses": {
+    "/": 200,
+    "/index.html": 200,
+    "/assets/XR_Guild_Library_v2.glb": 200,
+    "/assets/index-BLqzmGhp.js": 200,
+    "/assets/index-xy-Diq8L.css": 200,
+    "/assets/": 404
+  },
+  "glb_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+  "configuration_paths": [
+    "/etc/nginx/nginx.conf",
+    "/etc/nginx/sites-available/xr-guild-library-v2",
+    "/etc/nginx/sites-enabled/xr-guild-library-v2"
+  ],
+  "service_checks": {
+    "nginx_config_valid": "nginx: the configuration file /etc/nginx/nginx.conf syntax is ok\nnginx: configuration file /etc/nginx/nginx.conf test is successful",
+    "service_active": "active",
+    "service_enabled": "enabled"
+  },
+  "errors": [],
+  "checked_at": "2026-09-24T00:57:16.535891+00:00"
+}

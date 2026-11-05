@@ -1,0 +1,52 @@
+[
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "bytes": 2233,
+    "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+  },
+  {
+    "path": "assets/XR_Guild_Library_v3.glb",
+    "bytes": 14071500,
+    "sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58"
+  },
+  {
+    "path": "assets/index-BQgRnxe1.js",
+    "bytes": 1016457,
+    "sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183"
+  },
+  {
+    "path": "assets/index-BbzOvt1X.css",
+    "bytes": 10836,
+    "sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8"
+  },
+  {
+    "path": "index.html",
+    "bytes": 6224,
+    "sha256": "8d747b3c9cc106db9f2db2a20bc954d4359673d5c4418022799d4627042a6512"
+  },
+  {
+    "path": "v2/THIRD_PARTY_NOTICES.md",
+    "bytes": 2233,
+    "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+  },
+  {
+    "path": "v2/assets/XR_Guild_Library_v2.glb",
+    "bytes": 8678904,
+    "sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1"
+  },
+  {
+    "path": "v2/assets/index-5RcTil-P.css",
+    "bytes": 10836,
+    "sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793"
+  },
+  {
+    "path": "v2/assets/index-DUqv7S2z.js",
+    "bytes": 1029346,
+    "sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863"
+  },
+  {
+    "path": "v2/index.html",
+    "bytes": 5915,
+    "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d"
+  }
+]

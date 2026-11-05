@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#271e14" />
+  <title>XR Guild Library · V1 Walkthrough</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23271e14'/%3E%3Cpath d='M7 26V13a9 9 0 0118 0v13M16 26V13M7 13h18' fill='none' stroke='%23ccb57c' stroke-width='2'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <main id="viewport" aria-label="Interactive 3D library walkthrough"></main>
+  <header class="masthead">
+    <div class="brand"><span class="crest" aria-hidden="true">✧</span><div><span class="eyebrow">XR GUILD</span><h1>The Library</h1></div></div>
+    <div class="edition"><span>ART NOUVEAU</span><b>V1</b><span id="backend" role="status">Starting renderer…</span></div>
+  </header>
+  <section id="welcome" class="welcome" aria-label="Walkthrough controls">
+    <div class="eyebrow">A ROOM FOR SHARED DISCOVERY</div>
+    <h2>Step inside.</h2>
+    <p>An intimate library beneath a painted rotunda. Carved walnut, labradorite, clear arched windows and warm gilt details.</p>
+    <button id="enter" class="primary" disabled>Preparing the library…</button>
+    <p class="hint desktop-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move · Mouse look<br><kbd>Shift</kbd> move faster · <kbd>Esc</kbd> release mouse</p>
+    <p class="hint touch-hint">Left thumbstick to walk · Swipe the room to look<br>Aim at a door or the library screen, then tap Interact.</p>
+    <p id="status" role="status">Loading the GLB and its embedded textures.</p>
+    <progress id="loading" max="100" aria-label="Model loading progress"></progress>
+  </section>
+  <div id="reticle" hidden aria-hidden="true">+</div>
+  <div id="interaction" role="status" hidden></div>
+  <section id="touch-controls" aria-label="Touch walking controls" hidden>
+    <button id="pause-touch" class="touch-button">Pause</button>
+    <div class="joystick-wrap">
+      <div id="joystick" role="group" aria-label="Walking thumbstick: drag to move">
+        <span class="joystick-cross" aria-hidden="true">✧</span><span id="joystick-knob" aria-hidden="true"></span>
+      </div>
+      <span class="touch-label">WALK</span>
+    </div>
+    <div class="touch-actions">
+      <span class="touch-label">SWIPE TO LOOK</span>
+      <button id="touch-interact" class="touch-button" disabled>Interact</button>
+      <button id="touch-speed" class="touch-button" aria-pressed="false">Walk faster</button>
+    </div>
+  </section>
+  <nav class="toolbar" aria-label="Preview tools">
+    <button id="reset" title="Return to the entrance (R)">Entrance</button>
+    <button id="ceiling" title="View the rotunda fresco">Fresco</button>
+    <button id="detail" title="View carved joinery and the window gilt">Craftsmanship</button>
+    <button id="library-view" title="Walk up to the library search screen">Library screen</button>
+    <button id="meeting-view" title="View human-scale meeting furniture">Meeting view</button>
+    <span class="divider"></span>
+    <button id="door" aria-pressed="false">Open doors</button>
+    <button id="furniture" aria-pressed="false">Meeting layout</button>
+    <button id="read-labels" title="Read the architectural inscriptions and collection topics">Read labels</button>
+    <button id="fullscreen" title="Toggle fullscreen">⛶ <span class="sr-only">Fullscreen</span></button>
+    <a href="./assets/XR_Guild_Library_v1.glb" download>GLB ↓</a>
+  </nav>
+  <footer><span>8 m across · 6.2 m vault · Eye 1.70 m</span><a href="https://library.xrguild.org/" target="_blank" rel="noopener noreferrer">Explore the collection ↗</a><span><a href="/" target="_blank" rel="noopener">Current V4 ↗</a> · <span id="fps"></span></span></footer>
+  <dialog id="labels-dialog" aria-labelledby="labels-title">
+    <div class="labels-heading"><h2 id="labels-title">The Library · Topics & inscriptions</h2><button id="close-labels" aria-label="Close text panel">Close</button></div>
+    <p class="labels-intro">A place to think together. Knowledge · Imagination · Care.</p>
+    <h3>The rotunda</h3><p>Past · Present · Future — the history, present experience, and imagined future of immersive media.</p>
+    <h3>Explore the collection</h3><ul class="topic-list">
+      <li><a href="https://library.xrguild.org/ai-ethics" target="_blank" rel="noopener noreferrer">AI Ethics ↗</a></li>
+      <li><a href="https://library.xrguild.org/current-peer-reviewed-immersive-technologies" target="_blank" rel="noopener noreferrer">Current Peer-Reviewed Immersive Technologies ↗</a></li>
+      <li><a href="https://library.xrguild.org/ethical-responsibility" target="_blank" rel="noopener noreferrer">Ethical Responsibility ↗</a></li>
+      <li><a href="https://library.xrguild.org/xr-industry-news-events-sources" target="_blank" rel="noopener noreferrer">XR Industry news/events/Sources ↗</a></li>
+      <li><a href="https://library.xrguild.org/neurotechnology-brain-tech-and-ethical-challenges" target="_blank" rel="noopener noreferrer">Neurotechnology, Brain Tech, and Ethical Challenges ↗</a></li>
+      <li><a href="https://library.xrguild.org/mind-control-and-privacy-at-work" target="_blank" rel="noopener noreferrer">Mind Control and Privacy at Work ↗</a></li>
+      <li><a href="https://library.xrguild.org/physiological-and-psychological-effects-of-xr" target="_blank" rel="noopener noreferrer">Physiological and Psychological effects of XR ↗</a></li>
+      <li><a href="https://library.xrguild.org/privacy-and-policy" target="_blank" rel="noopener noreferrer">Privacy & Policy ↗</a></li>
+      <li><a href="https://library.xrguild.org/security-and-safety" target="_blank" rel="noopener noreferrer">Security & Safety ↗</a></li>
+    </ul><a class="library-link" href="https://library.xrguild.org/" target="_blank" rel="noopener noreferrer">Search all XR Guild resources ↗</a>
+  </dialog>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

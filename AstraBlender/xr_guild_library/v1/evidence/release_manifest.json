@@ -1,0 +1,27 @@
+[
+  {
+    "path": "V1/THIRD_PARTY_NOTICES.md",
+    "bytes": 2233,
+    "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+  },
+  {
+    "path": "V1/assets/XR_Guild_Library_v1.glb",
+    "bytes": 7115792,
+    "sha256": "070df46262f8b4b9847dd341ce07202882c88459d3fbcc238d5b647d2f5b817e"
+  },
+  {
+    "path": "V1/assets/index-BbzOvt1X.css",
+    "bytes": 10836,
+    "sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8"
+  },
+  {
+    "path": "V1/assets/index-DuK-HMiY.js",
+    "bytes": 1016457,
+    "sha256": "4e8cfa00126c41501e6ccfb303fc69e2db7ecc2c05aa518f261bb637033fff46"
+  },
+  {
+    "path": "V1/index.html",
+    "bytes": 6220,
+    "sha256": "98db4fbd4f4dec3ececccfa0d69f854a4ee6a415a7dc17b7f0e7480b99d27dd7"
+  }
+]

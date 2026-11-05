@@ -1,0 +1,12 @@
+Publish the completed V4 XR Guild Library walkthrough on the EXISTING xr-guild-library VM at https://xr-guild-library.exe.xyz/. Do not create or rename a VM. Keep V3 at /v3/ and V2 at /v2/. This release preserves empty shelves and 8 m by 6.2 m room dimensions, adds fine craftsmanship and fixes inscription positioning.
+
+The archive /home/exedev/xr-library-v4-release.tar.gz contains site/ and release-manifest.json. Extract to /home/exedev/xr-library-v4-staging. Live root remains /home/exedev/xr-library-release. Validate every staged hash before publishing. Do not modify the supplied build.
+
+Back up live index.html and nginx configuration outside public root with timestamps. Copy staged files except root index.html first, including v2/ and v3/. Retain older root assets for cached pages. Atomically replace root index.html last. Keep port 8000, access and gzip, directory listings off, hidden-file protection, actual 404 for nonexistent paths. HTML and fixed-name GLBs must have Cache-Control: no-cache, must-revalidate. Hashed JS/CSS should use public, max-age=31536000, immutable. Ensure /, /v2/ and /v3/ resolve their indexes. Validate nginx configuration then reload without stopping service.
+
+Verify staged and published SHA256, local HTTP 200 for every file, HTML and GLB cache policies, hashed asset immutable header, missing path 404, nginx active/enabled status. Verify the V3 comparison footer points to /v2/ and V4 comparison points to /v3/. Use localhost:8000 if the VM cannot reach its public proxy. Write /home/exedev/v4-deployment-receipt.json with complete/failed status, backup paths, files/hashes, HTTP/cache checks and errors. Only report complete after passing checks.
+
+Expected model identities from the local release manifest:
+assets/XR_Guild_Library_v4.glb SHA256 0c61f534738f20c03a95206a0d931926142c470359c7ef50974174289f4a5f09
+v2/assets/XR_Guild_Library_v2.glb SHA256 e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1
+v3/assets/XR_Guild_Library_v3.glb SHA256 8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58

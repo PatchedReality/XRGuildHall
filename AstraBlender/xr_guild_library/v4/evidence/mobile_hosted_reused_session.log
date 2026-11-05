@@ -1,0 +1,17 @@
+Checked forward: {"before":[0,1.7,-2.05],"after":[0,1.7,-2.05],"active":true,"move":{"x":0,"z":0}}
+Checked backward: {"before":[0,1.7,-2.05],"after":[0,1.7,-2.05],"active":true,"move":{"x":0,"z":0}}
+Checked left: {"before":[0,1.7,-2.05],"after":[0,1.7,-2.05],"active":true,"move":{"x":0,"z":0}}
+Checked right: {"before":[0,1.7,-2.05],"after":[0,1.7,-2.05],"active":true,"move":{"x":0,"z":0}}
+Checking simultaneous touches
+Checking collision and interactions
+Checking layouts and interruptions
+file:///Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/web_preview/test-mobile.mjs:23
+  return new Promise((resolve, reject) => { const id = ++sequence; const timer = setTimeout(() => { pending.delete(id); reject(new Error(`CDP timeout: ${method} ${JSON.stringify(params)}`)); }, 20000); pending.set(id, { resolve, reject, timer }); ws.send(JSON.stringify({ id, method, params })); });
+                                                                                                                               ^
+
+Error: CDP timeout: Emulation.setFocusEmulationEnabled {"enabled":false}
+    at Timeout._onTimeout (file:///Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/web_preview/test-mobile.mjs:23:128)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+
+Node.js v22.17.0

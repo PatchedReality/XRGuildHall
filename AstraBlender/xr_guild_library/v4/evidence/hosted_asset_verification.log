@@ -1,0 +1,193 @@
+{
+  "base": "https://xr-guild-library.exe.xyz/",
+  "files": [
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "url": "https://xr-guild-library.exe.xyz/THIRD_PARTY_NOTICES.md",
+      "status": 200,
+      "bytes": 2233,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "expected_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches": true,
+      "cache_control": null,
+      "content_type": "application/octet-stream"
+    },
+    {
+      "path": "assets/XR_Guild_Library_v4.glb",
+      "url": "https://xr-guild-library.exe.xyz/assets/XR_Guild_Library_v4.glb",
+      "status": 200,
+      "bytes": 17775648,
+      "sha256": "0c61f534738f20c03a95206a0d931926142c470359c7ef50974174289f4a5f09",
+      "expected_sha256": "0c61f534738f20c03a95206a0d931926142c470359c7ef50974174289f4a5f09",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "model/gltf-binary"
+    },
+    {
+      "path": "assets/index-BC2NJWeq.js",
+      "url": "https://xr-guild-library.exe.xyz/assets/index-BC2NJWeq.js",
+      "status": 200,
+      "bytes": 1016457,
+      "sha256": "f30feed2bf10d13a5b3ed028bb9d7847b79dc7ecac33b6e3974d0b75a3fd1ea2",
+      "expected_sha256": "f30feed2bf10d13a5b3ed028bb9d7847b79dc7ecac33b6e3974d0b75a3fd1ea2",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript"
+    },
+    {
+      "path": "assets/index-BbzOvt1X.css",
+      "url": "https://xr-guild-library.exe.xyz/assets/index-BbzOvt1X.css",
+      "status": 200,
+      "bytes": 10836,
+      "sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "expected_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css"
+    },
+    {
+      "path": "index.html",
+      "url": "https://xr-guild-library.exe.xyz/index.html",
+      "status": 200,
+      "bytes": 6223,
+      "sha256": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7",
+      "expected_sha256": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "text/html"
+    },
+    {
+      "path": "v2/THIRD_PARTY_NOTICES.md",
+      "url": "https://xr-guild-library.exe.xyz/v2/THIRD_PARTY_NOTICES.md",
+      "status": 200,
+      "bytes": 2233,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "expected_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches": true,
+      "cache_control": null,
+      "content_type": "application/octet-stream"
+    },
+    {
+      "path": "v2/assets/XR_Guild_Library_v2.glb",
+      "url": "https://xr-guild-library.exe.xyz/v2/assets/XR_Guild_Library_v2.glb",
+      "status": 200,
+      "bytes": 8678904,
+      "sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "expected_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "model/gltf-binary"
+    },
+    {
+      "path": "v2/assets/index-5RcTil-P.css",
+      "url": "https://xr-guild-library.exe.xyz/v2/assets/index-5RcTil-P.css",
+      "status": 200,
+      "bytes": 10836,
+      "sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "expected_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css"
+    },
+    {
+      "path": "v2/assets/index-DUqv7S2z.js",
+      "url": "https://xr-guild-library.exe.xyz/v2/assets/index-DUqv7S2z.js",
+      "status": 200,
+      "bytes": 1029346,
+      "sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "expected_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript"
+    },
+    {
+      "path": "v2/index.html",
+      "url": "https://xr-guild-library.exe.xyz/v2/index.html",
+      "status": 200,
+      "bytes": 5915,
+      "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "expected_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "text/html"
+    },
+    {
+      "path": "v3/THIRD_PARTY_NOTICES.md",
+      "url": "https://xr-guild-library.exe.xyz/v3/THIRD_PARTY_NOTICES.md",
+      "status": 200,
+      "bytes": 2233,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "expected_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches": true,
+      "cache_control": null,
+      "content_type": "application/octet-stream"
+    },
+    {
+      "path": "v3/assets/XR_Guild_Library_v3.glb",
+      "url": "https://xr-guild-library.exe.xyz/v3/assets/XR_Guild_Library_v3.glb",
+      "status": 200,
+      "bytes": 14071500,
+      "sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "expected_sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "model/gltf-binary"
+    },
+    {
+      "path": "v3/assets/index-BQgRnxe1.js",
+      "url": "https://xr-guild-library.exe.xyz/v3/assets/index-BQgRnxe1.js",
+      "status": 200,
+      "bytes": 1016457,
+      "sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "expected_sha256": "8df259ab21f3ba20619f9bf61f746a54c0dcc99ae4989515aa9a04a32e500183",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript"
+    },
+    {
+      "path": "v3/assets/index-BbzOvt1X.css",
+      "url": "https://xr-guild-library.exe.xyz/v3/assets/index-BbzOvt1X.css",
+      "status": 200,
+      "bytes": 10836,
+      "sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "expected_sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css"
+    },
+    {
+      "path": "v3/index.html",
+      "url": "https://xr-guild-library.exe.xyz/v3/index.html",
+      "status": 200,
+      "bytes": 6223,
+      "sha256": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c",
+      "expected_sha256": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c",
+      "matches": true,
+      "cache_control": "no-cache, must-revalidate",
+      "content_type": "text/html"
+    }
+  ],
+  "routes": [
+    {
+      "path": "",
+      "status": 200,
+      "cache_control": "no-cache, must-revalidate"
+    },
+    {
+      "path": "v2/",
+      "status": 200,
+      "cache_control": "no-cache, must-revalidate"
+    },
+    {
+      "path": "v3/",
+      "status": 200,
+      "cache_control": "no-cache, must-revalidate"
+    },
+    {
+      "path": "assets/does-not-exist.js",
+      "status": 404
+    }
+  ],
+  "cache_policy_pass": true,
+  "pass": true
+}

@@ -1,0 +1,16 @@
+🐌 Connected to Shelley
+🐌 Follow along at https://xr-guild-library.shelley.exe.xyz
+
+🛠️ Calling 'bash'...
+🤖 I’ll inspect the staged archive and live asset references, then back up the current page before the atomic switch. I’ll leave the model and hosting configuration untouched.
+🛠️ Calling 'bash'...
+🛠️ Calling 'bash'...
+🛠️ Calling 'bash'...
+🤖 The staged and live V2 GLBs already have the required identical SHA256. I’ll publish only the new JS/CSS and notices, retain the older hashed assets, and switch `index.html` by rename.
+🛠️ Calling 'bash'...
+🤖 The **V2 text-readability update is published** at https://xr-guild-library.exe.xyz/. The receipt status is **complete**: the page and every staged asset returned HTTP 200, all published file hashes match the staged files, and nginx is active and enabled. The V2 GLB was not changed and retains SHA256 `e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1`.
+
+Receipt: `/home/exedev/readability-deployment-receipt.json`  
+Index backup: `/home/exedev/xr-library-index-backup-readability-20260924T021243Z.html`
+🏁 Shelley finished its turn. Continue the conversation at
+  https://xr-guild-library.shelley.exe.xyz

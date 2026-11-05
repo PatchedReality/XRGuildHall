@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "source": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/XR_Guild_Library.blend",
+  "objects": 4790,
+  "new_detail_objects": 3103,
+  "width_m": 8,
+  "apex_m": 6.2,
+  "windows": 6,
+  "bookcases": 5,
+  "books": 0,
+  "new_collections": {
+    "14": 885,
+    "15": 834,
+    "16": 1128,
+    "17": 202,
+    "18": 54
+  },
+  "glass_transmission": 1.0
+}

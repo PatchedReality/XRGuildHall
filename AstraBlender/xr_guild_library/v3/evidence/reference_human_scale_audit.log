@@ -1,0 +1,109 @@
+00:04.075  blend            | Read blend: "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/GuildHall-3DModels1.blend"
+{
+  "source": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/GuildHall-3DModels1.blend",
+  "unit_system": "METRIC",
+  "metres_per_unit": 1.0,
+  "people_count": 100,
+  "human_height_range_m": [
+    1.5199999809265137,
+    1.8288002014160156
+  ],
+  "human_height_median_m": 1.674399971961975,
+  "sample_people": [
+    {
+      "name": "5ft human",
+      "bounds": {
+        "min": [
+          7.620666980743408,
+          -1.2773901224136353,
+          2.5345444679260254
+        ],
+        "max": [
+          8.070667266845703,
+          -0.9773902297019958,
+          4.054544448852539
+        ],
+        "size": [
+          0.4500002861022949,
+          0.2999998927116394,
+          1.5199999809265137
+        ]
+      },
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "collections": [
+        "100 People"
+      ]
+    },
+    {
+      "name": "6ft human.001",
+      "bounds": {
+        "min": [
+          8.496589660644531,
+          -1.8147169351577759,
+          2.5323948860168457
+        ],
+        "max": [
+          8.946588516235352,
+          -1.5147169828414917,
+          4.361195087432861
+        ],
+        "size": [
+          0.4499988555908203,
+          0.2999999523162842,
+          1.8288002014160156
+        ]
+      },
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "collections": [
+        "100 People"
+      ]
+    }
+  ],
+  "named_5ft_m": 1.524,
+  "spawn_world": [
+    0.0,
+    -14.749124526977539,
+    4.100232124328613
+  ],
+  "view_layer_collections": [
+    {
+      "name": "Collection",
+      "excluded": false
+    },
+    {
+      "name": "Area1-Blockout1",
+      "excluded": true
+    },
+    {
+      "name": "Area1-Blockout2",
+      "excluded": false
+    }
+  ]
+}
+Bay Wall {'min': [16.43000030517578, -3.799999952316284, 2.500500202178955], 'max': [16.93000030517578, 3.9000000953674316, 12.613500595092773], 'size': [0.5, 7.700000047683716, 10.113000392913818], 'scale': [1.0, 1.0, 1.0], 'collections': ['Bay Walls']}
+Bay Wall.006 {'min': [-16.93000030517578, -3.9000000953674316, 2.500500202178955], 'max': [-16.43000030517578, 3.799999952316284, 12.613500595092773], 'size': [0.5, 7.700000047683716, 10.113000392913818], 'scale': [1.0, 1.0, 1.0], 'collections': ['Bay Walls']}
+Column {'min': [-0.9999980926513672, -1.0000001192092896, 0.0], 'max': [1.0000019073486328, 1.0000001192092896, 10.0], 'size': [2.0, 2.000000238418579, 10.0], 'scale': [1.0, 1.0, 1.0], 'collections': ['Columns']}
+Column.012 {'min': [15.52169418334961, 3.146632194519043, 2.605734348297119], 'max': [17.319782257080078, 5.653215408325195, 12.605733871459961], 'size': [1.7980880737304688, 2.5065832138061523, 9.999999523162842], 'scale': [1.0, 1.0, 1.0], 'collections': ['Columns.001']}
+Dome {'min': [-18.499982833862305, -18.499988555908203, 0.0], 'max': [18.4999942779541, 18.5, 9.25], 'size': [36.999977111816406, 36.9999885559082, 9.25], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout1']}
+DomeDRAFT {'min': [-20.11121368408203, -20.11121368408203, 18.9935302734375], 'max': [20.11121368408203, 20.11121368408203, 25.923572540283203], 'size': [40.22242736816406, 40.22242736816406, 6.930042266845703], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout2']}
+Platform {'min': [-20.44354248046875, -20.44838523864746, 0.0], 'max': [20.450000762939453, 20.44838523864746, 2.5000014305114746], 'size': [40.8935432434082, 40.89677047729492, 2.5000014305114746], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout1']}
+Platform.001 {'min': [-20.44354248046875, -20.44838523864746, 0.0], 'max': [20.450000762939453, 20.44838523864746, 2.600001335144043], 'size': [40.8935432434082, 40.89677047729492, 2.600001335144043], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout2']}
+Stage-REDO-size11-98m {'min': [-2.499605417251587, 9.063210487365723, 2.513512134552002], 'max': [2.5003950595855713, 14.063210487365723, 2.8635120391845703], 'size': [5.000000476837158, 5.0, 0.34999990463256836], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout1']}
+Stage.001 {'min': [-2.499605417251587, 9.063210487365723, 2.506135940551758], 'max': [2.5003950595855713, 14.063210487365723, 3.2061357498168945], 'size': [5.000000476837158, 5.0, 0.6999998092651367], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout2']}
+Window Cutter {'min': [15.868033409118652, -3.3482000827789307, 3.8697872161865234], 'max': [17.18195152282715, 3.3482000827789307, 17.769620895385742], 'size': [1.313918113708496, 6.696400165557861, 13.899833679199219], 'scale': [1.0, 1.0, 1.0], 'collections': ['Area1-Blockout2']}
+{'name': '100 People', 'children': ['50 People.001'], 'direct_objects': ['5ft human', '5ft human.001', '5ft human.002', '5ft human.003', '5ft human.004', '5ft human.005', '5ft human.006', '5ft human.007', '5ft human.008', '5ft human.009', '5ft human.010', '5ft human.011', '5ft human.012', '5ft human.013', '5ft human.014', '5ft human.015', '5ft human.016', '5ft human.017', '5ft human.018', '5ft human.019', '5ft human.020', '5ft human.021', '5ft human.022', '5ft human.023', '5ft human.024', '6ft human.001', '6ft human.002', '6ft human.003', '6ft human.004', '6ft human.005', '6ft human.006', '6ft human.007', '6ft human.008', '6ft human.009', '6ft human.010', '6ft human.011', '6ft human.012', '6ft human.013', '6ft human.014', '6ft human.015', '6ft human.016', '6ft human.017', '6ft human.018', '6ft human.019', '6ft human.020', '6ft human.021', '6ft human.022', '6ft human.023', '6ft human.024', '6ft human.025'], 'hidden_viewport': False, 'hidden_render': True}
+{'name': '50 People.001', 'children': ['50 People.001 1'], 'direct_objects': ['5ft human.025', '5ft human.026', '5ft human.027', '5ft human.028', '5ft human.029', '5ft human.030', '5ft human.031', '5ft human.032', '5ft human.033', '5ft human.034', '5ft human.035', '5ft human.036', '5ft human.037', '5ft human.038', '5ft human.039', '5ft human.040', '5ft human.041', '5ft human.042', '5ft human.043', '5ft human.044', '5ft human.045', '5ft human.046', '5ft human.047', '5ft human.048', '5ft human.049', '6ft human.026', '6ft human.027', '6ft human.028', '6ft human.029', '6ft human.030', '6ft human.031', '6ft human.032', '6ft human.033', '6ft human.034', '6ft human.035', '6ft human.036', '6ft human.037', '6ft human.038', '6ft human.039', '6ft human.040', '6ft human.041', '6ft human.042', '6ft human.043', '6ft human.044', '6ft human.045', '6ft human.046', '6ft human.047', '6ft human.048', '6ft human.049', '6ft human.050'], 'hidden_viewport': False, 'hidden_render': False}
+{'name': '50 People.001 1', 'children': [], 'direct_objects': [], 'hidden_viewport': False, 'hidden_render': False}
+{'name': 'Area1-Blockout1', 'children': ['Columns'], 'direct_objects': ['Dome', 'Platform', 'Plinth', 'Stage-REDO-size11-98m'], 'hidden_viewport': False, 'hidden_render': True}
+{'name': 'Area1-Blockout2', 'children': ['Columns.001', 'Collar', 'Bay Walls'], 'direct_objects': ['Platform.001', 'Stage.001', 'DomeDRAFT', 'Window Cutter'], 'hidden_viewport': False, 'hidden_render': False}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

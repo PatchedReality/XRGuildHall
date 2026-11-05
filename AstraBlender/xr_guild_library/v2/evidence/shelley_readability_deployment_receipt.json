@@ -1,0 +1,101 @@
+{
+  "backup_path": "/home/exedev/xr-library-index-backup-readability-20260924T021243Z.html",
+  "backup_sha256": "c40eecc7a0478d838defd055f9b74f2f3cb590d153d08dafc07d8dc70aef7c99",
+  "errors": [],
+  "file_hash_comparisons": {
+    "THIRD_PARTY_NOTICES.md": {
+      "match": true,
+      "published_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "staged_sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039"
+    },
+    "assets/XR_Guild_Library_v2.glb": {
+      "match": true,
+      "published_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+      "staged_sha256": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1"
+    },
+    "assets/index-5RcTil-P.css": {
+      "match": true,
+      "published_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793",
+      "staged_sha256": "9da836199976dadfeb4305025ecc4f24c418eac4ea1cd91a37d0f529d3fef793"
+    },
+    "assets/index-DUqv7S2z.js": {
+      "match": true,
+      "published_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863",
+      "staged_sha256": "4b3470610926cbed68b836ff1041a115eeecc307f5a14d596cfc5a0e9d0ae863"
+    },
+    "index.html": {
+      "match": true,
+      "published_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "staged_sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d"
+    }
+  },
+  "html_checks": {
+    "labels-dialog": true,
+    "touch-controls": true
+  },
+  "http_checks": {
+    "/": {
+      "bytes": 5915,
+      "ok": true,
+      "status": 200
+    },
+    "/THIRD_PARTY_NOTICES.md": {
+      "bytes": 2233,
+      "ok": true,
+      "status": 200
+    },
+    "/assets/XR_Guild_Library_v2.glb": {
+      "bytes": 8678904,
+      "ok": true,
+      "status": 200
+    },
+    "/assets/index-5RcTil-P.css": {
+      "bytes": 10836,
+      "ok": true,
+      "status": 200
+    },
+    "/assets/index-DUqv7S2z.js": {
+      "bytes": 1029346,
+      "ok": true,
+      "status": 200
+    },
+    "/index.html": {
+      "bytes": 5915,
+      "ok": true,
+      "status": 200
+    }
+  },
+  "live_root": "/home/exedev/xr-library-release",
+  "model_hash": {
+    "after": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+    "before": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+    "expected": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+    "staged": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1"
+  },
+  "nginx": {
+    "active": {
+      "ok": true,
+      "value": "active"
+    },
+    "enabled": {
+      "ok": true,
+      "value": "enabled"
+    }
+  },
+  "older_hashed_assets_retained": {
+    "index-BLqzmGhp.js": true,
+    "index-D7rfk6nV.js": true,
+    "index-QLhZ4_xy.css": true,
+    "index-xy-Diq8L.css": true
+  },
+  "staged_files": [
+    "THIRD_PARTY_NOTICES.md",
+    "assets/XR_Guild_Library_v2.glb",
+    "assets/index-5RcTil-P.css",
+    "assets/index-DUqv7S2z.js",
+    "index.html"
+  ],
+  "staged_root": "/home/exedev/xr-library-readability-release",
+  "status": "complete",
+  "timestamp_utc": "2026-09-24T02:12:43.208807+00:00"
+}

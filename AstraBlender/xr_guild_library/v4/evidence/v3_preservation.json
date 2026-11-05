@@ -1,0 +1,10 @@
+{
+  "v3_native": {
+    "sha256": "906c37e3c4b03394cb8a1ff81322a137ccdd90d768236d603f0f780e8482a128",
+    "preserved": true
+  },
+  "v3_glb": {
+    "sha256": "8f5a756d95d1487c93e7cd7b14f5784c0b64a968589dc122b4a0870957abba58",
+    "preserved": true
+  }
+}

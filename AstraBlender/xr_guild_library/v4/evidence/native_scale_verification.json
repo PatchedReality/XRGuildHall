@@ -1,0 +1,116 @@
+{
+  "source": "Original library brief / V2",
+  "native_unit_scale": 1.0,
+  "bookcase_floor_to_crown_m": 4.24616813659668,
+  "empty_shelves": 43,
+  "shelf_rows": 8,
+  "shelf_bays": 2,
+  "native_bounds": {
+    "Twelve-sided foundation | 8 m across flats": {
+      "min": [
+        -4.0,
+        -4.0,
+        -0.20000000298023224
+      ],
+      "max": [
+        4.0,
+        4.0,
+        0.0
+      ],
+      "size": [
+        8.0,
+        8.0,
+        0.20000000298023224
+      ]
+    },
+    "Rotunda | painted interior vault": {
+      "min": [
+        -4.025000095367432,
+        -4.025000095367432,
+        4.880000114440918
+      ],
+      "max": [
+        4.025000095367432,
+        4.025000095367432,
+        6.199999809265137
+      ],
+      "size": [
+        8.050000190734863,
+        8.050000190734863,
+        1.3199996948242188
+      ]
+    },
+    "Door leaf | -1": {
+      "min": [
+        -0.8090000152587891,
+        -4.105000019073486,
+        0.0
+      ],
+      "max": [
+        -0.006999990437179804,
+        -4.00499963760376,
+        2.4800000190734863
+      ],
+      "size": [
+        0.8020000248216093,
+        0.10000038146972656,
+        2.4800000190734863
+      ]
+    },
+    "Door leaf | 1": {
+      "min": [
+        0.006999990437179804,
+        -4.105000019073486,
+        0.0
+      ],
+      "max": [
+        0.8090000152587891,
+        -4.00499963760376,
+        2.4800000190734863
+      ],
+      "size": [
+        0.8020000248216093,
+        0.10000038146972656,
+        2.4800000190734863
+      ]
+    },
+    "Meeting table | walnut top": {
+      "min": [
+        -1.1299999952316284,
+        -1.1299999952316284,
+        0.7174999713897705
+      ],
+      "max": [
+        1.1299999952316284,
+        1.1299999952316284,
+        0.8025000095367432
+      ],
+      "size": [
+        2.259999990463257,
+        2.259999990463257,
+        0.08500003814697266
+      ]
+    }
+  },
+  "glass_transmission": 1.0,
+  "checks": {
+    "bookcase_height_4_25m": true,
+    "two_bays": true,
+    "eight_rows": true,
+    "empty_shelf_meshes_43": true,
+    "inside_width_matches": true,
+    "apex_matches": true,
+    "transparent_windows": true,
+    "no_green_plaster_surfaces": true,
+    "nine_large_gold_callouts": true,
+    "all_walking_cameras_human_height": true,
+    "inscriptions_have_padding": true,
+    "no_duplicate_case_headings": true,
+    "books_remain_absent": true,
+    "original_capital_leaves_preserved": true,
+    "fine_leaf_edging_present": true,
+    "original_bookcase_fans_preserved": true,
+    "v3_fine_ornament_preserved": true
+  },
+  "pass": true
+}

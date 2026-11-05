@@ -1,0 +1,16 @@
+{
+  "source": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/evidence/room_textures_optimized.glb",
+  "source_sha256": "f4bd41809630766f02e65d781a294ac5b08ff9a1cab45722f671e782be514efb",
+  "file": "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/xr_guild_library/v4/production_demo/XR_Guild_Hall_Library_V4.glb",
+  "sha256": "fe341a1cbf1b5db0b1571b3f03d3c12e20e5e8dc097396a42af4f44cdc2ad01a",
+  "bytes": 64447860,
+  "interior_width_m": 8,
+  "ceiling_apex_m": 6.2,
+  "model_scale": [
+    1,
+    1,
+    1
+  ],
+  "furniture_removed_from_default_scene": true,
+  "meshopt_compression": false
+}

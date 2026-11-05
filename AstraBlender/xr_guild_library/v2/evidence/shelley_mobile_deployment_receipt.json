@@ -1,0 +1,31 @@
+{
+  "status": "complete",
+  "backup_path": "/home/exedev/xr-library-index-backup-2026-09-24T010839Z.html",
+  "updated_asset_paths": [
+    "/home/exedev/xr-library-release/THIRD_PARTY_NOTICES.md",
+    "/home/exedev/xr-library-release/assets/index-D7rfk6nV.js",
+    "/home/exedev/xr-library-release/assets/index-QLhZ4_xy.css",
+    "/home/exedev/xr-library-release/index.html"
+  ],
+  "http_checks": {
+    "/": 200,
+    "/index.html": 200,
+    "/assets/index-D7rfk6nV.js": 200,
+    "/assets/index-QLhZ4_xy.css": 200
+  },
+  "model_hash": "e095ed93ae34c34cdd2b691a87775f143033aa1f4e23d16f36280c379448eaa1",
+  "staged_sha256_matches": {
+    "THIRD_PARTY_NOTICES.md": true,
+    "assets/XR_Guild_Library_v2.glb": true,
+    "assets/index-D7rfk6nV.js": true,
+    "assets/index-QLhZ4_xy.css": true,
+    "index.html": true
+  },
+  "nginx": {
+    "active": "active",
+    "enabled": "enabled"
+  },
+  "touch_controls": true,
+  "errors": [],
+  "checked_at": "2026-09-24T01:08:39.607307+00:00"
+}

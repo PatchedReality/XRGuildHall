@@ -1,0 +1,301 @@
+00:03.922  blend            | Read blend: "/Users/poshaughnessey/dev/PatchedReality/Metaverse/XRGuildHall/AstraBlender/GuildHall-3DModels1.blend"
+{
+  "source": "GuildHall-3DModels1.blend",
+  "scenes": [
+    "Scene"
+  ],
+  "collections": [
+    "100 People",
+    "50 People.001",
+    "50 People.001 1",
+    "Area1-Blockout1",
+    "Area1-Blockout2",
+    "Bay Walls",
+    "Collar",
+    "Collection",
+    "Columns",
+    "Columns.001"
+  ],
+  "total_objects": 160,
+  "named_shelf_objects": [],
+  "non_human_meshes": [
+    {
+      "name": "Bay Wall",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.001",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.002",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.003",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.004",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.005",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.006",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.007",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.008",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.010",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Bay Wall.011",
+      "vertices": 20,
+      "polygons": 23
+    },
+    {
+      "name": "Collar Wall",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.001",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.002",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.003",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.004",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.005",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.006",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.007",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.008",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.009",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.010",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Collar Wall.011",
+      "vertices": 310,
+      "polygons": 301
+    },
+    {
+      "name": "Column",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.001",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.002",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.003",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.004",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.005",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.006",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.007",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.008",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.009",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.010",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.011",
+      "vertices": 128,
+      "polygons": 112
+    },
+    {
+      "name": "Column.012",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.013",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.014",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.015",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.016",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.017",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.018",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.019",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.020",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.021",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.022",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Column.023",
+      "vertices": 32,
+      "polygons": 30
+    },
+    {
+      "name": "Dome",
+      "vertices": 513,
+      "polygons": 512
+    },
+    {
+      "name": "DomeDRAFT",
+      "vertices": 61,
+      "polygons": 60
+    },
+    {
+      "name": "Platform",
+      "vertices": 876,
+      "polygons": 875
+    },
+    {
+      "name": "Platform.001",
+      "vertices": 1126,
+      "polygons": 1125
+    },
+    {
+      "name": "Plinth",
+      "vertices": 128,
+      "polygons": 64
+    },
+    {
+      "name": "Stage-REDO-size11-98m",
+      "vertices": 751,
+      "polygons": 750
+    },
+    {
+      "name": "Stage.001",
+      "vertices": 751,
+      "polygons": 750
+    },
+    {
+      "name": "Window Cutter",
+      "vertices": 74,
+      "polygons": 38
+    }
+  ]
+}
+Blender 5.2.2 LTS (hash d13f752e3b9c built 2026-09-15 01:49:19)
+
+Blender quit

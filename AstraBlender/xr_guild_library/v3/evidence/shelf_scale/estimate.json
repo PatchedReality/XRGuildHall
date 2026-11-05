@@ -1,0 +1,112 @@
+{
+  "definition": "Complete individual bookcase from floor/plinth to the top of its attached carved crown; excludes separate lettering, wall frieze and room cornice.",
+  "method": "Visual proportional estimates, one representative full-case estimate per full-room image, equally weighted. These are not measurements of known physical dimensions. Pixel spans are approximate visual readings at 2048 px image width, not solved camera geometry.",
+  "assumptions": {
+    "seat_height_m": [
+      0.45,
+      0.5
+    ],
+    "chair_back_overall_height_m": [
+      0.85,
+      1.0
+    ],
+    "book_height_m": [
+      0.25,
+      0.3
+    ],
+    "shelf_pitch_without_furniture_anchor_m": [
+      0.35,
+      0.45
+    ]
+  },
+  "images": [
+    {
+      "file": "upscaled_01a900aa-b88b-4b5f-9f2e-e398f10ae2f2.webp",
+      "label": "Empty cases with branching arches",
+      "height_m": 4.1,
+      "range_m": [
+        3.4,
+        4.8
+      ],
+      "basis": "No reliable independent human-sized object. About eight shelf levels plus a tall arched crown; assume typical shelf pitch of 0.35\u20130.45 m. Low-confidence cross-check against the furnished scenes."
+    },
+    {
+      "file": "upscaled_3eb8b54b-f24b-47d7-b9c3-d847625335af.webp",
+      "label": "Empty two-bay cases",
+      "height_m": 3.8,
+      "range_m": [
+        3.2,
+        4.5
+      ],
+      "basis": "No reliable independent human-sized object. Broad two-bay cases with about seven shelf openings, dado and carved crown; inferred using 0.35\u20130.45 m shelf pitch. Low confidence."
+    },
+    {
+      "file": "upscaled_70bf4eed-2fc5-4845-9db7-d581df5d90cb.webp",
+      "label": "Empty cases beside window benches",
+      "height_m": 4.8,
+      "range_m": [
+        4.0,
+        5.6
+      ],
+      "basis": "Rear bookcase floor-to-crown roughly 330\u2013340 px in a 2048 px-wide view. Nearby bench seat-to-floor about 32\u201336 px. Assuming a 0.45\u20130.50 m seat height gives roughly 4.1\u20135.3 m before perspective uncertainty."
+    },
+    {
+      "file": "upscaled_7f89e58e-8c9b-413d-abd8-4c30fef76f4a.webp",
+      "label": "Furnished library with armchairs",
+      "height_m": 3.6,
+      "range_m": [
+        3.0,
+        4.3
+      ],
+      "basis": "Rear cases roughly 3.5\u20134 times nearby chair-back heights; assumed chair backs 0.85\u20131.0 m above floor. Visible books provide a loose 0.25\u20130.30 m height cross-check. Chair and case depths differ."
+    },
+    {
+      "file": "upscaled_a79a8a44-8549-47bf-8ff4-efd14029b4a3.webp",
+      "label": "Large gold callouts above three-bay cases",
+      "height_m": 4.2,
+      "range_m": [
+        3.5,
+        4.9
+      ],
+      "basis": "Rear case floor-to-crown around 300\u2013315 px in a 2048 px-wide view; adjacent bench seat-to-floor roughly 35\u201340 px. Assume a 0.45\u20130.50 m seat height; cross-check about seven broad shelf openings plus dado and crown."
+    },
+    {
+      "file": "upscaled_e62c660d-8173-4fa8-bad1-7ed47bf26056.webp",
+      "label": "Arched case crowns and central upholstered bench",
+      "height_m": 5.1,
+      "range_m": [
+        4.3,
+        5.9
+      ],
+      "basis": "Rear case floor-to-crown approximately 390 px in a 2048 px-wide view; center bench seat-to-floor about 35\u201340 px. Assume a 0.45\u20130.50 m seat height; perspective and interpretation of the upholstery edge dominate uncertainty."
+    },
+    {
+      "file": "libraryxrguildconceptart.webp",
+      "label": "Book-filled concept with rolling ladders",
+      "height_m": 4.5,
+      "range_m": [
+        3.7,
+        5.3
+      ],
+      "basis": "Books, chair backs and ladder rungs give overlapping but inconsistent scales. Rear case floor-to-crown about 430 px versus typical depicted book spines of roughly 27\u201333 px. Assume books about 0.25\u20130.30 m tall, with chair-back cross-check."
+    },
+    {
+      "file": "libraryxrguildconceptart1.webp",
+      "label": "Pale-stone, book-filled library",
+      "height_m": 3.1,
+      "range_m": [
+        2.6,
+        3.7
+      ],
+      "basis": "About eight to nine densely occupied shelf levels plus cornice. Rear case roughly 400\u2013440 px and representative book spines about 36\u201342 px in a 2048 px-wide view; assuming books 0.25\u20130.30 m tall suggests around 3 m. No independent furniture anchor."
+    }
+  ],
+  "arithmetic_mean_m": 4.15,
+  "arithmetic_mean_ft": 13.615485564304462,
+  "median_m": 4.15,
+  "rounded_working_average_m": 4.2,
+  "mean_of_lower_bounds_m": 3.4625,
+  "mean_of_upper_bounds_m": 4.875,
+  "interpretation": "About 4.2 m (14 ft) overall. Treat about 3.5\u20135 m as a practical uncertainty band around the aggregate estimate, not a statistical confidence interval. A range of roughly 3\u20135.5 m covers most individual cases inferred here.",
+  "other_references": "Both multiview images are excluded entirely: the user supplied them strictly for window detail. The Immersion event diagram is also excluded. Only the eight full-room library images inform the shelving estimates. No dimensions from the 32.86 m Blender hall were used to force the image estimates."
+}

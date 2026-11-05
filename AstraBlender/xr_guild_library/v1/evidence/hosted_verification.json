@@ -1,0 +1,93 @@
+{
+  "files": [
+    {
+      "path": "V1/THIRD_PARTY_NOTICES.md",
+      "bytes": 2233,
+      "sha256": "96873bd1ed4c515e178d9a9dc85562178daad1205d16ef33e5b52368acecb039",
+      "matches": true,
+      "status": 200,
+      "cache": "",
+      "cache_ok": true
+    },
+    {
+      "path": "V1/assets/XR_Guild_Library_v1.glb",
+      "bytes": 7115792,
+      "sha256": "070df46262f8b4b9847dd341ce07202882c88459d3fbcc238d5b647d2f5b817e",
+      "matches": true,
+      "status": 200,
+      "cache": "no-cache, must-revalidate",
+      "cache_ok": true
+    },
+    {
+      "path": "V1/assets/index-BbzOvt1X.css",
+      "bytes": 10836,
+      "sha256": "09c378c852d58a9c73bb0c24e8eb94ec547a182e812053db17613b8fae7483b8",
+      "matches": true,
+      "status": 200,
+      "cache": "public, max-age=31536000, immutable",
+      "cache_ok": true
+    },
+    {
+      "path": "V1/assets/index-DuK-HMiY.js",
+      "bytes": 1016457,
+      "sha256": "4e8cfa00126c41501e6ccfb303fc69e2db7ecc2c05aa518f261bb637033fff46",
+      "matches": true,
+      "status": 200,
+      "cache": "public, max-age=31536000, immutable",
+      "cache_ok": true
+    },
+    {
+      "path": "V1/index.html",
+      "bytes": 6220,
+      "sha256": "98db4fbd4f4dec3ececccfa0d69f854a4ee6a415a7dc17b7f0e7480b99d27dd7",
+      "matches": true,
+      "status": 200,
+      "cache": "no-cache, must-revalidate",
+      "cache_ok": true
+    }
+  ],
+  "routes": [
+    {
+      "path": "V1",
+      "status": 200,
+      "final_url": "https://xr-guild-library.exe.xyz/V1/"
+    },
+    {
+      "path": "V1/",
+      "status": 200,
+      "final_url": "https://xr-guild-library.exe.xyz/V1/"
+    },
+    {
+      "path": "v1",
+      "status": 200,
+      "final_url": "https://xr-guild-library.exe.xyz/V1/"
+    },
+    {
+      "path": "v1/",
+      "status": 200,
+      "final_url": "https://xr-guild-library.exe.xyz/V1/"
+    },
+    {
+      "path": "V1/missing.js",
+      "status": 404
+    }
+  ],
+  "existing_pages": [
+    {
+      "path": "index.html",
+      "sha256": "6b927e2a5a5bbe44dcc3341904c2bbac249e3450d48361e67ecde4ecbed1f8b7",
+      "unchanged": true
+    },
+    {
+      "path": "v2/index.html",
+      "sha256": "7c9e136a8f5fcf86a97059a0b366ddcd097e70e71f3c9e5521d17c33cce6f28d",
+      "unchanged": true
+    },
+    {
+      "path": "v3/index.html",
+      "sha256": "5f1736f4c1c454c97eab565b4e80ce541f3626fa0478688dd0905a41d3704e5c",
+      "unchanged": true
+    }
+  ],
+  "pass": true
+}
